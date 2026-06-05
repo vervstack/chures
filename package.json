@@ -38,7 +38,7 @@
     "demo": "vite",
     "build:demo": "vite build --config vite.config.demo.ts",
     "type-check": "tsc --noEmit",
-    "patch": "npm version patch && npm publish --access public"
+    "patch": "npm run build && npm version patch && npm publish --access public"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
