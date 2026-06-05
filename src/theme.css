@@ -1,0 +1,12 @@
+:root {
+    --chures-accent:   #229ED9;
+    --chures-btn-from: #2AABEE;
+    --chures-btn-to:   #229ED9;
+    --chures-error:    #ef4444;
+    --chures-warn:     #f59e0b;
+    --chures-fg:       #ffffff;
+    --chures-fg-muted: #9ca3af;
+    --chures-surface:  #000000;
+    --chures-font-sm:  0.875rem;
+    --chures-font-xs:  0.75rem;
+}
