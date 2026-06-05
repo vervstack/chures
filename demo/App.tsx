@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
 import { ButtonPage } from "./pages/ButtonPage"
+import { ThemePage } from "./pages/ThemePage"
 import { ToasterPage } from "./pages/ToasterPage"
 
 function useHash() {
@@ -20,6 +21,8 @@ export function App() {
     let page: React.ReactNode
     if (hash === "#/toaster") {
         page = <ToasterPage />
+    } else if (hash === "#/theme") {
+        page = <ThemePage />
     } else {
         page = <ButtonPage />
     }

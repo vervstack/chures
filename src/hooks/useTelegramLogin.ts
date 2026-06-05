@@ -22,6 +22,8 @@ export function useTelegramLogin(options: UseTelegramLoginOptions): UseTelegramL
     const onSuccessRef = useRef(options.onSuccess)
     onSuccessRef.current = options.onSuccess
 
+    const authFiredRef = useRef(false)
+
     const [isReady, setIsReady] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -42,6 +44,8 @@ export function useTelegramLogin(options: UseTelegramLoginOptions): UseTelegramL
                 tg.Login.init(
                     {client_id: botId, redirect_uri: resolvedRedirectUri},
                     function (data) {
+                        if (authFiredRef.current) return
+                        authFiredRef.current = true
                         onSuccessRef.current(data)
                     },
                 )
@@ -66,10 +70,13 @@ export function useTelegramLogin(options: UseTelegramLoginOptions): UseTelegramL
     function login() {
         const tg = (window as TelegramLoginWindow).Telegram
         if (!isReady || !tg) return
+        authFiredRef.current = false
         const resolvedRedirectUri = redirectUri ?? window.location.origin
         tg.Login.auth(
             {client_id: botId, redirect_uri: resolvedRedirectUri, request_access: requestAccess},
             function (data) {
+                if (authFiredRef.current) return
+                authFiredRef.current = true
                 onSuccessRef.current(data)
             },
         )

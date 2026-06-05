@@ -28,14 +28,15 @@ Two separate Vite configs:
 
 ```
 src/
-  index.ts                          # public API (re-exports only)
+  index.ts                          # public API; imports theme.css first
+  theme.css                         # :root defaults for all --chures-* variables
   types.ts                          # shared TypeScript types
   components/
     TelegramAuth.tsx                # container: wires hook → button or render prop
     TelegramSignInButton.tsx        # presentational button with Telegram branding
     notifications/
       Toaster.tsx                   # fixed-position toast list (Framer Motion)
-      Toast.module.css              # theming via --ta-* CSS custom properties
+      Toast.module.css              # theming via --chures-* CSS custom properties
   hooks/
     useTelegramLogin.ts             # loads Telegram OAuth script, manages state
     toaster/
@@ -44,17 +45,26 @@ src/
 
 ### CSS theming
 
-`Toaster` uses `--ta-*` CSS custom properties with fallback defaults so it works unstyled. Consumers can override:
+Defaults live in `src/theme.css` (a `:root {}` block injected with the library bundle). Consumers override variables at `:root` in their own stylesheet:
+
+```css
+:root {
+  --chures-accent: hotpink;
+}
+```
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `--ta-accent` | `#229ED9` | info border |
-| `--ta-error` | `#ef4444` | error border + title |
-| `--ta-warn` | `#f59e0b` | warning border + title |
-| `--ta-fg` | `#ffffff` | title text |
-| `--ta-fg-muted` | `#9ca3af` | description text |
-| `--ta-font-sm` | `0.875rem` | title size |
-| `--ta-font-xs` | `0.75rem` | description size |
+| `--chures-accent` | `#229ED9` | info border |
+| `--chures-btn-from` | `#2AABEE` | button gradient top |
+| `--chures-btn-to` | `#229ED9` | button gradient bottom |
+| `--chures-error` | `#ef4444` | error border + title |
+| `--chures-warn` | `#f59e0b` | warning border + title |
+| `--chures-fg` | `#ffffff` | title text |
+| `--chures-fg-muted` | `#9ca3af` | description text |
+| `--chures-surface` | `#000000` | toast background |
+| `--chures-font-sm` | `0.875rem` | title size |
+| `--chures-font-xs` | `0.75rem` | description size |
 
 ### Component conventions
 - Named function declarations (not arrow functions) for all components

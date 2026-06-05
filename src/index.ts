@@ -1,3 +1,4 @@
+import "./theme.css"
 export {TelegramAuth} from "./components/TelegramAuth"
 export {default as Toaster} from "./components/notifications/Toaster"
 export {useToaster} from "./hooks/toaster/useToaster"

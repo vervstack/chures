@@ -13,46 +13,46 @@
 
 .Toast {
     min-height: 4rem;
-    border: var(--ta-accent, #229ED9) 1px solid;
+    border: var(--chures-accent, #229ED9) 1px solid;
     border-radius: 1rem;
     padding: 1rem;
     box-sizing: border-box;
     position: relative;
 
-    background: black;
+    background: var(--chures-surface, #000000);
 
     display: flex;
     flex-direction: column;
 
     & > div:first-child {
         font-weight: 700;
-        font-size: var(--ta-font-sm, 0.875rem);
-        color: var(--ta-fg, #ffffff);
+        font-size: var(--chures-font-sm, 0.875rem);
+        color: var(--chures-fg, #ffffff);
     }
 
     &.error {
-        border-color: var(--ta-error, #ef4444);
+        border-color: var(--chures-error, #ef4444);
     }
 
     &.error > div:first-child {
-        color: var(--ta-error, #ef4444);
+        color: var(--chures-error, #ef4444);
     }
 
     &.warn {
-        border-color: var(--ta-warn, #f59e0b);
+        border-color: var(--chures-warn, #f59e0b);
     }
 
     &.warn > div:first-child {
-        color: var(--ta-warn, #f59e0b);
+        color: var(--chures-warn, #f59e0b);
     }
 
     &.info {
-        border-color: var(--ta-accent, #229ED9);
+        border-color: var(--chures-accent, #229ED9);
     }
 
     .Description {
-        color: var(--ta-fg-muted, #9ca3af);
-        font-size: var(--ta-font-xs, 0.75rem);
+        color: var(--chures-fg-muted, #9ca3af);
+        font-size: var(--chures-font-xs, 0.75rem);
         margin-top: 0.125rem;
     }
 
@@ -72,7 +72,7 @@
         cursor: pointer;
 
         font-size: 1.5rem;
-        color: var(--ta-fg-muted, #9ca3af);
+        color: var(--chures-fg-muted, #9ca3af);
     }
 }
 
