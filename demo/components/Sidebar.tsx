@@ -8,6 +8,8 @@ const NAV: NavItem[] = [
     { hash: "#/toaster", label: "Toaster" },
     { hash: "#/loader", label: "Loader" },
     { hash: "#/loading-wrapper", label: "LoadingWrapper" },
+    { hash: "#/input", label: "Input" },
+    { hash: "#/toggle", label: "Toggle" },
     { hash: "#/theme", label: "Theming" },
 ]
 

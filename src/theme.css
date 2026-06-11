@@ -9,4 +9,17 @@
     --chures-surface:  #000000;
     --chures-font-sm:  0.875rem;
     --chures-font-xs:  0.75rem;
+
+    --chures-input-bg:           #111111;
+    --chures-input-height:       3rem;
+    --chures-input-radius:       0.75rem;
+    --chures-skeleton-shine:     #1e1e1e;
+
+    --chures-toggle-width:       2.75rem;
+    --chures-toggle-height:      1.5rem;
+    --chures-toggle-thumb:       1.125rem;
+    --chures-toggle-bg-off:      rgb(255 255 255 / 13%);
+    --chures-toggle-bg-on:           var(--chures-accent);
+    --chures-toggle-thumb-color:     #ffffff;
+    --chures-toggle-label-skeleton-w: 5rem;
 }
