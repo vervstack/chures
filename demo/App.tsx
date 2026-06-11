@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
 import { ButtonPage } from "./pages/ButtonPage"
+import { LoaderPage } from "./pages/LoaderPage"
 import { ThemePage } from "./pages/ThemePage"
 import { ToasterPage } from "./pages/ToasterPage"
 
@@ -23,6 +24,8 @@ export function App() {
         page = <ToasterPage />
     } else if (hash === "#/theme") {
         page = <ThemePage />
+    } else if (hash === "#/loader") {
+        page = <LoaderPage />
     } else {
         page = <ButtonPage />
     }

@@ -6,6 +6,7 @@ interface NavItem {
 const NAV: NavItem[] = [
     { hash: "#/button", label: "TelegramSignInButton" },
     { hash: "#/toaster", label: "Toaster" },
+    { hash: "#/loader", label: "Loader" },
     { hash: "#/theme", label: "Theming" },
 ]
 

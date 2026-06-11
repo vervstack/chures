@@ -1,4 +1,6 @@
 import "./theme.css"
+export {Loader} from "./components/Loader"
+export type {LoaderProps} from "./components/Loader"
 export {TelegramAuth} from "./components/TelegramAuth"
 export {default as Toaster} from "./components/notifications/Toaster"
 export {useToaster} from "./hooks/toaster/useToaster"
