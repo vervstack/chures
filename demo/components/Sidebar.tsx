@@ -7,6 +7,7 @@ const NAV: NavItem[] = [
     { hash: "#/button", label: "TelegramSignInButton" },
     { hash: "#/toaster", label: "Toaster" },
     { hash: "#/loader", label: "Loader" },
+    { hash: "#/loading-wrapper", label: "LoadingWrapper" },
     { hash: "#/theme", label: "Theming" },
 ]
 

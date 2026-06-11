@@ -3,6 +3,7 @@ import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
 import { ButtonPage } from "./pages/ButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
+import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
 import { ThemePage } from "./pages/ThemePage"
 import { ToasterPage } from "./pages/ToasterPage"
 
@@ -26,6 +27,8 @@ export function App() {
         page = <ThemePage />
     } else if (hash === "#/loader") {
         page = <LoaderPage />
+    } else if (hash === "#/loading-wrapper") {
+        page = <LoadingWrapperPage />
     } else {
         page = <ButtonPage />
     }
