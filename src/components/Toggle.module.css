@@ -1,0 +1,89 @@
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+.ToggleContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.Track {
+    position: relative;
+    width: var(--chures-toggle-width, 2.75rem);
+    height: var(--chures-toggle-height, 1.5rem);
+    border-radius: 624.9375rem;
+    background: var(--chures-toggle-bg-off, rgb(255 255 255 / 13%));
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.Track.on {
+    background: var(--chures-toggle-bg-on, var(--chures-accent, #229ED9));
+}
+
+.disabled .Track {
+    cursor: not-allowed;
+}
+
+.Thumb {
+    position: absolute;
+    top: 50%;
+    left: 0.1875rem;
+    transform: translateY(-50%);
+    width: var(--chures-toggle-thumb, 1.125rem);
+    height: var(--chures-toggle-thumb, 1.125rem);
+    border-radius: 50%;
+    background: var(--chures-toggle-thumb-color, #ffffff);
+    transition: left 0.2s ease;
+    pointer-events: none;
+}
+
+.Track.on .Thumb {
+    left: calc(var(--chures-toggle-width, 2.75rem) - var(--chures-toggle-thumb, 1.125rem) - 0.1875rem);
+}
+
+.Label {
+    font-size: var(--chures-font-sm, 0.875rem);
+    color: var(--chures-fg, #ffffff);
+    user-select: none;
+}
+
+.LabelSkeleton {
+    display: inline-block;
+    width: var(--chures-toggle-label-skeleton-w, 5rem);
+    height: var(--chures-font-sm, 0.875rem);
+    border-radius: 624.9375rem;
+    background: linear-gradient(
+        90deg,
+        var(--chures-input-bg, #111111) 25%,
+        var(--chures-skeleton-shine, #1e1e1e) 50%,
+        var(--chures-input-bg, #111111) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.Skeleton {
+    width: var(--chures-toggle-width, 2.75rem);
+    height: var(--chures-toggle-height, 1.5rem);
+    border-radius: 624.9375rem;
+    background: linear-gradient(
+        90deg,
+        var(--chures-input-bg, #111111) 25%,
+        var(--chures-skeleton-shine, #1e1e1e) 50%,
+        var(--chures-input-bg, #111111) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}

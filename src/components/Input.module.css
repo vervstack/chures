@@ -1,0 +1,85 @@
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+.InputContainer {
+    position: relative;
+    width: 100%;
+    height: var(--chures-input-height, 3rem);
+}
+
+.InputField {
+    width: 100%;
+    height: 100%;
+    background: var(--chures-input-bg, #111111);
+    border: 0.0625rem solid rgb(255 255 255 / 13%);
+    border-radius: var(--chures-input-radius, 0.75rem);
+    color: var(--chures-fg, #ffffff);
+    font-size: var(--chures-font-sm, 0.875rem);
+    padding: 0 0.875rem;
+    outline: none;
+    transition: border-color 0.18s ease;
+    box-sizing: border-box;
+}
+
+.InputField:focus {
+    border-color: rgb(255 255 255 / 35%);
+}
+
+.hasError .InputField,
+.hasError .InputField:focus {
+    border-color: var(--chures-error, #ef4444);
+}
+
+.disabled .InputField {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.Label {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+    color: var(--chures-fg-muted, #9ca3af);
+    font-size: var(--chures-font-sm, 0.875rem);
+    pointer-events: none;
+    transition: all 0.18s ease;
+    padding: 0 0.25rem;
+    border-radius: 0.1875rem;
+}
+
+.Label.lifted {
+    top: 0;
+    transform: translateY(-50%) scale(0.82);
+    background: var(--chures-input-bg, #111111);
+    color: var(--chures-fg-muted, #9ca3af);
+}
+
+.hasError .Label.lifted {
+    color: var(--chures-error, #ef4444);
+}
+
+.ErrorText {
+    display: block;
+    margin-top: 0.25rem;
+    padding-left: 0.875rem;
+    font-size: var(--chures-font-xs, 0.75rem);
+    color: var(--chures-error, #ef4444);
+}
+
+.Skeleton {
+    width: 100%;
+    height: var(--chures-input-height, 3rem);
+    border-radius: var(--chures-input-radius, 0.75rem);
+    background: linear-gradient(
+        90deg,
+        var(--chures-input-bg, #111111) 25%,
+        var(--chures-skeleton-shine, #1e1e1e) 50%,
+        var(--chures-input-bg, #111111) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
