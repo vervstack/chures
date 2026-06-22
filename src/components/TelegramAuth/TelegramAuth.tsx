@@ -1,7 +1,7 @@
 import type {ReactNode} from "react"
-import type {TelegramAuthData} from "../types"
-import {useTelegramLogin} from "../hooks/useTelegramLogin"
-import {TelegramSignInButton} from "./TelegramSignInButton"
+import type {TelegramAuthData} from "../../types"
+import {useTelegramLogin} from "../../hooks/useTelegramLogin"
+import {TelegramSignInButton} from "../TelegramSignInButton"
 
 export type TelegramAuthProps = {
     botId: string

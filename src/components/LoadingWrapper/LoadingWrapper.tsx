@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { Loader, LoaderProps } from './Loader'
+import { Loader, LoaderProps } from '../Loader'
 import styles from './LoadingWrapper.module.css'
 
 interface Props {
