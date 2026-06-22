@@ -75,20 +75,70 @@ body {
     align-items: center;
     justify-content: center;
     padding: 3rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     min-height: 0;
 }
 
 .playground-controls {
-    padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* ── Resize handle ── */
+
+.resize-handle {
+    flex-shrink: 0;
+    height: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ns-resize;
+    transition: border-color 0.2s;
+}
+
+.resize-handle:hover,
+.playground--dragging .resize-handle {
+    border-top-color: rgba(110, 150, 255, 0.45);
+}
+
+.resize-handle-btn {
+    width: 2.25rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.22);
+    pointer-events: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.resize-handle:hover .resize-handle-btn,
+.playground--dragging .resize-handle-btn {
+    background: rgba(110, 150, 255, 0.12);
+    border-color: rgba(110, 150, 255, 0.4);
+    color: rgba(110, 150, 255, 0.75);
+}
+
+/* ── Controls inner (scrollable grid) ── */
+
+.controls-inner {
+    flex: 1;
     overflow-y: auto;
-    max-height: 18rem;
+    padding: 1.25rem 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.875rem 2rem;
+    align-items: start;
+    align-content: start;
 }
 
 .controls-heading {
+    grid-column: 1 / -1;
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.1em;

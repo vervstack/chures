@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { Dropdown } from "../../src/components/Dropdown/Dropdown"
 import type { DropdownOption } from "../../src/components/Dropdown/Dropdown.types"
 import { getOptionId, getOptionLabel } from "../../src/components/Dropdown/Dropdown.types"
+import { Playground } from "../components/Playground"
 import { PropRow, ToggleGroup } from "../components/PropRow"
 
 const FRUITS: DropdownOption[] = [
@@ -59,8 +60,8 @@ export function DropdownPage() {
             .join(", ")
 
     return (
-        <div className="playground">
-            <div className="playground-preview">
+        <Playground
+            preview={
                 <div className="preview-card">
                     <span className="preview-label">Preview</span>
                     <div style={{ position: "relative", width: "16rem" }}>
@@ -109,74 +110,73 @@ export function DropdownPage() {
                         )}
                     </div>
                 </div>
-            </div>
+            }
+            controls={
+                <>
+                    <PropRow label="multiSelect">
+                        <ToggleGroup
+                            options={["false", "true"]}
+                            value={String(multiSelect)}
+                            onChange={(v) => { setMultiSelect(v === "true"); setSelected([]) }}
+                        />
+                    </PropRow>
 
-            <div className="playground-controls">
-                <div className="controls-heading">Props</div>
+                    <PropRow label="isLoading">
+                        <ToggleGroup
+                            options={["false", "true"]}
+                            value={String(isLoading)}
+                            onChange={(v) => setIsLoading(v === "true")}
+                        />
+                    </PropRow>
 
-                <PropRow label="multiSelect">
-                    <ToggleGroup
-                        options={["false", "true"]}
-                        value={String(multiSelect)}
-                        onChange={(v) => { setMultiSelect(v === "true"); setSelected([]) }}
-                    />
-                </PropRow>
+                    <PropRow label="onSearch">
+                        <ToggleGroup
+                            options={["off", "on"]}
+                            value={searchEnabled ? "on" : "off"}
+                            onChange={(v) => setSearchEnabled(v === "on")}
+                        />
+                    </PropRow>
 
-                <PropRow label="isLoading">
-                    <ToggleGroup
-                        options={["false", "true"]}
-                        value={String(isLoading)}
-                        onChange={(v) => setIsLoading(v === "true")}
-                    />
-                </PropRow>
+                    <PropRow label="onCreate">
+                        <ToggleGroup
+                            options={["off", "on"]}
+                            value={createEnabled ? "on" : "off"}
+                            onChange={(v) => setCreateEnabled(v === "on")}
+                        />
+                    </PropRow>
 
-                <PropRow label="onSearch">
-                    <ToggleGroup
-                        options={["off", "on"]}
-                        value={searchEnabled ? "on" : "off"}
-                        onChange={(v) => setSearchEnabled(v === "on")}
-                    />
-                </PropRow>
+                    <PropRow label="skeletonRowCount">
+                        <ToggleGroup
+                            options={["2", "4", "6"]}
+                            value={String(skeletonRowCount)}
+                            onChange={(v) => setSkeletonRowCount(Number(v))}
+                        />
+                    </PropRow>
 
-                <PropRow label="onCreate">
-                    <ToggleGroup
-                        options={["off", "on"]}
-                        value={createEnabled ? "on" : "off"}
-                        onChange={(v) => setCreateEnabled(v === "on")}
-                    />
-                </PropRow>
+                    <PropRow label="placeholder">
+                        <input
+                            className="prop-input"
+                            value={placeholder}
+                            onChange={(e) => setPlaceholder(e.target.value)}
+                            placeholder="(default)"
+                        />
+                    </PropRow>
 
-                <PropRow label="skeletonRowCount">
-                    <ToggleGroup
-                        options={["2", "4", "6"]}
-                        value={String(skeletonRowCount)}
-                        onChange={(v) => setSkeletonRowCount(Number(v))}
-                    />
-                </PropRow>
+                    <PropRow label="emptyHint">
+                        <input
+                            className="prop-input"
+                            value={emptyHint}
+                            onChange={(e) => setEmptyHint(e.target.value)}
+                        />
+                    </PropRow>
 
-                <PropRow label="placeholder">
-                    <input
-                        className="prop-input"
-                        value={placeholder}
-                        onChange={(e) => setPlaceholder(e.target.value)}
-                        placeholder="(default)"
-                    />
-                </PropRow>
-
-                <PropRow label="emptyHint">
-                    <input
-                        className="prop-input"
-                        value={emptyHint}
-                        onChange={(e) => setEmptyHint(e.target.value)}
-                    />
-                </PropRow>
-
-                <PropRow label="selected">
-                    <span style={{ fontSize: "0.75rem", color: "var(--chures-fg-muted)" }}>
-                        {selected.length > 0 ? selected.join(", ") : "(none)"}
-                    </span>
-                </PropRow>
-            </div>
-        </div>
+                    <PropRow label="selected">
+                        <span style={{ fontSize: "0.75rem", color: "var(--chures-fg-muted)" }}>
+                            {selected.length > 0 ? selected.join(", ") : "(none)"}
+                        </span>
+                    </PropRow>
+                </>
+            }
+        />
     )
 }
