@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" rx="112" fill="#F3E3C4"/>
+
+    <defs>
+        <clipPath id="totemClip">
+            <path d="M256 62L326 104V166L300 192L346 226L326 286L296 274V414L256 440L216 414V274L186 286L166 226L212 192L186 166V104L256 62Z"/>
+        </clipPath>
+    </defs>
+
+    <!-- Main totem silhouette -->
+    <path d="M256 62L326 104V166L300 192L346 226L326 286L296 274V414L256 440L216 414V274L186 286L166 226L212 192L186 166V104L256 62Z"
+          fill="#2B2926"/>
+
+    <!-- Interlocking geometric forms -->
+    <path d="M256 82L306 112V154L278 182H234L206 154V112L256 82Z" fill="#A94E2E"/>
+    <path d="M234 182H278L306 212L284 244H228L206 212L234 182Z" fill="#6F3A2A"/>
+    <path d="M228 244H284L296 292L256 320L216 292L228 244Z" fill="#B85C35"/>
+    <path d="M216 292L256 320L296 292V394L256 420L216 394V292Z" fill="#8A432E"/>
+
+    <!-- Shoulder / side forms -->
+    <path d="M206 212L166 226L186 286L228 244L206 212Z" fill="#3A3430"/>
+    <path d="M306 212L346 226L326 286L284 244L306 212Z" fill="#3A3430"/>
+
+    <!-- Cream negative-space cuts -->
+    <path d="M232 126L252 114V158L232 148V126Z" fill="#F3E3C4"/>
+    <path d="M280 126L260 114V158L280 148V126Z" fill="#F3E3C4"/>
+    <path d="M256 190L282 218H230L256 190Z" fill="#F3E3C4"/>
+    <path d="M236 266L256 252L276 266L256 282L236 266Z" fill="#F3E3C4"/>
+    <path d="M244 336H268V386L256 398L244 386V336Z" fill="#2B2926"/>
+
+    <!-- Subtle wood-grain suggestion clipped to icon -->
+    <g clip-path="url(#totemClip)" opacity="0.28">
+        <path d="M212 104C238 126 236 154 214 176" stroke="#F3E3C4" stroke-width="6" stroke-linecap="round"/>
+        <path d="M300 104C274 128 276 154 298 178" stroke="#F3E3C4" stroke-width="6" stroke-linecap="round"/>
+        <path d="M238 210C258 232 258 260 238 286" stroke="#2B2926" stroke-width="5" stroke-linecap="round"/>
+        <path d="M274 210C254 234 254 260 274 286" stroke="#2B2926" stroke-width="5" stroke-linecap="round"/>
+        <path d="M232 318C252 344 250 372 232 402" stroke="#F3E3C4" stroke-width="5" stroke-linecap="round"/>
+        <path d="M280 318C260 344 262 372 280 402" stroke="#F3E3C4" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <path d="M232 414L256 440L280 414H232Z" fill="#2B2926"/>
+</svg>
