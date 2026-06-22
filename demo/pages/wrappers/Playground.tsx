@@ -1,10 +1,10 @@
-import { useCallback, useRef, useState } from "react"
-import { DragHandleIcon } from "../../assets/icons/DragHandleIcon"
-import { SidePanelIcon } from "../../assets/icons/SidePanelIcon"
-import type { ControlDef } from "../../widgets/ControlDef"
-import { ControlItem } from "../../widgets/ControlItem"
-import { IconButton } from "../../widgets/IconButton"
-import { PreviewCard } from "../../widgets/PreviewCard"
+import {useCallback, useRef, useState} from "react"
+import {DragHandleIcon} from "../../assets/icons/DragHandleIcon"
+import {SidePanelIcon} from "../../assets/icons/SidePanelIcon"
+import type {ControlDef} from "../../widgets/ControlDef"
+import {ControlItem} from "../../widgets/ControlItem"
+import {IconButton} from "../../widgets/IconButton"
+import {PreviewCard} from "../../widgets/PreviewCard"
 
 interface Props {
     children: React.ReactNode
@@ -19,15 +19,22 @@ const DEFAULT_HEIGHT = 260
 const MIN_HEIGHT = 80
 const MAX_HEIGHT = 680
 
-export function Playground({ children, controls, sideControls, heading = "Props", sideHeading = "Styles", defaultSideOpen = false }: Props) {
+export function Playground({
+                               children,
+                               controls,
+                               sideControls,
+                               heading = "Props",
+                               sideHeading = "Styles",
+                               defaultSideOpen = false
+                           }: Props) {
     const [height, setHeight] = useState(DEFAULT_HEIGHT)
     const [dragging, setDragging] = useState(false)
     const [sideOpen, setSideOpen] = useState(defaultSideOpen)
-    const drag = useRef({ y: 0, h: 0 })
+    const drag = useRef({y: 0, h: 0})
 
     const onMouseDown = useCallback((e: React.MouseEvent) => {
         e.preventDefault()
-        drag.current = { y: e.clientY, h: height }
+        drag.current = {y: e.clientY, h: height}
         setDragging(true)
         document.body.style.cursor = "ns-resize"
         document.body.style.userSelect = "none"
@@ -59,7 +66,7 @@ export function Playground({ children, controls, sideControls, heading = "Props"
                             onClick={() => setSideOpen((v) => !v)}
                             aria-label="Toggle style panel"
                         >
-                            <SidePanelIcon />
+                            <SidePanelIcon/>
                         </IconButton>
                     )}
                     <PreviewCard>{children}</PreviewCard>
@@ -67,20 +74,21 @@ export function Playground({ children, controls, sideControls, heading = "Props"
                 {sideOpen && sideControls && (
                     <div className="playground-side">
                         <div className="controls-heading">{sideHeading}</div>
-                        {sideControls.map((ctrl, i) => <ControlItem key={i} ctrl={ctrl} />)}
+                        {sideControls.map((ctrl, i) =>
+                            <ControlItem key={i} ctrl={ctrl}/>)}
                     </div>
                 )}
             </div>
             {hasBottomControls && (
-                <div className="playground-controls" style={{ height }}>
+                <div className="playground-controls" style={{height}}>
                     <div className="resize-handle" onMouseDown={onMouseDown}>
                         <IconButton className="resize-handle-btn" tabIndex={-1} aria-hidden>
-                            <DragHandleIcon />
+                            <DragHandleIcon/>
                         </IconButton>
                     </div>
                     <div className="controls-inner">
                         <div className="controls-heading">{heading}</div>
-                        {controls.map((ctrl, i) => <ControlItem key={i} ctrl={ctrl} />)}
+                        {controls.map((ctrl, i) => <ControlItem key={i} ctrl={ctrl}/>)}
                     </div>
                 </div>
             )}
