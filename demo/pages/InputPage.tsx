@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Input } from "../../src/components/Input"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 export function InputPage() {
     const [value, setValue] = useState("")

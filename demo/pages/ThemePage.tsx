@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { TelegramSignInButton } from "../../src/components/TelegramSignInButton"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 type VarMap = Record<string, string>
 

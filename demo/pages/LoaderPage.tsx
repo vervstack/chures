@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Loader } from "../../src/components/Loader"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 const LOADER_VARIANTS = ["arcs", "ripple", "dots", "wave"] as const
 type LoaderVariant = (typeof LOADER_VARIANTS)[number]

@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { Dropdown } from "../../src/components/Dropdown/Dropdown"
 import type { DropdownOption } from "../../src/components/Dropdown/Dropdown.types"
 import { getOptionId, getOptionLabel } from "../../src/components/Dropdown/Dropdown.types"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 const FRUITS: DropdownOption[] = [
     "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew",

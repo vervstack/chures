@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Toggle } from "../../src/components/Toggle"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 export function TogglePage() {
     const [checked, setChecked] = useState(false)

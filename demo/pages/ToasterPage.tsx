@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 type Level = "Info" | "Warn" | "Error"
 

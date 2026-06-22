@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { TelegramSignInButton } from "../../src/components/TelegramSignInButton"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
-import { Playground } from "../components/Playground"
+import { Playground } from "./wrappers/Playground"
 
 export function ButtonPage() {
     const [lang, setLang] = useState<"en" | "ru">("en")

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { LoadingWrapper } from "../../src/components/LoadingWrapper"
 import type { LoaderProps } from "../../src/components/Loader"
-import type { ControlDef } from "../components/ControlDef"
-import { Playground } from "../components/Playground"
+import type { ControlDef } from "../widgets/ControlDef"
+import { Playground } from "./wrappers/Playground"
 
 const VARIANTS = ["arcs", "ripple", "dots", "wave"] as const
 
