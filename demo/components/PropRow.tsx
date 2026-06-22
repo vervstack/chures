@@ -34,21 +34,4 @@ export function ToggleGroup({ options, value, onChange }: ToggleGroupProps) {
     )
 }
 
-interface SwitchProps {
-    checked: boolean
-    onChange: (v: boolean) => void
-}
-
-export function Switch({ checked, onChange }: SwitchProps) {
-    return (
-        <label className="switch">
-            <input
-                type="checkbox"
-                checked={checked}
-                onChange={(e) => onChange(e.target.checked)}
-            />
-            <span className="switch-track" />
-            <span className="switch-thumb" />
-        </label>
-    )
-}
+export { Switch } from './Switch'

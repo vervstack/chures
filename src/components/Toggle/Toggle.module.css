@@ -38,9 +38,10 @@
 
 .Thumb {
     position: absolute;
-    top: 50%;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
     left: 0.1875rem;
-    transform: translateY(-50%);
     width: var(--chures-toggle-thumb, 1.125rem);
     height: var(--chures-toggle-thumb, 1.125rem);
     border-radius: 50%;
