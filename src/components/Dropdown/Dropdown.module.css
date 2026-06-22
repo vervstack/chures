@@ -1,0 +1,149 @@
+@import "./../../theme.css";
+
+@keyframes panelIn {
+    from { opacity: 0; transform: scale(0.96) translateY(6px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes shimmer {
+    from { background-position: -200% center; }
+    to   { background-position: 200% center; }
+}
+
+.DropdownContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--chures-dropdown-bg);
+    border: 1px solid var(--chures-dropdown-border);
+    border-radius: var(--chures-dropdown-radius);
+    overflow: hidden;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 80%);
+    animation: panelIn 0.14s ease;
+    z-index: 100;
+}
+
+.SearchRow {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--chures-dropdown-border-subtle);
+}
+
+.SearchBox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--chures-input-bg);
+    border: 1px solid var(--chures-dropdown-border-subtle);
+    border-radius: var(--chures-dropdown-row-radius);
+    padding: 0.4rem 0.625rem;
+}
+
+.SearchIcon {
+    display: flex;
+    align-items: center;
+    color: var(--chures-fg-muted);
+    flex-shrink: 0;
+}
+
+.SearchInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: var(--chures-font-sm);
+    color: var(--chures-fg);
+    font-family: inherit;
+
+    &::placeholder {
+        color: var(--chures-fg-muted);
+    }
+}
+
+.ResultsList {
+    max-height: 13rem;
+    overflow-y: auto;
+}
+
+.OptionRow {
+    padding: 0.5625rem 0.875rem;
+    font-size: var(--chures-font-sm);
+    color: var(--chures-fg-muted);
+    cursor: pointer;
+    transition: background 0.1s ease, color 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: var(--chures-dropdown-hover);
+        color: var(--chures-fg);
+    }
+
+    &.Selected {
+        color: var(--chures-fg);
+    }
+}
+
+.Checkmark {
+    color: var(--chures-accent);
+    font-size: var(--chures-font-xs);
+    flex-shrink: 0;
+}
+
+.CreateRow {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5625rem 0.875rem;
+    cursor: pointer;
+    background: var(--chures-dropdown-create-bg);
+    transition: background 0.1s ease;
+
+    &:hover {
+        background: var(--chures-dropdown-create-bg-hover);
+    }
+
+    &.WithBorder {
+        border-top: 1px solid var(--chures-dropdown-border-subtle);
+    }
+}
+
+.CreateIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--chures-accent);
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.CreateLabel {
+    font-size: var(--chures-font-sm);
+    font-weight: 600;
+    color: var(--chures-fg);
+}
+
+.EmptyHint {
+    padding: 0.75rem 0.875rem;
+    font-size: var(--chures-font-sm);
+    color: var(--chures-fg-muted);
+    font-style: italic;
+}
+
+.SkeletonRow {
+    height: 2rem;
+    margin: 0.375rem 0.875rem;
+    border-radius: var(--chures-dropdown-row-radius);
+    background: linear-gradient(
+        90deg,
+        var(--chures-dropdown-bg) 25%,
+        var(--chures-skeleton-shine) 50%,
+        var(--chures-dropdown-bg) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite linear;
+}

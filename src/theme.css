@@ -1,25 +1,37 @@
 :root {
-    --chures-accent:   #229ED9;
+    --chures-accent: #229ED9;
+    --chures-accent-muted: rgb(34 158 217 / 50%);
     --chures-btn-from: #2AABEE;
-    --chures-btn-to:   #229ED9;
-    --chures-error:    #ef4444;
-    --chures-warn:     #f59e0b;
-    --chures-fg:       #ffffff;
+    --chures-btn-to: #229ED9;
+    --chures-error: #ef4444;
+    --chures-warn: #f59e0b;
+
+    --chures-bg: #000000;
+    --chures-fg: #ffffff;
     --chures-fg-muted: #9ca3af;
-    --chures-surface:  #000000;
-    --chures-font-sm:  0.875rem;
-    --chures-font-xs:  0.75rem;
+    --chures-surface: #000000;
+    --chures-font-sm: 0.875rem;
+    --chures-font-xs: 0.75rem;
 
-    --chures-input-bg:           #111111;
-    --chures-input-height:       3rem;
-    --chures-input-radius:       0.75rem;
-    --chures-skeleton-shine:     #1e1e1e;
+    --chures-input-bg: #111111;
+    --chures-input-height: 3rem;
+    --chures-input-radius: 0.75rem;
+    --chures-skeleton-shine: #1e1e1e;
 
-    --chures-toggle-width:       2.75rem;
-    --chures-toggle-height:      1.5rem;
-    --chures-toggle-thumb:       1.125rem;
-    --chures-toggle-bg-off:      rgb(255 255 255 / 13%);
-    --chures-toggle-bg-on:           var(--chures-accent);
-    --chures-toggle-thumb-color:     #ffffff;
+    --chures-toggle-width: 2.75rem;
+    --chures-toggle-height: 1.5rem;
+    --chures-toggle-thumb: 1.125rem;
+    --chures-toggle-bg-off: rgb(255 255 255 / 13%);
+    --chures-toggle-bg-on: var(--chures-accent);
+    --chures-toggle-thumb-color: #ffffff;
     --chures-toggle-label-skeleton-w: 5rem;
+
+    --chures-dropdown-bg: var(--chures-bg);
+    --chures-dropdown-radius: 0.75rem;
+    --chures-dropdown-row-radius: 0.375rem;
+    --chures-dropdown-border: var(--chures-accent);
+    --chures-dropdown-border-subtle: var(--chures-accent-muted);
+    --chures-dropdown-hover: rgb(255 255 255 / 8%);
+    --chures-dropdown-create-bg: rgb(34 158 217 / 12%);
+    --chures-dropdown-create-bg-hover: rgb(34 158 217 / 20%);
 }

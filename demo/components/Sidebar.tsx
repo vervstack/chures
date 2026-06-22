@@ -11,6 +11,7 @@ const NAV: NavItem[] = [
     { hash: "#/input", label: "Input" },
     { hash: "#/toggle", label: "Toggle" },
     { hash: "#/theme", label: "Theming" },
+    { hash: "#/dropdown", label: "Dropdown" },
 ]
 
 interface Props {

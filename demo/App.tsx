@@ -8,6 +8,7 @@ import { TogglePage } from "./pages/TogglePage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
 import { ThemePage } from "./pages/ThemePage"
 import { ToasterPage } from "./pages/ToasterPage"
+import { DropdownPage } from "./pages/DropdownPage"
 
 function useHash() {
     const [hash, setHash] = useState(location.hash || "#/button")
@@ -35,6 +36,8 @@ export function App() {
         page = <InputPage />
     } else if (hash === "#/toggle") {
         page = <TogglePage />
+    } else if (hash === "#/dropdown") {
+        page = <DropdownPage />
     } else {
         page = <ButtonPage />
     }
