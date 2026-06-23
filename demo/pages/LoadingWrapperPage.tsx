@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { LoadingWrapper } from "../../src/components/LoadingWrapper"
 import type { LoaderProps } from "../../src/components/Loader"
 import type { ControlDef } from "../widgets/ControlDef"
-import { Playground } from "./wrappers/Playground"
+import { useDemoStore } from "../store/useDemoStore"
 
 const VARIANTS = ["arcs", "ripple", "dots", "wave"] as const
 
@@ -49,31 +49,34 @@ export function LoadingWrapperPage() {
     const [skeletonClass, setSkeletonClass] = useState("")
     const [variant, setVariant] = useState<NonNullable<LoaderProps["variant"]>>("arcs")
     const [size, setSize] = useState<NonNullable<LoaderProps["size"]>>("md")
+    const setControls = useDemoStore((s) => s.setControls)
 
-    const controls: ControlDef[] = [
-        { type: "toggle", label: "isLoading", value: isLoading, onChange: setIsLoading },
-        { type: "toggle", label: "useSkeleton", value: useSkeleton, onChange: setUseSkeleton },
-        ...(useSkeleton
-            ? [{ type: "input" as const, label: "className", value: skeletonClass, onChange: setSkeletonClass, placeholder: "CSS class for skeleton wrapper" }]
-            : [
-                { type: "toggleGroup" as const, label: "variant", options: [...VARIANTS], value: variant, onChange: (v: string) => setVariant(v as NonNullable<LoaderProps["variant"]>) },
-                { type: "toggleGroup" as const, label: "size", options: ["sm", "md", "lg"], value: size, onChange: (v: string) => setSize(v as NonNullable<LoaderProps["size"]>) },
-            ]
-        ),
-    ]
+    useEffect(() => {
+        const controls: ControlDef[] = [
+            { type: "toggle", label: "isLoading", value: isLoading, onChange: setIsLoading },
+            { type: "toggle", label: "useSkeleton", value: useSkeleton, onChange: setUseSkeleton },
+            ...(useSkeleton
+                ? [{ type: "input" as const, label: "className", value: skeletonClass, onChange: setSkeletonClass, placeholder: "CSS class for skeleton wrapper" }]
+                : [
+                    { type: "toggleGroup" as const, label: "variant", options: [...VARIANTS], value: variant, onChange: (v: string) => setVariant(v as NonNullable<LoaderProps["variant"]>) },
+                    { type: "toggleGroup" as const, label: "size", options: ["sm", "md", "lg"], value: size, onChange: (v: string) => setSize(v as NonNullable<LoaderProps["size"]>) },
+                ]
+            ),
+        ]
+        setControls(controls)
+        return () => setControls([])
+    }, [isLoading, useSkeleton, skeletonClass, variant, size, setControls])
 
     return (
-        <Playground controls={controls}>
-            <div style={{ width: "18rem" }}>
-                <LoadingWrapper
-                    isLoading={isLoading}
-                    skeleton={useSkeleton ? <UserCardSkeleton /> : undefined}
-                    loaderProps={{ variant, size }}
-                    className={skeletonClass || undefined}
-                >
-                    <UserCard />
-                </LoadingWrapper>
-            </div>
-        </Playground>
+        <div style={{ width: "18rem" }}>
+            <LoadingWrapper
+                isLoading={isLoading}
+                skeleton={useSkeleton ? <UserCardSkeleton /> : undefined}
+                loaderProps={{ variant, size }}
+                className={skeletonClass || undefined}
+            >
+                <UserCard />
+            </LoadingWrapper>
+        </div>
     )
 }

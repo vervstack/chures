@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Loader } from "../../src/components/Loader"
-import { Playground } from "./wrappers/Playground"
+import { useDemoStore } from "../store/useDemoStore"
 
 const LOADER_VARIANTS = ["arcs", "ripple", "dots", "wave"] as const
 type LoaderVariant = (typeof LOADER_VARIANTS)[number]
@@ -12,20 +12,22 @@ export function LoaderPage() {
     const [variant, setVariant] = useState<DemoVariant>("ripple")
     const [size, setSize] = useState<"sm" | "md" | "lg">("md")
     const [color, setColor] = useState(DEFAULT_COLOR)
+    const setControls = useDemoStore((s) => s.setControls)
 
-    return (
-        <Playground controls={[
+    useEffect(() => {
+        setControls([
             { type: "toggleGroup", label: "variant", options: [...LOADER_VARIANTS, "all"], value: variant, onChange: (v) => setVariant(v as DemoVariant) },
             { type: "toggleGroup", label: "size", options: ["sm", "md", "lg"], value: size, onChange: (v) => setSize(v as "sm" | "md" | "lg") },
             { type: "color", label: "color", value: color, onChange: setColor },
-        ]}>
-            {variant === "all" ? (
-                <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
-                    {LOADER_VARIANTS.map((v) => <Loader key={v} variant={v} size={size} color={color} />)}
-                </div>
-            ) : (
-                <Loader variant={variant} size={size} color={color} />
-            )}
-        </Playground>
+        ])
+        return () => setControls([])
+    }, [variant, size, color, setControls])
+
+    return variant === "all" ? (
+        <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+            {LOADER_VARIANTS.map((v) => <Loader key={v} variant={v} size={size} color={color} />)}
+        </div>
+    ) : (
+        <Loader variant={variant} size={size} color={color} />
     )
 }

@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
-import { Playground } from "./wrappers/Playground"
+import { useDemoStore } from "../store/useDemoStore"
 
 type Level = "Info" | "Warn" | "Error"
 
@@ -10,22 +10,26 @@ export function ToasterPage() {
     const [level, setLevel] = useState<Level>("Info")
     const [isDismissable, setIsDismissable] = useState(false)
     const { bake } = useToaster()
+    const setControls = useDemoStore((s) => s.setControls)
 
-    return (
-        <Playground controls={[
+    useEffect(() => {
+        setControls([
             { type: "input", label: "title", value: title, onChange: setTitle },
             { type: "input", label: "description", value: description, onChange: setDescription },
             { type: "select", label: "level", options: ["Info", "Warn", "Error"], value: level, onChange: (v) => setLevel(v as Level) },
             { type: "toggle", label: "isDismissable", value: isDismissable, onChange: setIsDismissable },
-        ]}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
-                <button className="fire-btn" onClick={() => bake({ title, description, level, isDismissable })}>
-                    Fire Toast
-                </button>
-                <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", textAlign: "center" }}>
-                    Toast appears in the top-right corner
-                </p>
-            </div>
-        </Playground>
+        ])
+        return () => setControls([])
+    }, [title, description, level, isDismissable, setControls])
+
+    return (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
+            <button className="fire-btn" onClick={() => bake({ title, description, level, isDismissable })}>
+                Fire Toast
+            </button>
+            <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", textAlign: "center" }}>
+                Toast appears in the top-right corner
+            </p>
+        </div>
     )
 }

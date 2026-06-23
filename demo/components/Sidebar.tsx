@@ -10,7 +10,6 @@ const NAV: NavItem[] = [
     { hash: "#/loading-wrapper", label: "LoadingWrapper" },
     { hash: "#/input", label: "Input" },
     { hash: "#/toggle", label: "Toggle" },
-    { hash: "#/theme", label: "Theming" },
     { hash: "#/dropdown", label: "Dropdown" },
 ]
 

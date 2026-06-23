@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
+import { BottomControls } from "./widgets/BottomControls"
+import { PreviewCard } from "./widgets/PreviewCard"
+import { ThemeVariables } from "./widgets/ThemeVariables"
 import { ButtonPage } from "./pages/ButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
 import { InputPage } from "./pages/InputPage"
 import { TogglePage } from "./pages/TogglePage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
-import { ThemePage } from "./pages/ThemePage"
 import { ToasterPage } from "./pages/ToasterPage"
 import { DropdownPage } from "./pages/DropdownPage"
 
@@ -26,8 +28,6 @@ export function App() {
     let page: React.ReactNode
     if (hash === "#/toaster") {
         page = <ToasterPage />
-    } else if (hash === "#/theme") {
-        page = <ThemePage />
     } else if (hash === "#/loader") {
         page = <LoaderPage />
     } else if (hash === "#/loading-wrapper") {
@@ -46,7 +46,13 @@ export function App() {
         <div className="layout">
             <Toaster />
             <Sidebar currentHash={hash} />
-            {page}
+            <div className="layout-center">
+                <div className="preview-area">
+                    <PreviewCard>{page}</PreviewCard>
+                </div>
+                <BottomControls />
+            </div>
+            <ThemeVariables />
         </div>
     )
 }
