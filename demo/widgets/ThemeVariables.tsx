@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { CSS_DEFAULTS, useDemoStore } from "../store/useDemoStore"
 
 interface VarDef {
@@ -117,6 +117,10 @@ function useHash() {
     return hash
 }
 
+const MIN_CONSUMER_H = 64
+const MAX_CONSUMER_H = 320
+const DEFAULT_CONSUMER_H = 112
+
 export function ThemeVariables() {
     const cssVars = useDemoStore((s) => s.cssVars)
     const setCssVar = useDemoStore((s) => s.setCssVar)
@@ -125,18 +129,62 @@ export function ThemeVariables() {
     const toggleTheme = useDemoStore((s) => s.toggleTheme)
     const hash = useHash()
 
+    const [consumerHeight, setConsumerHeight] = useState(DEFAULT_CONSUMER_H)
+    const [dragging, setDragging] = useState(false)
+    const dragStartRef = useRef<{ y: number; h: number } | null>(null)
+
     useEffect(() => {
         const root = document.documentElement
         Object.entries(cssVars).forEach(([k, v]) => root.style.setProperty(k, v))
         return () => Object.keys(CSS_DEFAULTS).forEach((k) => root.style.removeProperty(k))
     }, [cssVars])
 
-    const modified = Object.entries(cssVars).filter(([k, v]) => v !== CSS_DEFAULTS[k])
-    const cssOutput = modified.length > 0
-        ? `:root {\n${modified.map(([k, v]) => `  ${k}: ${v};`).join("\n")}\n}`
-        : `:root {\n  /* no overrides yet */\n}`
-
     const pageVars = PAGE_VARS[hash] ?? []
+
+    const pageVarNames = new Set(pageVars.map((v) => v.name))
+    const pageModified = Object.entries(cssVars).filter(
+        ([k, v]) => pageVarNames.has(k) && v !== CSS_DEFAULTS[k]
+    )
+    const globalModified = Object.entries(cssVars).filter(
+        ([k, v]) => !pageVarNames.has(k) && v !== CSS_DEFAULTS[k]
+    )
+
+    const componentName = hash.replace("#/", "")
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+
+    const cssParts: string[] = []
+    if (pageVars.length > 0) {
+        const body = pageModified.length > 0
+            ? pageModified.map(([k, v]) => `  ${k}: ${v};`).join("\n")
+            : "  /* no changes */"
+        cssParts.push(`// ${componentName} overrides\n:root {\n${body}\n}`)
+    }
+    if (globalModified.length > 0) {
+        cssParts.push(`// Global variables\n:root {\n${globalModified.map(([k, v]) => `  ${k}: ${v};`).join("\n")}\n}`)
+    }
+    const cssOutput = cssParts.length > 0 ? cssParts.join("\n\n") : `:root {\n  /* no changes */\n}`
+
+    const onDividerMouseDown = useCallback((e: React.MouseEvent) => {
+        e.preventDefault()
+        dragStartRef.current = { y: e.clientY, h: consumerHeight }
+        setDragging(true)
+
+        const onMove = (me: MouseEvent) => {
+            if (!dragStartRef.current) return
+            const delta = dragStartRef.current.y - me.clientY
+            setConsumerHeight(Math.max(MIN_CONSUMER_H, Math.min(MAX_CONSUMER_H, dragStartRef.current.h + delta)))
+        }
+        const onUp = () => {
+            dragStartRef.current = null
+            setDragging(false)
+            window.removeEventListener("mousemove", onMove)
+            window.removeEventListener("mouseup", onUp)
+        }
+        window.addEventListener("mousemove", onMove)
+        window.addEventListener("mouseup", onUp)
+    }, [consumerHeight])
 
     return (
         <div className={`theme-panel${themeOpen ? "" : " theme-panel--collapsed"}`}>
@@ -157,29 +205,64 @@ export function ThemeVariables() {
             </div>
             {themeOpen && (
                 <div className="theme-panel-body">
-                    {pageVars.length > 0 && (
-                        <div className="var-group var-group--page">
-                            <div className="var-group-heading">Current page</div>
-                            {pageVars.map((v) => {
-                                const value = cssVars[v.name] ?? CSS_DEFAULTS[v.name]
-                                const isModified = value !== CSS_DEFAULTS[v.name]
-                                return (
+                    <div className="theme-panel-tweaks">
+                        {pageVars.length > 0 && (
+                            <div className="var-group var-group--page">
+                                <div className="var-group-heading">Current page</div>
+                                {pageVars.map((v) => {
+                                    const value = cssVars[v.name] ?? CSS_DEFAULTS[v.name]
+                                    const isModified = value !== CSS_DEFAULTS[v.name]
+                                    return (
+                                        <div key={v.name} className="var-row">
+                                            <span className={`var-label${isModified ? " var-label--modified" : ""}`}>
+                                                {v.label}
+                                            </span>
+                                            {v.kind === "color" ? (
+                                                <div className="var-color-control">
+                                                    <input
+                                                        type="color"
+                                                        className="var-color-swatch"
+                                                        value={value}
+                                                        onChange={(e) => setCssVar(v.name, e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        className="var-text-input"
+                                                        value={value}
+                                                        onChange={(e) => setCssVar(v.name, e.target.value)}
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <input
+                                                    type="text"
+                                                    className="var-text-input"
+                                                    value={value}
+                                                    onChange={(e) => setCssVar(v.name, e.target.value)}
+                                                />
+                                            )}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )}
+                        {GROUPS.map((group) => (
+                            <div key={group.heading} className="var-group">
+                                <div className="var-group-heading">{group.heading}</div>
+                                {group.vars.map((v) => (
                                     <div key={v.name} className="var-row">
-                                        <span className={`var-label${isModified ? " var-label--modified" : ""}`}>
-                                            {v.label}
-                                        </span>
+                                        <span className="var-label">{v.label}</span>
                                         {v.kind === "color" ? (
                                             <div className="var-color-control">
                                                 <input
                                                     type="color"
                                                     className="var-color-swatch"
-                                                    value={value}
+                                                    value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
                                                     onChange={(e) => setCssVar(v.name, e.target.value)}
                                                 />
                                                 <input
                                                     type="text"
                                                     className="var-text-input"
-                                                    value={value}
+                                                    value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
                                                     onChange={(e) => setCssVar(v.name, e.target.value)}
                                                 />
                                             </div>
@@ -187,49 +270,22 @@ export function ThemeVariables() {
                                             <input
                                                 type="text"
                                                 className="var-text-input"
-                                                value={value}
+                                                value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
                                                 onChange={(e) => setCssVar(v.name, e.target.value)}
                                             />
                                         )}
                                     </div>
-                                )
-                            })}
-                        </div>
-                    )}
-                    {GROUPS.map((group) => (
-                        <div key={group.heading} className="var-group">
-                            <div className="var-group-heading">{group.heading}</div>
-                            {group.vars.map((v) => (
-                                <div key={v.name} className="var-row">
-                                    <span className="var-label">{v.label}</span>
-                                    {v.kind === "color" ? (
-                                        <div className="var-color-control">
-                                            <input
-                                                type="color"
-                                                className="var-color-swatch"
-                                                value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
-                                                onChange={(e) => setCssVar(v.name, e.target.value)}
-                                            />
-                                            <input
-                                                type="text"
-                                                className="var-text-input"
-                                                value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
-                                                onChange={(e) => setCssVar(v.name, e.target.value)}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <input
-                                            type="text"
-                                            className="var-text-input"
-                                            value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
-                                            onChange={(e) => setCssVar(v.name, e.target.value)}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                    <div className="var-group">
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <div
+                        className={`theme-panel-divider${dragging ? " theme-panel-divider--dragging" : ""}`}
+                        onMouseDown={onDividerMouseDown}
+                    >
+                        <span className="theme-panel-divider-grip" />
+                    </div>
+                    <div className="theme-panel-consumer" style={{ height: consumerHeight }}>
                         <div className="var-group-heading">Consumer CSS</div>
                         <pre className="var-css-output">{cssOutput}</pre>
                     </div>

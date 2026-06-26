@@ -152,11 +152,59 @@ body {
 
 .theme-panel-body {
     flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-panel-tweaks {
+    flex: 1;
     overflow-y: auto;
-    padding: 0.75rem 1rem 1.5rem;
+    padding: 0.75rem 1rem 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.125rem;
+}
+
+.theme-panel-divider {
+    flex-shrink: 0;
+    height: 0.875rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ns-resize;
+    user-select: none;
+    transition: background 150ms ease, border-color 150ms ease;
+}
+
+.theme-panel-divider:hover,
+.theme-panel-divider--dragging {
+    background: rgba(34, 158, 217, 0.08);
+    border-color: rgba(34, 158, 217, 0.3);
+}
+
+.theme-panel-divider-grip {
+    display: block;
+    width: 1.75rem;
+    height: 0.1875rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-panel-divider:hover .theme-panel-divider-grip,
+.theme-panel-divider--dragging .theme-panel-divider-grip {
+    background: rgba(34, 158, 217, 0.5);
+}
+
+.theme-panel-consumer {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem 0.75rem;
+    overflow: hidden;
 }
 
 .var-group {
@@ -248,6 +296,8 @@ body {
 }
 
 .var-css-output {
+    flex: 1;
+    min-height: 0;
     font-size: 0.675rem;
     color: rgba(255, 255, 255, 0.4);
     font-family: "SF Mono", "Fira Code", monospace;
@@ -255,7 +305,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 0.375rem;
     padding: 0.625rem 0.75rem;
-    overflow-x: auto;
+    overflow: auto;
     white-space: pre;
     line-height: 1.6;
     margin-top: 0.375rem;

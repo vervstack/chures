@@ -1,3 +1,4 @@
+@layer chures-defaults {
 :root {
     --chures-accent: #229ED9;
     --chures-accent-muted: rgb(34 158 217 / 50%);
@@ -34,4 +35,5 @@
     --chures-dropdown-hover: rgb(255 255 255 / 8%);
     --chures-dropdown-create-bg: rgb(34 158 217 / 12%);
     --chures-dropdown-create-bg-hover: rgb(34 158 217 / 20%);
+}
 }
