@@ -201,6 +201,15 @@ body {
     white-space: nowrap;
 }
 
+.var-label--modified {
+    color: rgba(34, 158, 217, 0.8);
+}
+
+.var-group--page {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 .var-color-control {
     flex: 1;
     display: flex;

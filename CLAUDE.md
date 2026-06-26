@@ -66,6 +66,19 @@ Defaults live in `src/theme.css` (a `:root {}` block injected with the library b
 | `--chures-font-sm` | `0.875rem` | title size |
 | `--chures-font-xs` | `0.75rem` | description size |
 
+## Codebase Navigation
+
+`graphify-out/graph.json` is maintained for this repo (213 nodes, 350 AST edges). Prefer it over raw shell exploration:
+
+| Instead of | Use |
+|---|---|
+| `grep -r "Symbol" src/` | `graphify query "Symbol"` |
+| `ls src/components/` | `graphify query "what components exist"` |
+| `find . -name "*.ts"` | `graphify query "what files handle X"` |
+| `grep -rn "useFoo"` | `graphify explain "useFoo"` |
+
+Run `graphify query "<question>"` for any structural question about the codebase. The graph traces imports, calls, and type relationships across all `.ts`/`.tsx` files.
+
 ### Component conventions
 - Named function declarations (not arrow functions) for all components
 - One component per file; `interface Props` at the top of each file

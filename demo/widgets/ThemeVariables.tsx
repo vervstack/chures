@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { CSS_DEFAULTS, useDemoStore } from "../store/useDemoStore"
 
 interface VarDef {
@@ -10,6 +10,55 @@ interface VarDef {
 interface Group {
     heading: string
     vars: VarDef[]
+}
+
+const PAGE_VARS: Record<string, VarDef[]> = {
+    "#/button": [
+        { name: "--chures-btn-from",  label: "btn-from",  kind: "color" },
+        { name: "--chures-btn-to",    label: "btn-to",    kind: "color" },
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+    ],
+    "#/toaster": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-error",     label: "error",     kind: "color" },
+        { name: "--chures-warn",      label: "warn",      kind: "color" },
+        { name: "--chures-surface",   label: "surface",   kind: "color" },
+        { name: "--chures-fg",        label: "fg",        kind: "color" },
+        { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+        { name: "--chures-font-sm",   label: "font-sm",   kind: "rem" },
+        { name: "--chures-font-xs",   label: "font-xs",   kind: "rem" },
+    ],
+    "#/loader": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-bg",        label: "bg",        kind: "color" },
+    ],
+    "#/loading-wrapper": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-bg",        label: "bg",        kind: "color" },
+    ],
+    "#/input": [
+        { name: "--chures-input-bg",      label: "input-bg",      kind: "color" },
+        { name: "--chures-accent",        label: "accent",        kind: "color" },
+        { name: "--chures-fg",            label: "fg",            kind: "color" },
+        { name: "--chures-fg-muted",      label: "fg-muted",      kind: "color" },
+        { name: "--chures-input-radius",  label: "input-radius",  kind: "rem" },
+        { name: "--chures-input-height",  label: "input-height",  kind: "rem" },
+        { name: "--chures-font-sm",       label: "font-sm",       kind: "rem" },
+    ],
+    "#/toggle": [
+        { name: "--chures-accent",         label: "accent",         kind: "color" },
+        { name: "--chures-toggle-width",   label: "toggle-width",   kind: "rem" },
+        { name: "--chures-toggle-height",  label: "toggle-height",  kind: "rem" },
+        { name: "--chures-toggle-thumb",   label: "toggle-thumb",   kind: "rem" },
+    ],
+    "#/dropdown": [
+        { name: "--chures-input-bg",         label: "input-bg",         kind: "color" },
+        { name: "--chures-accent",           label: "accent",           kind: "color" },
+        { name: "--chures-fg",               label: "fg",               kind: "color" },
+        { name: "--chures-fg-muted",         label: "fg-muted",         kind: "color" },
+        { name: "--chures-dropdown-radius",  label: "dropdown-radius",  kind: "rem" },
+        { name: "--chures-input-height",     label: "input-height",     kind: "rem" },
+    ],
 }
 
 const GROUPS: Group[] = [
@@ -58,12 +107,23 @@ const GROUPS: Group[] = [
     },
 ]
 
+function useHash() {
+    const [hash, setHash] = useState(location.hash || "#/button")
+    useEffect(() => {
+        const handler = () => setHash(location.hash || "#/button")
+        window.addEventListener("hashchange", handler)
+        return () => window.removeEventListener("hashchange", handler)
+    }, [])
+    return hash
+}
+
 export function ThemeVariables() {
     const cssVars = useDemoStore((s) => s.cssVars)
     const setCssVar = useDemoStore((s) => s.setCssVar)
     const resetCssVars = useDemoStore((s) => s.resetCssVars)
     const themeOpen = useDemoStore((s) => s.themeOpen)
     const toggleTheme = useDemoStore((s) => s.toggleTheme)
+    const hash = useHash()
 
     useEffect(() => {
         const root = document.documentElement
@@ -75,6 +135,8 @@ export function ThemeVariables() {
     const cssOutput = modified.length > 0
         ? `:root {\n${modified.map(([k, v]) => `  ${k}: ${v};`).join("\n")}\n}`
         : `:root {\n  /* no overrides yet */\n}`
+
+    const pageVars = PAGE_VARS[hash] ?? []
 
     return (
         <div className={`theme-panel${themeOpen ? "" : " theme-panel--collapsed"}`}>
@@ -95,6 +157,45 @@ export function ThemeVariables() {
             </div>
             {themeOpen && (
                 <div className="theme-panel-body">
+                    {pageVars.length > 0 && (
+                        <div className="var-group var-group--page">
+                            <div className="var-group-heading">Current page</div>
+                            {pageVars.map((v) => {
+                                const value = cssVars[v.name] ?? CSS_DEFAULTS[v.name]
+                                const isModified = value !== CSS_DEFAULTS[v.name]
+                                return (
+                                    <div key={v.name} className="var-row">
+                                        <span className={`var-label${isModified ? " var-label--modified" : ""}`}>
+                                            {v.label}
+                                        </span>
+                                        {v.kind === "color" ? (
+                                            <div className="var-color-control">
+                                                <input
+                                                    type="color"
+                                                    className="var-color-swatch"
+                                                    value={value}
+                                                    onChange={(e) => setCssVar(v.name, e.target.value)}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="var-text-input"
+                                                    value={value}
+                                                    onChange={(e) => setCssVar(v.name, e.target.value)}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <input
+                                                type="text"
+                                                className="var-text-input"
+                                                value={value}
+                                                onChange={(e) => setCssVar(v.name, e.target.value)}
+                                            />
+                                        )}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )}
                     {GROUPS.map((group) => (
                         <div key={group.heading} className="var-group">
                             <div className="var-group-heading">{group.heading}</div>

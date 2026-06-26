@@ -1,0 +1,307 @@
+{
+  "/Users/alexbukov/verv/chures/vite.config.demo.ts": {
+    "mtime": 1781164718.4342637,
+    "ast_hash": "f067594cd8420b2df253670a199e6818",
+    "semantic_hash": "f067594cd8420b2df253670a199e6818"
+  },
+  "/Users/alexbukov/verv/chures/package.json": {
+    "mtime": 1782186826.5377815,
+    "ast_hash": "25e453ff12c36a5372a70456b539f5ba",
+    "semantic_hash": "25e453ff12c36a5372a70456b539f5ba"
+  },
+  "/Users/alexbukov/verv/chures/tsconfig.build.json": {
+    "mtime": 1781164718.434133,
+    "ast_hash": "f3f36505f27c03f9f74f501a39b585a4",
+    "semantic_hash": "f3f36505f27c03f9f74f501a39b585a4"
+  },
+  "/Users/alexbukov/verv/chures/tsconfig.json": {
+    "mtime": 1781164718.434197,
+    "ast_hash": "407f456551096fb56f9a710feb3f08ad",
+    "semantic_hash": "407f456551096fb56f9a710feb3f08ad"
+  },
+  "/Users/alexbukov/verv/chures/vite.config.ts": {
+    "mtime": 1781164718.4343288,
+    "ast_hash": "3c6ef60664d6c7207dac248a172776c1",
+    "semantic_hash": "3c6ef60664d6c7207dac248a172776c1"
+  },
+  "/Users/alexbukov/verv/chures/demo/App.tsx": {
+    "mtime": 1782155425.0019753,
+    "ast_hash": "8b7bb28c95325d5e2456a3094b006a48",
+    "semantic_hash": "8b7bb28c95325d5e2456a3094b006a48"
+  },
+  "/Users/alexbukov/verv/chures/demo/main.tsx": {
+    "mtime": 1781164718.432494,
+    "ast_hash": "602468b6419837cb4a4ef2aebf8417ca",
+    "semantic_hash": "602468b6419837cb4a4ef2aebf8417ca"
+  },
+  "/Users/alexbukov/verv/chures/demo/components/Sidebar.tsx": {
+    "mtime": 1782155432.731245,
+    "ast_hash": "4e3e3e142444a57dee7a18545a7ac271",
+    "semantic_hash": "4e3e3e142444a57dee7a18545a7ac271"
+  },
+  "/Users/alexbukov/verv/chures/demo/assets/icons/SidePanelIcon.tsx": {
+    "mtime": 1782153593.5570383,
+    "ast_hash": "5df5d2724f58c64db81c8fd2fb47fbd4",
+    "semantic_hash": "5df5d2724f58c64db81c8fd2fb47fbd4"
+  },
+  "/Users/alexbukov/verv/chures/demo/assets/icons/DragHandleIcon.tsx": {
+    "mtime": 1782153746.760133,
+    "ast_hash": "0e5eb5c5a77591722a50d2879e00f7b1",
+    "semantic_hash": "0e5eb5c5a77591722a50d2879e00f7b1"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/ButtonPage.tsx": {
+    "mtime": 1782155466.2611215,
+    "ast_hash": "c9bc2cd44cf305af872d620cf836ac53",
+    "semantic_hash": "c9bc2cd44cf305af872d620cf836ac53"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/InputPage.tsx": {
+    "mtime": 1782155472.8201735,
+    "ast_hash": "084f7c59ee08912a5f47d26cf1d3b057",
+    "semantic_hash": "084f7c59ee08912a5f47d26cf1d3b057"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/TogglePage.tsx": {
+    "mtime": 1782155480.2609637,
+    "ast_hash": "fa59d4eb90d9b6926b821448fd8263cd",
+    "semantic_hash": "fa59d4eb90d9b6926b821448fd8263cd"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/DropdownPage.tsx": {
+    "mtime": 1782155535.4356673,
+    "ast_hash": "ad5bb8357fb8e551b49477d54d98a0f0",
+    "semantic_hash": "ad5bb8357fb8e551b49477d54d98a0f0"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/LoadingWrapperPage.tsx": {
+    "mtime": 1782155505.1018696,
+    "ast_hash": "d5a90f20002cc5ca7aa4a5395479dae7",
+    "semantic_hash": "d5a90f20002cc5ca7aa4a5395479dae7"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/ToasterPage.tsx": {
+    "mtime": 1782155512.871126,
+    "ast_hash": "76eda1741fc19ef2baab27fe4d0ba7bc",
+    "semantic_hash": "76eda1741fc19ef2baab27fe4d0ba7bc"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/LoaderPage.tsx": {
+    "mtime": 1782155487.6889782,
+    "ast_hash": "f4a1c32465f664b5bebf0d37ec8d94f9",
+    "semantic_hash": "f4a1c32465f664b5bebf0d37ec8d94f9"
+  },
+  "/Users/alexbukov/verv/chures/demo/pages/ThemePage.tsx": {
+    "mtime": 1782155542.441653,
+    "ast_hash": "e327d5722e194a4404b8a890077ba3de",
+    "semantic_hash": "e327d5722e194a4404b8a890077ba3de"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/BottomControls.tsx": {
+    "mtime": 1782155408.2137582,
+    "ast_hash": "946313e75698b26504c7f2ba4cdb4e40",
+    "semantic_hash": "946313e75698b26504c7f2ba4cdb4e40"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/ThemeVariables.tsx": {
+    "mtime": 1782156387.9084923,
+    "ast_hash": "b23324a3858dc18d314062677243f77c",
+    "semantic_hash": "b23324a3858dc18d314062677243f77c"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/PreviewCard.tsx": {
+    "mtime": 1782153772.6626596,
+    "ast_hash": "11331f585a6f076f74bc1b4f8a257db4",
+    "semantic_hash": "11331f585a6f076f74bc1b4f8a257db4"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/PropRow.tsx": {
+    "mtime": 1782153237.7652946,
+    "ast_hash": "9cc188957d464e43150fca9282612048",
+    "semantic_hash": "9cc188957d464e43150fca9282612048"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/ControlItem.tsx": {
+    "mtime": 1782153603.1660175,
+    "ast_hash": "5bf2e0f5d6ec980b2103b134352d66c7",
+    "semantic_hash": "5bf2e0f5d6ec980b2103b134352d66c7"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/Switch.tsx": {
+    "mtime": 1782153234.7283232,
+    "ast_hash": "c09ae054b47846ba9f1f89d0b396b35d",
+    "semantic_hash": "c09ae054b47846ba9f1f89d0b396b35d"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/IconButton.tsx": {
+    "mtime": 1782153746.845365,
+    "ast_hash": "e6481a2ddc3b972d82c3025117e683ac",
+    "semantic_hash": "e6481a2ddc3b972d82c3025117e683ac"
+  },
+  "/Users/alexbukov/verv/chures/demo/widgets/ControlDef.ts": {
+    "mtime": 1782153220.017116,
+    "ast_hash": "44a6082bc3f1a01717471096a8122c03",
+    "semantic_hash": "44a6082bc3f1a01717471096a8122c03"
+  },
+  "/Users/alexbukov/verv/chures/demo/store/useDemoStore.ts": {
+    "mtime": 1782156371.22596,
+    "ast_hash": "a669c08e11223bc8f73b3e88be47b2ee",
+    "semantic_hash": "a669c08e11223bc8f73b3e88be47b2ee"
+  },
+  "/Users/alexbukov/verv/chures/src/types.ts": {
+    "mtime": 1781164718.4340425,
+    "ast_hash": "261e052ec1682d01e139e6a15a9e561f",
+    "semantic_hash": "261e052ec1682d01e139e6a15a9e561f"
+  },
+  "/Users/alexbukov/verv/chures/src/css-modules.d.ts": {
+    "mtime": 1781164718.4336233,
+    "ast_hash": "03e2a0722d9e2d3220eea0b399b779e0",
+    "semantic_hash": "03e2a0722d9e2d3220eea0b399b779e0"
+  },
+  "/Users/alexbukov/verv/chures/src/index.ts": {
+    "mtime": 1782125489.769365,
+    "ast_hash": "d01e000da4f61a76a5dd16e8f87b9076",
+    "semantic_hash": "d01e000da4f61a76a5dd16e8f87b9076"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/DropdownSearchRow.tsx": {
+    "mtime": 1782121862.6872723,
+    "ast_hash": "bf2515dd98ba82473989fab6939d1c52",
+    "semantic_hash": "bf2515dd98ba82473989fab6939d1c52"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/Dropdown.types.ts": {
+    "mtime": 1782121851.5131292,
+    "ast_hash": "e4b509ef17a23be16efcbe10854ee5d3",
+    "semantic_hash": "e4b509ef17a23be16efcbe10854ee5d3"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/DropdownSkeletonList.tsx": {
+    "mtime": 1782121857.7013466,
+    "ast_hash": "fbed16c9e53282f5ada84439aed222a0",
+    "semantic_hash": "fbed16c9e53282f5ada84439aed222a0"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/Dropdown.tsx": {
+    "mtime": 1782123326.0813663,
+    "ast_hash": "bf59477fc1fbc2217f0b596e5ce52da2",
+    "semantic_hash": "bf59477fc1fbc2217f0b596e5ce52da2"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/index.ts": {
+    "mtime": 1782125252.825757,
+    "ast_hash": "206826710e4e442f6992b2e672aa0137",
+    "semantic_hash": "206826710e4e442f6992b2e672aa0137"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/DropdownCreateRow.tsx": {
+    "mtime": 1782124636.3051953,
+    "ast_hash": "b5d58f9c30d9f10cbaab450a5f21dfe7",
+    "semantic_hash": "b5d58f9c30d9f10cbaab450a5f21dfe7"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/Dropdown.hooks.ts": {
+    "mtime": 1782123306.0439923,
+    "ast_hash": "a7a02a79180134a5f1404bd5f47cee25",
+    "semantic_hash": "a7a02a79180134a5f1404bd5f47cee25"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Dropdown/DropdownOptionRow.tsx": {
+    "mtime": 1782124633.3224533,
+    "ast_hash": "8ee56a4c1c578bf90516b9895520f094",
+    "semantic_hash": "8ee56a4c1c578bf90516b9895520f094"
+  },
+  "/Users/alexbukov/verv/chures/src/components/TelegramAuth/TelegramAuth.tsx": {
+    "mtime": 1782125431.3838184,
+    "ast_hash": "a4b2dbd23e4e17eb8129d49807da9b4d",
+    "semantic_hash": "a4b2dbd23e4e17eb8129d49807da9b4d"
+  },
+  "/Users/alexbukov/verv/chures/src/components/TelegramAuth/index.ts": {
+    "mtime": 1782125438.1501358,
+    "ast_hash": "634026739b21ee4756db69dafaa6c141",
+    "semantic_hash": "634026739b21ee4756db69dafaa6c141"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Input/index.ts": {
+    "mtime": 1782125410.8116386,
+    "ast_hash": "fa65242828fe0f431f296578c03f394d",
+    "semantic_hash": "fa65242828fe0f431f296578c03f394d"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Input/Input.tsx": {
+    "mtime": 1781172872.0331235,
+    "ast_hash": "135c76fe20c2ade915674da1eaf8af2d",
+    "semantic_hash": "135c76fe20c2ade915674da1eaf8af2d"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Toggle/index.ts": {
+    "mtime": 1782125410.8385904,
+    "ast_hash": "1e411b1491ca84a7d90786d12cf2b331",
+    "semantic_hash": "1e411b1491ca84a7d90786d12cf2b331"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Toggle/Toggle.tsx": {
+    "mtime": 1781174174.5230203,
+    "ast_hash": "f61da661668c68ff16c5ce3e479e0f03",
+    "semantic_hash": "f61da661668c68ff16c5ce3e479e0f03"
+  },
+  "/Users/alexbukov/verv/chures/src/components/LoadingWrapper/LoadingWrapper.tsx": {
+    "mtime": 1782125426.7461383,
+    "ast_hash": "79e2e6f709682adac357529180f2e399",
+    "semantic_hash": "79e2e6f709682adac357529180f2e399"
+  },
+  "/Users/alexbukov/verv/chures/src/components/LoadingWrapper/index.ts": {
+    "mtime": 1782125430.2882888,
+    "ast_hash": "4426b3929b667d397d575a75d147361f",
+    "semantic_hash": "4426b3929b667d397d575a75d147361f"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Loader/Loader.tsx": {
+    "mtime": 1781171078.5057912,
+    "ast_hash": "8fb393038d2c1a981599e7f3adf688c3",
+    "semantic_hash": "8fb393038d2c1a981599e7f3adf688c3"
+  },
+  "/Users/alexbukov/verv/chures/src/components/Loader/index.ts": {
+    "mtime": 1782125429.599199,
+    "ast_hash": "20ea198f766a99b02d161c8b0655e732",
+    "semantic_hash": "20ea198f766a99b02d161c8b0655e732"
+  },
+  "/Users/alexbukov/verv/chures/src/components/TelegramSignInButton/TelegramSignInButton.tsx": {
+    "mtime": 1781164718.4333992,
+    "ast_hash": "a6762b2fe6c0ec2defd78787852e23a2",
+    "semantic_hash": "a6762b2fe6c0ec2defd78787852e23a2"
+  },
+  "/Users/alexbukov/verv/chures/src/components/TelegramSignInButton/index.ts": {
+    "mtime": 1782125437.5475128,
+    "ast_hash": "a24cfe9f9633aa997900f9a374d510e1",
+    "semantic_hash": "a24cfe9f9633aa997900f9a374d510e1"
+  },
+  "/Users/alexbukov/verv/chures/src/components/notifications/Toaster.tsx": {
+    "mtime": 1781164718.4335682,
+    "ast_hash": "9107e005bc60885dd63e7c4f9d81e238",
+    "semantic_hash": "9107e005bc60885dd63e7c4f9d81e238"
+  },
+  "/Users/alexbukov/verv/chures/src/components/notifications/index.ts": {
+    "mtime": 1782125412.8492734,
+    "ast_hash": "fc310ee77f93dbe72d100528f3bdf9d6",
+    "semantic_hash": "fc310ee77f93dbe72d100528f3bdf9d6"
+  },
+  "/Users/alexbukov/verv/chures/src/hooks/useTelegramLogin.ts": {
+    "mtime": 1781164718.4338503,
+    "ast_hash": "4c1d83a34d9d528fe89de3f1762ae68d",
+    "semantic_hash": "4c1d83a34d9d528fe89de3f1762ae68d"
+  },
+  "/Users/alexbukov/verv/chures/src/hooks/toaster/useToaster.ts": {
+    "mtime": 1781164718.433768,
+    "ast_hash": "f314c52c094cd80bb5f82069527c3564",
+    "semantic_hash": "f314c52c094cd80bb5f82069527c3564"
+  },
+  "/Users/alexbukov/verv/chures/index.html": {
+    "mtime": 1782153013.897459,
+    "ast_hash": "75f56adc74a37e54331ba715635f1ee2",
+    "semantic_hash": "75f56adc74a37e54331ba715635f1ee2"
+  },
+  "/Users/alexbukov/verv/chures/README.md": {
+    "mtime": 1781164718.4316862,
+    "ast_hash": "602d301dc1d4b54abd6f8f85e55534c3",
+    "semantic_hash": "602d301dc1d4b54abd6f8f85e55534c3"
+  },
+  "/Users/alexbukov/verv/chures/CLAUDE.md": {
+    "mtime": 1781164718.4316173,
+    "ast_hash": "b75f2234f3fa64714280bccc4012d85a",
+    "semantic_hash": "b75f2234f3fa64714280bccc4012d85a"
+  },
+  "/Users/alexbukov/verv/chures/.github/workflows/branch-push.yaml": {
+    "mtime": 1782232323.668418,
+    "ast_hash": "5dae6704fa4709952ae051a45595e8fe",
+    "semantic_hash": "5dae6704fa4709952ae051a45595e8fe"
+  },
+  "/Users/alexbukov/verv/chures/.github/workflows/release.yaml": {
+    "mtime": 1782232363.3181403,
+    "ast_hash": "3d0e5d2908613e95d2edbb0368080a7f",
+    "semantic_hash": "3d0e5d2908613e95d2edbb0368080a7f"
+  },
+  "/Users/alexbukov/verv/chures/.github/workflows/pages.yaml": {
+    "mtime": 1782232331.3319573,
+    "ast_hash": "4912fd63629a83282758bc39880465af",
+    "semantic_hash": "4912fd63629a83282758bc39880465af"
+  },
+  "/Users/alexbukov/verv/chures/demo/icons/logo.svg": {
+    "mtime": 1782149557.7726157,
+    "ast_hash": "b5c858b37480edb0de0f41ff43e9259c",
+    "semantic_hash": "b5c858b37480edb0de0f41ff43e9259c"
+  }
+}
