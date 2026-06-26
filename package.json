@@ -1,6 +1,6 @@
 {
   "name": "@vervstack/chures",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "React components and hooks for Telegram OAuth login and toast notifications",
   "license": "MIT",
   "repository": {
