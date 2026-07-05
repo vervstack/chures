@@ -14,6 +14,10 @@ bun run build:demo  # production build of the demo → dist-demo/
 
 Use **bun** for all installs and script runs (not npm/yarn).
 
+### Testing / verification policy
+
+Do not install or run Playwright (or any other browser-automation tool) to verify demo/UI changes unless the user explicitly asks for it in that turn. Default to: make the code change, run `bun run type-check`, and hand the user a short manual smoke-test plan (which page/hash to open, which control to touch, what to look for) so they can verify it themselves in the already-running `bun run demo` dev server.
+
 Publishing: `bun run patch` bumps the patch version and publishes to npm. CI publishes automatically on every push to `master` via `.github/workflows/release.yaml`.
 
 ## Architecture

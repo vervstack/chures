@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { CSS_DEFAULTS, useDemoStore } from "../store/useDemoStore"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { effectiveValue, useDemoStore } from "../store/useDemoStore"
 
 interface VarDef {
     name: string
@@ -14,8 +14,8 @@ interface Group {
 
 const PAGE_VARS: Record<string, VarDef[]> = {
     "#/button": [
-        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-fg",        label: "fg",        kind: "color" },
         { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
         { name: "--chures-error",     label: "error",     kind: "color" },
@@ -67,16 +67,16 @@ const PAGE_VARS: Record<string, VarDef[]> = {
         { name: "--chures-input-height",     label: "input-height",     kind: "rem" },
     ],
     "#/confirm-dialog": [
-        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-error",     label: "error",     kind: "color" },
         { name: "--chures-fg",        label: "fg",        kind: "color" },
         { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
         { name: "--chures-surface",   label: "surface",   kind: "color" },
     ],
     "#/info-dialog": [
-        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
         { name: "--chures-fg",        label: "fg",        kind: "color" },
         { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
         { name: "--chures-surface",   label: "surface",   kind: "color" },
@@ -150,7 +150,9 @@ const MAX_CONSUMER_H = 320
 const DEFAULT_CONSUMER_H = 112
 
 export function ThemeVariables() {
+    const cssDefaults = useDemoStore((s) => s.cssDefaults)
     const cssVars = useDemoStore((s) => s.cssVars)
+    const loadCssDefaults = useDemoStore((s) => s.loadCssDefaults)
     const setCssVar = useDemoStore((s) => s.setCssVar)
     const resetCssVars = useDemoStore((s) => s.resetCssVars)
     const themeOpen = useDemoStore((s) => s.themeOpen)
@@ -161,21 +163,22 @@ export function ThemeVariables() {
     const [dragging, setDragging] = useState(false)
     const dragStartRef = useRef<{ y: number; h: number } | null>(null)
 
+    useLayoutEffect(() => {
+        loadCssDefaults()
+    }, [loadCssDefaults])
+
     useEffect(() => {
         const root = document.documentElement
         Object.entries(cssVars).forEach(([k, v]) => root.style.setProperty(k, v))
-        return () => Object.keys(CSS_DEFAULTS).forEach((k) => root.style.removeProperty(k))
+        return () => Object.keys(cssVars).forEach((k) => root.style.removeProperty(k))
     }, [cssVars])
 
     const pageVars = PAGE_VARS[hash] ?? []
 
+    // cssVars only ever holds explicit user overrides, so presence = modified.
     const pageVarNames = new Set(pageVars.map((v) => v.name))
-    const pageModified = Object.entries(cssVars).filter(
-        ([k, v]) => pageVarNames.has(k) && v !== CSS_DEFAULTS[k]
-    )
-    const globalModified = Object.entries(cssVars).filter(
-        ([k, v]) => !pageVarNames.has(k) && v !== CSS_DEFAULTS[k]
-    )
+    const pageModified = Object.entries(cssVars).filter(([k]) => pageVarNames.has(k))
+    const globalModified = Object.entries(cssVars).filter(([k]) => !pageVarNames.has(k))
 
     const componentName = hash.replace("#/", "")
         .split("-")
@@ -238,8 +241,8 @@ export function ThemeVariables() {
                             <div className="var-group var-group--page">
                                 <div className="var-group-heading">Current page</div>
                                 {pageVars.map((v) => {
-                                    const value = cssVars[v.name] ?? CSS_DEFAULTS[v.name]
-                                    const isModified = value !== CSS_DEFAULTS[v.name]
+                                    const value = effectiveValue(v.name, cssVars, cssDefaults)
+                                    const isModified = cssVars[v.name] !== undefined
                                     return (
                                         <div key={v.name} className="var-row">
                                             <span className={`var-label${isModified ? " var-label--modified" : ""}`}>
@@ -284,13 +287,13 @@ export function ThemeVariables() {
                                                 <input
                                                     type="color"
                                                     className="var-color-swatch"
-                                                    value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
+                                                    value={effectiveValue(v.name, cssVars, cssDefaults)}
                                                     onChange={(e) => setCssVar(v.name, e.target.value)}
                                                 />
                                                 <input
                                                     type="text"
                                                     className="var-text-input"
-                                                    value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
+                                                    value={effectiveValue(v.name, cssVars, cssDefaults)}
                                                     onChange={(e) => setCssVar(v.name, e.target.value)}
                                                 />
                                             </div>
@@ -298,7 +301,7 @@ export function ThemeVariables() {
                                             <input
                                                 type="text"
                                                 className="var-text-input"
-                                                value={cssVars[v.name] ?? CSS_DEFAULTS[v.name]}
+                                                value={effectiveValue(v.name, cssVars, cssDefaults)}
                                                 onChange={(e) => setCssVar(v.name, e.target.value)}
                                             />
                                         )}
