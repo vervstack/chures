@@ -58,6 +58,7 @@ Defaults live in `src/theme.css` (a `:root {}` block injected with the library b
 | `--chures-accent` | `#229ED9` | info border |
 | `--chures-btn-from` | `#2AABEE` | button gradient top |
 | `--chures-btn-to` | `#229ED9` | button gradient bottom |
+| `--chures-button-bg` | `#1a1a1a` | `Button` background (no variant) |
 | `--chures-error` | `#ef4444` | error border + title |
 | `--chures-warn` | `#f59e0b` | warning border + title |
 | `--chures-fg` | `#ffffff` | title text |

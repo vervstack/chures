@@ -5,12 +5,18 @@ import { BottomControls } from "./widgets/BottomControls"
 import { PreviewCard } from "./widgets/PreviewCard"
 import { ThemeVariables } from "./widgets/ThemeVariables"
 import { ButtonPage } from "./pages/ButtonPage"
+import { TelegramSignInButtonPage } from "./pages/TelegramSignInButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
 import { InputPage } from "./pages/InputPage"
 import { TogglePage } from "./pages/TogglePage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
 import { ToasterPage } from "./pages/ToasterPage"
 import { DropdownPage } from "./pages/DropdownPage"
+import { ConfirmDialogPage } from "./pages/ConfirmDialogPage"
+import { InfoDialogPage } from "./pages/InfoDialogPage"
+import { ModalActionsPage } from "./pages/ModalActionsPage"
+import { ModalClosePage } from "./pages/ModalClosePage"
+import { IconsPage } from "./pages/IconsPage"
 
 function useHash() {
     const [hash, setHash] = useState(location.hash || "#/button")
@@ -38,6 +44,18 @@ export function App() {
         page = <TogglePage />
     } else if (hash === "#/dropdown") {
         page = <DropdownPage />
+    } else if (hash === "#/telegram-button") {
+        page = <TelegramSignInButtonPage />
+    } else if (hash === "#/confirm-dialog") {
+        page = <ConfirmDialogPage />
+    } else if (hash === "#/info-dialog") {
+        page = <InfoDialogPage />
+    } else if (hash === "#/modal-actions") {
+        page = <ModalActionsPage />
+    } else if (hash === "#/modal-close") {
+        page = <ModalClosePage />
+    } else if (hash === "#/icons") {
+        page = <IconsPage />
     } else {
         page = <ButtonPage />
     }

@@ -5,6 +5,7 @@ export const CSS_DEFAULTS: Record<string, string> = {
     "--chures-accent":    "#229ED9",
     "--chures-btn-from":  "#2AABEE",
     "--chures-btn-to":    "#229ED9",
+    "--chures-button-bg": "#1a1a1a",
     "--chures-error":     "#ef4444",
     "--chures-warn":      "#f59e0b",
     "--chures-bg":        "#000000",

@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react"
-import { TelegramSignInButton } from "../../src/components/TelegramSignInButton"
+import { Button } from "../../src/components/Button"
+import type { ButtonVariant } from "../../src/components/Button"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
 import { useDemoStore } from "../store/useDemoStore"
 
+const VARIANTS: (ButtonVariant | "none")[] = ["none", "primary", "secondary", "danger", "ghost", "iconDanger"]
+
 export function ButtonPage() {
-    const [lang, setLang] = useState<"en" | "ru">("en")
-    const [label, setLabel] = useState("")
+    const [variant, setVariant] = useState<ButtonVariant | "none">("primary")
+    const [label, setLabel] = useState("Click me")
     const [disabled, setDisabled] = useState(false)
-    const [fullSize, setFullSize] = useState(false)
     const { bake } = useToaster()
     const setControls = useDemoStore((s) => s.setControls)
 
     useEffect(() => {
         setControls([
-            { type: "toggleGroup", label: "lang", options: ["en", "ru"], value: lang, onChange: (v) => setLang(v as "en" | "ru") },
-            { type: "input", label: "label", value: label, onChange: setLabel, placeholder: "overrides lang label" },
+            { type: "toggleGroup", label: "variant", options: VARIANTS, value: variant, onChange: (v) => setVariant(v as ButtonVariant | "none") },
+            { type: "input", label: "label", value: label, onChange: setLabel },
             { type: "toggle", label: "disabled", value: disabled, onChange: setDisabled },
-            { type: "toggle", label: "fullSize", value: fullSize, onChange: setFullSize },
         ])
         return () => setControls([])
-    }, [lang, label, disabled, fullSize, setControls])
+    }, [variant, label, disabled, setControls])
 
     return (
-        <TelegramSignInButton
-            onClick={() => bake({ title: "Clicked", description: "TelegramSignInButton was clicked.", level: "Info" })}
-            lang={lang}
-            label={label || undefined}
+        <Button
+            variant={variant === "none" ? undefined : variant}
             disabled={disabled}
-            fullSize={fullSize}
-        />
+            onClick={() => bake({ title: "Clicked", description: `Button (${variant}) was clicked.`, level: "Info" })}
+        >
+            {label}
+        </Button>
     )
 }

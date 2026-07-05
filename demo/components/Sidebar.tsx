@@ -4,13 +4,19 @@ interface NavItem {
 }
 
 const NAV: NavItem[] = [
-    { hash: "#/button", label: "TelegramSignInButton" },
+    { hash: "#/button", label: "Button" },
+    { hash: "#/telegram-button", label: "TelegramSignInButton" },
     { hash: "#/toaster", label: "Toaster" },
     { hash: "#/loader", label: "Loader" },
     { hash: "#/loading-wrapper", label: "LoadingWrapper" },
     { hash: "#/input", label: "Input" },
     { hash: "#/toggle", label: "Toggle" },
     { hash: "#/dropdown", label: "Dropdown" },
+    { hash: "#/confirm-dialog", label: "ConfirmDialog" },
+    { hash: "#/info-dialog", label: "InfoDialog" },
+    { hash: "#/modal-actions", label: "ModalActions" },
+    { hash: "#/modal-close", label: "ModalClose" },
+    { hash: "#/icons", label: "Icons" },
 ]
 
 interface Props {

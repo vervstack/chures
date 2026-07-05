@@ -14,6 +14,13 @@ interface Group {
 
 const PAGE_VARS: Record<string, VarDef[]> = {
     "#/button": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-fg",        label: "fg",        kind: "color" },
+        { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+        { name: "--chures-error",     label: "error",     kind: "color" },
+    ],
+    "#/telegram-button": [
         { name: "--chures-btn-from",  label: "btn-from",  kind: "color" },
         { name: "--chures-btn-to",    label: "btn-to",    kind: "color" },
         { name: "--chures-accent",    label: "accent",    kind: "color" },
@@ -59,6 +66,26 @@ const PAGE_VARS: Record<string, VarDef[]> = {
         { name: "--chures-dropdown-radius",  label: "dropdown-radius",  kind: "rem" },
         { name: "--chures-input-height",     label: "input-height",     kind: "rem" },
     ],
+    "#/confirm-dialog": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-error",     label: "error",     kind: "color" },
+        { name: "--chures-fg",        label: "fg",        kind: "color" },
+        { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+        { name: "--chures-surface",   label: "surface",   kind: "color" },
+    ],
+    "#/info-dialog": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-button-bg", label: "button-bg", kind: "color" },
+        { name: "--chures-fg",        label: "fg",        kind: "color" },
+        { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+        { name: "--chures-surface",   label: "surface",   kind: "color" },
+    ],
+    "#/modal-actions": [
+        { name: "--chures-accent",    label: "accent",    kind: "color" },
+        { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+        { name: "--chures-error",     label: "error",     kind: "color" },
+    ],
 }
 
 const GROUPS: Group[] = [
@@ -80,11 +107,12 @@ const GROUPS: Group[] = [
     {
         heading: "Surface",
         vars: [
-            { name: "--chures-bg",       label: "bg",       kind: "color" },
-            { name: "--chures-fg",       label: "fg",       kind: "color" },
-            { name: "--chures-fg-muted", label: "fg-muted", kind: "color" },
-            { name: "--chures-surface",  label: "surface",  kind: "color" },
-            { name: "--chures-input-bg", label: "input-bg", kind: "color" },
+            { name: "--chures-bg",        label: "bg",        kind: "color" },
+            { name: "--chures-fg",        label: "fg",        kind: "color" },
+            { name: "--chures-fg-muted",  label: "fg-muted",  kind: "color" },
+            { name: "--chures-surface",   label: "surface",   kind: "color" },
+            { name: "--chures-input-bg",  label: "input-bg",  kind: "color" },
+            { name: "--chures-button-bg", label: "button-bg", kind: "color" },
         ],
     },
     {

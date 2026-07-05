@@ -1,0 +1,104 @@
+.ConfirmContainer {
+    width: 100%;
+    max-width: 24rem;
+    background: var(--chures-surface, #000000);
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    box-shadow: 0 32px 80px -20px rgba(0,0,0,0.8);
+    animation: confirmIn 280ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes confirmIn {
+    from { opacity: 0; transform: translateY(0.75rem) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ConfirmTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--chures-fg, #ffffff);
+    margin-bottom: 0.75rem;
+}
+
+.ConfirmMessage {
+    font-size: 0.875rem;
+    color: var(--chures-fg-muted, #9ca3af);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+}
+
+.ConfirmActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    margin-top: 1.5rem;
+}
+
+.BtnCancel {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    background: transparent;
+    color: var(--chures-fg-muted, #9ca3af);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.BtnCancel:hover:not(:disabled) {
+    background: rgb(255 255 255 / 8%);
+    color: var(--chures-fg, #ffffff);
+}
+
+.BtnConfirm {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--chures-accent, #229ED9);
+    background: var(--chures-accent, #229ED9);
+    color: white;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: filter 160ms ease, opacity 160ms ease;
+}
+
+.BtnConfirm:hover:not(:disabled) {
+    filter: brightness(1.06);
+}
+
+.BtnDanger {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgb(239 68 68 / 40%);
+    background: transparent;
+    color: var(--chures-error, #ef4444);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease;
+}
+
+.BtnDanger:hover:not(:disabled) {
+    background: rgb(239 68 68 / 10%);
+    border-color: var(--chures-error, #ef4444);
+}
+
+.BtnConfirm:disabled,
+.BtnDanger:disabled,
+.BtnCancel:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
