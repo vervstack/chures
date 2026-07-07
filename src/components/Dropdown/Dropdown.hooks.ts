@@ -1,6 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { DropdownOption } from './Dropdown.types';
+
+export function useDropdownOpenState() {
+    const [isOpen, setIsOpen] = useState(false);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+
+    const toggleOpen = useCallback(() => setIsOpen((v) => !v), []);
+    const close = useCallback(() => setIsOpen(false), []);
+
+    return { isOpen, triggerRef, toggleOpen, close };
+}
 
 export function useDropdownClose(
     panelRef: React.RefObject<HTMLDivElement | null>,

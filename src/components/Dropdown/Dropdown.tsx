@@ -1,142 +1,107 @@
-import { useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import cn from 'classnames';
 
-import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
-import { getOptionId, getOptionLabel } from './Dropdown.types';
+import { useDropdownOpenState } from './Dropdown.hooks';
+import { getOptionId, resolveSelectedOptions } from './Dropdown.types';
 import type { DropdownOption } from './Dropdown.types';
-import { DropdownCreateRow } from './DropdownCreateRow';
-import { DropdownOptionRow } from './DropdownOptionRow';
-import { DropdownSearchRow } from './DropdownSearchRow';
-import { DropdownSkeletonList } from './DropdownSkeletonList';
+import { DropdownPanel } from './DropdownPanel';
+import { DropdownTrigger } from './DropdownTrigger';
 import styles from './Dropdown.module.css';
 
 export type { DropdownOption };
 
+interface TriggerRenderProps {
+    selectedOptions: DropdownOption[];
+    isOpen: boolean;
+    toggleOpen: () => void;
+    close: () => void;
+    triggerProps: {
+        ref: React.RefObject<HTMLButtonElement | null>;
+        onClick: () => void;
+        'aria-expanded': boolean;
+        'aria-haspopup': 'listbox';
+    };
+}
+
 interface Props {
     options?: DropdownOption[];
+    value: string[];
+    onChange: (value: string[]) => void;
     onSearch?: (query: string) => Promise<DropdownOption[]>;
     onCreate?: (name: string) => Promise<DropdownOption>;
-    onPick: (option: DropdownOption) => void;
-    onClose: () => void;
-    anchorRef?: React.RefObject<HTMLElement | null>;
     excluded?: string[];
     multiSelect?: boolean;
-    selected?: string[];
     placeholder?: string;
+    searchPlaceholder?: string;
     emptyHint?: string;
     isLoading?: boolean;
     skeletonRowCount?: number;
     onError?: (err: unknown) => void;
+    className?: string;
+    children?: (props: TriggerRenderProps) => ReactNode;
 }
 
 export type DropdownProps = Props;
 
 export function Dropdown(
     {
-        onSearch, onCreate, onPick, onClose, anchorRef, placeholder,
-        options = [], excluded = [], selected = [],
-        multiSelect = false,
-        isLoading = false,
-        emptyHint = 'no results found',
-        skeletonRowCount = 4,
-        onError = console.error,
+        options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false,
+        placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
+        onError, className, children,
     }: Props) {
 
-    const [query, setQuery] = useState('');
-    const [creating, setCreating] = useState(false);
+    const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
 
-    const inputRef = useRef<HTMLInputElement>(null);
-    const panelRef = useRef<HTMLDivElement>(null);
-
-    const hasSearch = Boolean(onSearch);
-    const searchResults = useSearchResults(query, onSearch);
-
-    useDropdownClose(panelRef, onClose, anchorRef);
-
-    useEffect(() => {
-        if (hasSearch) inputRef.current?.focus();
-    }, [hasSearch]);
-
-    const visibleOptions = (onSearch ? searchResults : options)
-        .filter(
-            (opt) => !excluded.includes(getOptionId(opt)),
-        );
-
-    const trimmedQuery = query.trim();
-    const exactMatch = visibleOptions.some(
-        (o) => getOptionLabel(o).toLowerCase() === trimmedQuery.toLowerCase(),
-    );
-    const showCreate = Boolean(onCreate) && trimmedQuery.length > 0 && !exactMatch;
-
-    async function handleCreate() {
-        if (!trimmedQuery || creating || !onCreate) return;
-        setCreating(true);
-
-        onCreate(trimmedQuery)
-            .then(handlePick)
-            .catch(onError)
-            .finally(() => setCreating(false));
-    }
+    const selectedOptions = resolveSelectedOptions(value, options);
 
     function handlePick(opt: DropdownOption) {
-        onPick(opt);
-        if (!multiSelect) onClose();
+        const id = getOptionId(opt);
+        onChange(
+            multiSelect
+                ? value.includes(id) ? value.filter((v) => v !== id) : [...value, id]
+                : [id],
+        );
     }
 
-    function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setQuery(e.target.value);
-    }
-
-    function handleInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            if (visibleOptions.length > 0) {
-                handlePick(visibleOptions[0]);
-            } else if (showCreate) {
-                handleCreate();
-            }
-        }
-    }
-
-    const resolvedPlaceholder = placeholder ?? (onCreate ? 'search or add new…' : 'search…');
+    const triggerProps = {
+        ref: triggerRef,
+        onClick: toggleOpen,
+        'aria-expanded': isOpen,
+        'aria-haspopup': 'listbox' as const,
+    };
 
     return (
-        <div ref={panelRef} className={styles.DropdownContainer}>
-            {hasSearch && (
-                <DropdownSearchRow
-                    inputRef={inputRef}
-                    query={query}
-                    onChange={handleQueryChange}
-                    onKeyDown={handleInputKeyDown}
-                    placeholder={resolvedPlaceholder}
+        <div className={cn(styles.DropdownContainer, className)}>
+            {children
+                ? children({ selectedOptions, isOpen, toggleOpen, close, triggerProps })
+                : (
+                    <DropdownTrigger
+                        triggerRef={triggerRef}
+                        isOpen={isOpen}
+                        onClick={toggleOpen}
+                        selectedOptions={selectedOptions}
+                        multiSelect={multiSelect}
+                        placeholder={placeholder}
+                    />
+                )}
+            {isOpen && (
+                <DropdownPanel
+                    options={options}
+                    onSearch={onSearch}
+                    onCreate={onCreate}
+                    onPick={handlePick}
+                    onClose={close}
+                    anchorRef={triggerRef}
+                    excluded={excluded}
+                    multiSelect={multiSelect}
+                    selected={value}
+                    placeholder={searchPlaceholder}
+                    emptyHint={emptyHint}
+                    isLoading={isLoading}
+                    skeletonRowCount={skeletonRowCount}
+                    onError={onError}
                 />
             )}
-            <div className={styles.ResultsList}>
-                {isLoading ? (
-                    <DropdownSkeletonList count={skeletonRowCount} />
-                ) : (
-                    <>
-                        {visibleOptions.map((opt) => (
-                            <DropdownOptionRow
-                                key={getOptionId(opt)}
-                                opt={opt}
-                                isSelected={selected.includes(getOptionId(opt))}
-                                multiSelect={multiSelect}
-                                onPick={handlePick}
-                            />
-                        ))}
-                        {showCreate && (
-                            <DropdownCreateRow
-                                query={trimmedQuery}
-                                withBorder={visibleOptions.length > 0}
-                                onCreate={handleCreate}
-                            />
-                        )}
-                        {visibleOptions.length === 0 && !showCreate && (
-                            <div className={styles.EmptyHint}>{emptyHint}</div>
-                        )}
-                    </>
-                )}
-            </div>
         </div>
     );
 }

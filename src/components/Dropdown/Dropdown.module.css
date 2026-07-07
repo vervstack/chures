@@ -11,6 +11,11 @@
 }
 
 .DropdownContainer {
+    position: relative;
+    width: 100%;
+}
+
+.PanelContainer {
     position: absolute;
     top: 100%;
     left: 0;
@@ -22,6 +27,89 @@
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 80%);
     animation: panelIn 0.14s ease;
     z-index: 100;
+}
+
+.TriggerContainer {
+    width: 100%;
+    height: var(--chures-input-height);
+    background: var(--chures-input-bg);
+    border: 1px solid var(--chures-dropdown-trigger-border);
+    border-radius: var(--chures-input-radius);
+    color: var(--chures-fg);
+    font-size: var(--chures-font-sm);
+    font-family: inherit;
+    padding: 0 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    text-align: left;
+    overflow: hidden;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.TriggerContainer:hover {
+    border-color: var(--chures-dropdown-trigger-border-hover);
+}
+
+.TriggerContainer.Open {
+    border-color: var(--chures-accent);
+    box-shadow: 0 0 0 0.1875rem var(--chures-dropdown-trigger-focus-ring);
+}
+
+.TriggerPlaceholder {
+    color: var(--chures-fg-muted);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.TriggerValue {
+    color: var(--chures-fg);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.TriggerIcon {
+    color: var(--chures-fg-muted);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.ChipsWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 0;
+    align-items: center;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ChipsWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.Chip {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--chures-dropdown-create-bg);
+    border: 1px solid var(--chures-dropdown-chip-border);
+    border-radius: 624.9375rem;
+    padding: 0.15rem 0.5rem;
+    font-size: var(--chures-font-xs);
+    color: var(--chures-fg);
+    white-space: nowrap;
+    line-height: 1.4;
 }
 
 .SearchRow {

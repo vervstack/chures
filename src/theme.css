@@ -36,5 +36,9 @@
     --chures-dropdown-hover: rgb(255 255 255 / 8%);
     --chures-dropdown-create-bg: rgb(34 158 217 / 12%);
     --chures-dropdown-create-bg-hover: rgb(34 158 217 / 20%);
+    --chures-dropdown-trigger-border: rgb(255 255 255 / 22%);
+    --chures-dropdown-trigger-border-hover: rgb(255 255 255 / 38%);
+    --chures-dropdown-trigger-focus-ring: rgb(34 158 217 / 15%);
+    --chures-dropdown-chip-border: rgb(34 158 217 / 30%);
 }
 }
