@@ -26,7 +26,6 @@
     overflow: hidden;
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 80%);
     animation: panelIn 0.14s ease;
-    z-index: 100;
 }
 
 .TriggerContainer {
