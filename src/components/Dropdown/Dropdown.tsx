@@ -31,6 +31,7 @@ interface Props {
     onCreate?: (name: string) => Promise<DropdownOption>;
     excluded?: string[];
     multiSelect?: boolean;
+    label?: string;
     placeholder?: string;
     searchPlaceholder?: string;
     emptyHint?: string;
@@ -45,7 +46,7 @@ export type DropdownProps = Props;
 
 export function Dropdown(
     {
-        options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false,
+        options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
         onError, className, children,
     }: Props) {
@@ -53,6 +54,8 @@ export function Dropdown(
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
 
     const selectedOptions = resolveSelectedOptions(value, options);
+    const lifted = isOpen || selectedOptions.length > 0;
+    const triggerPlaceholder = label && !lifted ? '' : placeholder;
 
     function handlePick(opt: DropdownOption) {
         const id = getOptionId(opt);
@@ -72,6 +75,11 @@ export function Dropdown(
 
     return (
         <div className={cn(styles.DropdownContainer, className)}>
+            {label && (
+                <label className={cn(styles.Label, { [styles.lifted]: lifted })}>
+                    {label}
+                </label>
+            )}
             {children
                 ? children({ selectedOptions, isOpen, toggleOpen, close, triggerProps })
                 : (
@@ -81,7 +89,7 @@ export function Dropdown(
                         onClick={toggleOpen}
                         selectedOptions={selectedOptions}
                         multiSelect={multiSelect}
-                        placeholder={placeholder}
+                        placeholder={triggerPlaceholder}
                     />
                 )}
             {isOpen && (

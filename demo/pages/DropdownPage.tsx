@@ -65,6 +65,7 @@ export function DropdownPage() {
                 skeletonRowCount={skeletonRowCount}
                 placeholder={placeholder || undefined}
                 emptyHint={emptyHint}
+                label="Fruit"
             />
         </div>
     )

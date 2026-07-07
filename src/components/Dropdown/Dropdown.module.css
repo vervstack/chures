@@ -28,6 +28,27 @@
     animation: panelIn 0.14s ease;
 }
 
+.Label {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+    color: var(--chures-fg-muted);
+    font-size: var(--chures-font-sm);
+    pointer-events: none;
+    transition: all 0.18s ease;
+    padding: 0 0.25rem;
+    border-radius: 0.1875rem;
+}
+
+.Label.lifted {
+    top: 0;
+    transform: translateY(-50%) scale(0.82);
+    background: var(--chures-input-bg);
+    color: var(--chures-fg-muted);
+}
+
 .TriggerContainer {
     width: 100%;
     height: var(--chures-input-height);
