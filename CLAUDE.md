@@ -18,7 +18,15 @@ Use **bun** for all installs and script runs (not npm/yarn).
 
 Do not install or run Playwright (or any other browser-automation tool) to verify demo/UI changes unless the user explicitly asks for it in that turn. Default to: make the code change, run `bun run type-check`, and hand the user a short manual smoke-test plan (which page/hash to open, which control to touch, what to look for) so they can verify it themselves in the already-running `bun run demo` dev server.
 
-Publishing: `bun run patch` bumps the patch version and publishes to npm. CI publishes automatically on every push to `master` via `.github/workflows/release.yaml`.
+Publishing: `bun run patch` bumps the patch version and publishes to npm directly (`npm publish`) — this is the only way the package reaches npm. `.github/workflows/release.yaml` only type-checks and builds on push to `master`, it does not publish; don't assume a push alone ships a release. Pushing to `master` does trigger `pages.yaml`, which redeploys the live demo at chures.vervstack.ru from `bun run build:demo` — factor that in before pushing.
+
+### Keep the demo in sync
+
+Whenever a component under `src/components/` gains or changes a prop, update its
+corresponding `demo/pages/<Name>Page.tsx` in the same change — add a control
+(`toggle`/`toggleGroup`/`input`/`select`/`node`, see `demo/widgets/ControlDef.ts`) for
+the new prop so the playground stays a complete, live spec of the component's API.
+A component change without a matching demo update is incomplete.
 
 ## Architecture
 
