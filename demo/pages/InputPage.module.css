@@ -1,0 +1,4 @@
+.DemoInputHighlight {
+    border-color: var(--chures-accent, #229ed9) !important;
+    border-width: 0.125rem !important;
+}

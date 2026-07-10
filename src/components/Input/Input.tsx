@@ -18,12 +18,16 @@ interface Props extends NativeInputProps {
     disabled?: boolean
     error?: string
     className?: string
+    // Applied to the actual <input> element, not the outer wrapper div. Use this
+    // for anything that must reach the rendered text/box itself (border, padding,
+    // border-radius, font, color) — `className` only ever lands on the wrapper.
+    inputClassName?: string
 }
 
 export type InputProps = Props
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-    { value, setValue, label, isLoader, type = 'text', disabled, error, className, ...rest },
+    { value, setValue, label, isLoader, type = 'text', disabled, error, className, inputClassName, ...rest },
     ref
 ) {
     const [focused, setFocused] = useState(false)
@@ -37,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         <div className={cn(styles.InputContainer, { [styles.hasError]: !!error, [styles.disabled]: disabled }, className)}>
             <input
                 ref={ref}
-                className={styles.InputField}
+                className={cn(styles.InputField, inputClassName)}
                 type={type}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
