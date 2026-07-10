@@ -4,7 +4,7 @@ import type { ButtonVariant } from "../../src/components/Button"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
 import { useDemoStore } from "../store/useDemoStore"
 
-const VARIANTS: (ButtonVariant | "none")[] = ["none", "primary", "secondary", "danger", "ghost", "iconDanger"]
+const VARIANTS: (ButtonVariant | "none")[] = ["none", "primary", "secondary", "danger", "ghost", "iconDanger", "unstyled"]
 
 export function ButtonPage() {
     const [variant, setVariant] = useState<ButtonVariant | "none">("primary")
@@ -15,7 +15,7 @@ export function ButtonPage() {
 
     useEffect(() => {
         setControls([
-            { type: "toggleGroup", label: "variant", options: VARIANTS, value: variant, onChange: (v) => setVariant(v as ButtonVariant | "none") },
+            { type: "select", label: "variant", options: VARIANTS, value: variant, onChange: (v) => setVariant(v as ButtonVariant | "none") },
             { type: "input", label: "label", value: label, onChange: setLabel },
             { type: "toggle", label: "disabled", value: disabled, onChange: setDisabled },
         ])

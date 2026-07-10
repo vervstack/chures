@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import styles from './Button.module.css'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'iconDanger'
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'iconDanger' | 'unstyled'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariant
@@ -15,6 +15,7 @@ const variantClass: Record<ButtonVariant, string> = {
     danger: styles.Danger,
     ghost: styles.Ghost,
     iconDanger: styles.IconDanger,
+    unstyled: styles.Unstyled,
 }
 
 export function Button({ variant, className, children, ...rest }: Props) {
