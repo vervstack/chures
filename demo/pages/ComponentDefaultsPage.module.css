@@ -1,0 +1,23 @@
+.Row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    align-items: flex-start;
+}
+
+.Hint {
+    font-size: 0.75rem;
+    color: var(--chures-fg-muted, #9ca3af);
+}
+
+.ProjectButton {
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7c3aed, #db2777);
+    border: none;
+}
+
+.InstanceOverride {
+    border-radius: 0.25rem;
+    background: #111111;
+    border: 1px solid #444444;
+}

@@ -42,6 +42,10 @@ Two separate Vite configs:
 src/
   index.ts                          # public API; imports theme.css first
   theme.css                         # :root defaults for all --chures-* variables
+  theme/
+    ComponentClassNamesContext.ts   # ChuresComponentName union + the className-defaults context
+    ChuresConfigProvider.tsx        # provider: registers a project-wide default className per component
+    useComponentClassName.ts        # hook: instance className > registered default > undefined
   types.ts                          # shared TypeScript types
   components/
     TelegramAuth.tsx                # container: wires hook → button or render prop
@@ -54,6 +58,27 @@ src/
     toaster/
       useToaster.ts                 # Zustand store: bake / dismiss, 5s auto-dismiss
 ```
+
+### Component styling contract
+
+Two mechanisms make chures components safe for a consuming app to restyle, regardless of
+stylesheet load order (chures' CSS is injected into `document.head` via
+`vite-plugin-css-injected-by-js` at JS-execution time, i.e. *after* a consuming app's own
+compiled CSS — without care, a same-specificity override in the consumer would tie and
+silently lose):
+
+1. **Every base/variant class in a component's `.module.css` is wrapped in `:where(...)`**,
+   which zeroes its specificity. See `Button.module.css` for the reference — `:where(.Btn)`,
+   `:where(.Ghost)`, etc. This means a single consumer class passed as `className` always wins,
+   no wrapper-div or `!important` needed on the consuming side. Apply this same wrapping when
+   adding new base/variant rules to any component's `.module.css`.
+2. **`useComponentClassName`** lets a project register a default `className` per component via
+   `ChuresConfigProvider`, so every instance of e.g. `Button` in that app picks up the project's
+   look without passing `className` on each call site — an instance's own `className` still
+   always takes priority over the registered default. See `Button.tsx` for the reference wiring
+   and `demo/pages/ComponentDefaultsPage.tsx` for a live example. Only `Button` is wired today;
+   extend `ChuresComponentName` and repeat the pattern (`useComponentClassName('X', className)`)
+   when another component needs it — don't invent a second mechanism for the same problem.
 
 ### CSS theming
 

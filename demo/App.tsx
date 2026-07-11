@@ -17,6 +17,7 @@ import { InfoDialogPage } from "./pages/InfoDialogPage"
 import { ModalActionsPage } from "./pages/ModalActionsPage"
 import { ModalClosePage } from "./pages/ModalClosePage"
 import { IconsPage } from "./pages/IconsPage"
+import { ComponentDefaultsPage } from "./pages/ComponentDefaultsPage"
 
 function useHash() {
     const [hash, setHash] = useState(location.hash || "#/button")
@@ -56,6 +57,8 @@ export function App() {
         page = <ModalClosePage />
     } else if (hash === "#/icons") {
         page = <IconsPage />
+    } else if (hash === "#/component-defaults") {
+        page = <ComponentDefaultsPage />
     } else {
         page = <ButtonPage />
     }

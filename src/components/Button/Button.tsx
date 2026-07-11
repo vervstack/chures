@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import styles from './Button.module.css'
+import { useComponentClassName } from '../../theme/useComponentClassName'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'iconDanger' | 'unstyled'
 
@@ -19,11 +20,12 @@ const variantClass: Record<ButtonVariant, string> = {
 }
 
 export function Button({ variant, className, children, ...rest }: Props) {
+    const resolvedClassName = useComponentClassName('Button', className)
     return (
         <button
             type="button"
             {...rest}
-            className={cn(styles.Btn, variant ? variantClass[variant] : undefined, className)}>
+            className={cn(styles.Btn, variant ? variantClass[variant] : undefined, resolvedClassName)}>
             {children}
         </button>
     )

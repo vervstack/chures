@@ -17,6 +17,7 @@ const NAV: NavItem[] = [
     { hash: "#/modal-actions", label: "ModalActions" },
     { hash: "#/modal-close", label: "ModalClose" },
     { hash: "#/icons", label: "Icons" },
+    { hash: "#/component-defaults", label: "Component Defaults" },
 ]
 
 interface Props {
