@@ -104,17 +104,3 @@
     border-color: var(--chures-error, #ef4444);
 }
 
-/* unstyled — strips all .Btn chrome; consumer fully controls appearance via className/style */
-:where(.Unstyled) {
-    display: block;
-    gap: 0;
-    border-radius: 0;
-    border: none;
-    font-size: inherit;
-    font-weight: inherit;
-    padding: 0;
-    transition: none;
-    white-space: normal;
-    color: inherit;
-    background: transparent;
-}

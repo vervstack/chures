@@ -4,7 +4,7 @@ import type { ButtonVariant } from "../../src/components/Button"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
 import { useDemoStore } from "../store/useDemoStore"
 
-const VARIANTS: (ButtonVariant | "none")[] = ["none", "primary", "secondary", "danger", "ghost", "iconDanger", "unstyled"]
+const VARIANTS: (ButtonVariant | "none")[] = ["none", "default", "primary", "secondary", "danger", "ghost", "iconDanger", "unstyled"]
 
 export function ButtonPage() {
     const [variant, setVariant] = useState<ButtonVariant | "none">("primary")
