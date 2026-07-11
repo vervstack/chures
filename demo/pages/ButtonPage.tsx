@@ -51,7 +51,10 @@ export function ButtonPage() {
             { type: "select", label: "variant", options: VARIANTS, value: variant, onChange: (v) => setVariant(v as ButtonVariant | "none") },
             { type: "input", label: "label", value: label, onChange: setLabel },
             { type: "toggle", label: "disabled", value: disabled, onChange: setDisabled },
-            { type: "toggle", label: "custom styles", value: customStylesOpen, onChange: toggleCustomStyles },
+            {
+                type: "toggle", label: "custom styles", value: customStylesOpen, onChange: toggleCustomStyles,
+                tooltip: "Opens a live example of overriding Button's default look project-wide via ChuresConfigProvider, instead of passing className on every instance.",
+            },
         ])
         return () => setControls([])
     }, [variant, label, disabled, customStylesOpen, toggleCustomStyles, setControls])

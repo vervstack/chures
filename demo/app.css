@@ -573,12 +573,14 @@ body {
     flex-direction: column;
     align-items: stretch;
     min-width: 12rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 330ms cubic-bezier(.2, .7, .2, 1);
 }
 
 .preview-card--dragging {
     border-color: rgba(110, 150, 255, 0.45);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    /* no transform transition while actively dragging — stay 1:1 with the cursor */
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .preview-card-handle {

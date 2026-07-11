@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+.Animating {
+    transition: left 330ms cubic-bezier(.2, .7, .2, 1), top 330ms cubic-bezier(.2, .7, .2, 1);
+}
+
 .TitleBar {
     height: 1.75rem;
     flex-shrink: 0;

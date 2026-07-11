@@ -9,7 +9,7 @@ export function PropRow({ label, children, disabled, tooltip }: Props) {
     return (
         <div
             className={disabled ? "prop-row prop-row-disabled" : "prop-row"}
-            title={disabled ? tooltip : undefined}
+            title={tooltip}
         >
             <span className="prop-label">{label}</span>
             <div className="prop-control">{children}</div>

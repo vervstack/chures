@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
 import { BottomControls } from "./widgets/BottomControls"
@@ -21,6 +21,11 @@ import { ModalClosePage } from "./pages/ModalClosePage"
 import { IconsPage } from "./pages/IconsPage"
 import { ComponentDefaultsPage } from "./pages/ComponentDefaultsPage"
 
+// Roughly half of FloatingWindow's default width + gap — shifts the preview card
+// left to make room when the custom-styles panel opens, instead of the panel
+// merely dodging the card wherever it happens to be.
+const PANEL_SHIFT = 240
+
 function useHash() {
     const [hash, setHash] = useState(location.hash || "#/button")
     useEffect(() => {
@@ -35,6 +40,21 @@ export function App() {
     const hash = useHash()
     const customStylesOpen = useDemoStore((s) => s.customStylesOpen)
     const toggleCustomStyles = useDemoStore((s) => s.toggleCustomStyles)
+    const previewAreaRef = useRef<HTMLDivElement>(null)
+    const [previewRect, setPreviewRect] = useState<{ x: number; y: number; width: number; height: number } | null>(null)
+
+    const handlePreviewRectChange = useCallback((domRect: DOMRect) => {
+        const container = previewAreaRef.current?.getBoundingClientRect()
+        if (!container) return
+        setPreviewRect({
+            x: domRect.left - container.left,
+            y: domRect.top - container.top,
+            width: domRect.width,
+            height: domRect.height,
+        })
+    }, [])
+
+    const previewShiftX = hash === "#/button" && customStylesOpen ? -PANEL_SHIFT : 0
 
     let page: React.ReactNode
     if (hash === "#/toaster") {
@@ -72,10 +92,15 @@ export function App() {
             <Toaster />
             <Sidebar currentHash={hash} />
             <div className="layout-center">
-                <div className="preview-area">
-                    <PreviewCard>{page}</PreviewCard>
+                <div className="preview-area" ref={previewAreaRef}>
+                    <PreviewCard onRectChange={handlePreviewRectChange} shiftX={previewShiftX}>{page}</PreviewCard>
                     {hash === "#/button" && customStylesOpen && (
-                        <FloatingWindow title="Override Button styles globally" onClose={toggleCustomStyles}>
+                        <FloatingWindow
+                            title="Override Button styles globally"
+                            onClose={toggleCustomStyles}
+                            avoidRect={previewRect}
+                            containerRef={previewAreaRef}
+                        >
                             <ButtonCustomStylesExample />
                         </FloatingWindow>
                     )}
