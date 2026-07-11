@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 import { Button } from "../../src/components/Button"
 import { ConfirmDialog } from "../../src/components/ConfirmDialog"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
@@ -12,6 +13,7 @@ export function ConfirmDialogPage() {
     const [cancelLabel, setCancelLabel] = useState("")
     const [danger, setDanger] = useState(true)
     const [simulateAsync, setSimulateAsync] = useState(true)
+    const [glass, setGlass] = useState(false)
     const { bake } = useToaster()
     const setControls = useDemoStore((s) => s.setControls)
 
@@ -23,9 +25,10 @@ export function ConfirmDialogPage() {
             { type: "input", label: "cancelLabel", value: cancelLabel, onChange: setCancelLabel, placeholder: "(default) Cancel" },
             { type: "toggle", label: "danger", value: danger, onChange: setDanger },
             { type: "toggle", label: "simulate async onConfirm", value: simulateAsync, onChange: setSimulateAsync },
+            { type: "toggle", label: "glass", value: glass, onChange: setGlass },
         ])
         return () => setControls([])
-    }, [title, message, confirmLabel, cancelLabel, danger, simulateAsync, setControls])
+    }, [title, message, confirmLabel, cancelLabel, danger, simulateAsync, glass, setControls])
 
     function handleConfirm() {
         if (!simulateAsync) {
@@ -43,7 +46,7 @@ export function ConfirmDialogPage() {
     return (
         <>
             <Button onClick={() => setIsOpen(true)}>Open ConfirmDialog</Button>
-            {isOpen && (
+            {isOpen && createPortal(
                 <div className="dialog-backdrop">
                     <ConfirmDialog
                         title={title}
@@ -51,10 +54,12 @@ export function ConfirmDialogPage() {
                         confirmLabel={confirmLabel || undefined}
                         cancelLabel={cancelLabel || undefined}
                         danger={danger}
+                        glass={glass}
                         onConfirm={handleConfirm}
                         onClose={() => setIsOpen(false)}
                     />
-                </div>
+                </div>,
+                document.body
             )}
         </>
     )

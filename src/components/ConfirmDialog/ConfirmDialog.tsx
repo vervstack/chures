@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import cn from 'classnames'
 import styles from './ConfirmDialog.module.css'
+import { useComponentClassName } from '../../theme/useComponentClassName'
 
 interface Props {
     title: string
@@ -10,6 +11,10 @@ interface Props {
     danger?: boolean
     onConfirm: () => void | Promise<void>
     onClose: () => void
+    className?: string
+    // Frosted-glass look: translucent background + backdrop blur + a soft glow,
+    // themeable via --chures-dialog-glass-* (see theme.css).
+    glass?: boolean
 }
 
 export type ConfirmDialogProps = Props
@@ -22,8 +27,11 @@ export function ConfirmDialog({
     danger = false,
     onConfirm,
     onClose,
+    className,
+    glass = false,
 }: Props) {
     const [loading, setLoading] = useState(false)
+    const resolvedClassName = useComponentClassName('ConfirmDialog', className)
 
     function handleConfirm() {
         setLoading(true)
@@ -35,7 +43,7 @@ export function ConfirmDialog({
     }
 
     return (
-        <div className={styles.ConfirmContainer} role="dialog" aria-modal="true">
+        <div className={cn(styles.ConfirmContainer, { [styles.Glass]: glass }, resolvedClassName)} role="dialog" aria-modal="true">
             <h2 className={styles.ConfirmTitle}>{title}</h2>
             <p className={styles.ConfirmMessage}>{message}</p>
             <div className={styles.ConfirmActions}>

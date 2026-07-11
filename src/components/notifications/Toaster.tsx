@@ -3,13 +3,21 @@ import {AnimatePresence, motion} from "framer-motion";
 import {useEffect, useState} from "react";
 
 import {Toast as ToastProps, useToaster} from "../../hooks/toaster/useToaster";
+import {useComponentClassName} from "../../theme/useComponentClassName";
 import cls from "./Toast.module.css";
 
-export default function Toaster() {
+interface Props {
+    className?: string
+}
+
+export type ToasterProps = Props
+
+export default function Toaster({className}: Props = {}) {
     const {toasts} = useToaster();
+    const resolvedClassName = useComponentClassName('Toaster', className);
 
     return (
-        <div className={cls.ToastContainer}>
+        <div className={cn(cls.ToastContainer, resolvedClassName)}>
             <AnimatePresence>
                 {toasts.map((toast) => (
                     <motion.div

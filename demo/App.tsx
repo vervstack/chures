@@ -3,8 +3,10 @@ import Toaster from "../src/components/notifications/Toaster"
 import { Sidebar } from "./components/Sidebar"
 import { BottomControls } from "./widgets/BottomControls"
 import { PreviewCard } from "./widgets/PreviewCard"
+import { FloatingWindow } from "./widgets/FloatingWindow"
 import { ThemeVariables } from "./widgets/ThemeVariables"
-import { ButtonPage } from "./pages/ButtonPage"
+import { useDemoStore } from "./store/useDemoStore"
+import { ButtonPage, ButtonCustomStylesExample } from "./pages/ButtonPage"
 import { TelegramSignInButtonPage } from "./pages/TelegramSignInButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
 import { InputPage } from "./pages/InputPage"
@@ -31,6 +33,8 @@ function useHash() {
 
 export function App() {
     const hash = useHash()
+    const customStylesOpen = useDemoStore((s) => s.customStylesOpen)
+    const toggleCustomStyles = useDemoStore((s) => s.toggleCustomStyles)
 
     let page: React.ReactNode
     if (hash === "#/toaster") {
@@ -70,6 +74,11 @@ export function App() {
             <div className="layout-center">
                 <div className="preview-area">
                     <PreviewCard>{page}</PreviewCard>
+                    {hash === "#/button" && customStylesOpen && (
+                        <FloatingWindow title="Override Button styles globally" onClose={toggleCustomStyles}>
+                            <ButtonCustomStylesExample />
+                        </FloatingWindow>
+                    )}
                 </div>
                 <BottomControls />
             </div>

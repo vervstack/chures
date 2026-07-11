@@ -79,6 +79,8 @@ interface DemoState {
     resetCssVars: () => void
     themeOpen: boolean
     toggleTheme: () => void
+    customStylesOpen: boolean
+    toggleCustomStyles: () => void
 }
 
 export const useDemoStore = create<DemoState>((set, get) => ({
@@ -94,4 +96,6 @@ export const useDemoStore = create<DemoState>((set, get) => ({
     resetCssVars: () => set({ cssVars: {} }),
     themeOpen: true,
     toggleTheme: () => set((s) => ({ themeOpen: !s.themeOpen })),
+    customStylesOpen: false,
+    toggleCustomStyles: () => set((s) => ({ customStylesOpen: !s.customStylesOpen })),
 }))

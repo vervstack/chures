@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import styles from './Toggle.module.css'
+import { useComponentClassName } from '../../theme/useComponentClassName'
 
 interface Props {
     checked: boolean
@@ -16,16 +17,17 @@ export type ToggleProps = Props
 
 export function Toggle({ checked, onChange, label, labelPosition = 'right', disabled, isLoader, isLoadingLabel, className }: Props) {
     const hasLabel = !!label || isLoadingLabel
+    const resolvedClassName = useComponentClassName('Toggle', className)
     const labelNode = isLoadingLabel
         ? <span className={styles.LabelSkeleton} aria-hidden="true" />
         : label ? <span className={styles.Label}>{label}</span> : null
 
     if (isLoader) {
         if (!hasLabel) {
-            return <div className={cn(styles.Skeleton, className)} aria-hidden="true" />
+            return <div className={cn(styles.Skeleton, resolvedClassName)} aria-hidden="true" />
         }
         return (
-            <div className={cn(styles.ToggleContainer, className)}>
+            <div className={cn(styles.ToggleContainer, resolvedClassName)}>
                 {labelPosition === 'left' && labelNode}
                 <div className={styles.Skeleton} aria-hidden="true" />
                 {labelPosition === 'right' && labelNode}
@@ -34,7 +36,7 @@ export function Toggle({ checked, onChange, label, labelPosition = 'right', disa
     }
 
     return (
-        <label className={cn(styles.ToggleContainer, { [styles.disabled]: disabled }, className)}>
+        <label className={cn(styles.ToggleContainer, { [styles.disabled]: disabled }, resolvedClassName)}>
             {labelPosition === 'left' && labelNode}
             <button
                 role="switch"

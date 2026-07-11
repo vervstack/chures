@@ -1,3 +1,5 @@
+import { useComponentClassName } from '../../theme/useComponentClassName'
+
 interface Props {
     onClick: () => void
     disabled?: boolean
@@ -7,9 +9,10 @@ interface Props {
 export type ModalCloseProps = Props
 
 export function ModalClose({ onClick, disabled, className }: Props) {
+    const resolvedClassName = useComponentClassName('ModalClose', className)
     return (
         <button
-            className={className}
+            className={resolvedClassName}
             type="button"
             onClick={onClick}
             disabled={disabled}

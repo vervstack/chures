@@ -1,5 +1,7 @@
 import {useEffect} from "react"
+import cn from "classnames"
 import s from "./TelegramSignInButton.module.css"
+import {useComponentClassName} from "../../theme/useComponentClassName"
 
 const LABELS: Record<"en" | "ru", string> = {
     en: "Continue with Telegram",
@@ -52,7 +54,8 @@ export function TelegramSignInButton({
     }, [])
 
     const text = label ?? title ?? LABELS[lang]
-    const cls = [s.TelegramSignInButtonContainer, fullSize && s.FullSize, className].filter(Boolean).join(" ")
+    const resolvedClassName = useComponentClassName('TelegramSignInButton', className)
+    const cls = cn(s.TelegramSignInButtonContainer, { [s.FullSize]: fullSize }, resolvedClassName)
 
     return (
         <button type="button" className={cls} onClick={onClick} disabled={disabled}>

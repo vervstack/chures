@@ -1,3 +1,5 @@
+import { useComponentClassName } from '../../theme/useComponentClassName'
+
 interface ButtonConfig {
     label: string
     onClick: () => void
@@ -13,8 +15,9 @@ interface Props {
 export type ModalActionsProps = Props
 
 export function ModalActions({ buttons, containerClassName }: Props) {
+    const resolvedClassName = useComponentClassName('ModalActions', containerClassName)
     return (
-        <div className={containerClassName}>
+        <div className={resolvedClassName}>
             {buttons.map((btn, idx) => (
                 <button
                     key={idx}

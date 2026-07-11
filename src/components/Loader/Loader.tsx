@@ -1,6 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import styles from './Loader.module.css'
+import { useComponentClassName } from '../../theme/useComponentClassName'
 
 interface Props {
     variant?: 'arcs' | 'ripple' | 'dots' | 'wave'
@@ -51,9 +52,10 @@ function renderInner(variant: NonNullable<Props['variant']>, s: Record<string, s
 }
 
 export function Loader({ variant = 'arcs', size = 'md', color, className }: Props) {
+    const resolvedClassName = useComponentClassName('Loader', className)
     return (
         <div
-            className={cn(styles.LoaderContainer, styles[size], styles[variant], className)}
+            className={cn(styles.LoaderContainer, styles[size], styles[variant], resolvedClassName)}
             role="status"
             aria-label="Loading"
             style={color ? { '--chures-accent': color } as React.CSSProperties : undefined}

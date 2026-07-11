@@ -1,6 +1,7 @@
 import { forwardRef, useState } from 'react'
 import cn from 'classnames'
 import styles from './Input.module.css'
+import { useComponentClassName } from '../../theme/useComponentClassName'
 
 type NativeInputProps = Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
@@ -32,13 +33,14 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 ) {
     const [focused, setFocused] = useState(false)
     const lifted = focused || value.length > 0
+    const resolvedClassName = useComponentClassName('Input', className)
 
     if (isLoader) {
-        return <div className={cn(styles.Skeleton, className)} aria-hidden="true" />
+        return <div className={cn(styles.Skeleton, resolvedClassName)} aria-hidden="true" />
     }
 
     return (
-        <div className={cn(styles.InputContainer, { [styles.hasError]: !!error, [styles.disabled]: disabled }, className)}>
+        <div className={cn(styles.InputContainer, { [styles.hasError]: !!error, [styles.disabled]: disabled }, resolvedClassName)}>
             <input
                 ref={ref}
                 className={cn(styles.InputField, inputClassName)}

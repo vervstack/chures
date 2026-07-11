@@ -21,3 +21,25 @@
     background: #111111;
     border: 1px solid #444444;
 }
+
+.ProjectInput {
+    border-radius: 999px;
+    border-color: #7c3aed;
+}
+
+.InstanceOverrideInput {
+    border-radius: 0.25rem;
+    border-color: #db2777;
+}
+
+.ProjectToggle {
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(124, 58, 237, 0.15);
+}
+
+.InstanceOverrideToggle {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background: rgba(219, 39, 119, 0.15);
+}
