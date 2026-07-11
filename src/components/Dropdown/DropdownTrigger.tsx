@@ -12,20 +12,29 @@ interface Props {
     selectedOptions: DropdownOption[];
     multiSelect: boolean;
     placeholder: string;
+    onOverflow?: 'scroll' | 'expand';
 }
 
-export function DropdownTrigger({ triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder }: Props) {
+export function DropdownTrigger(
+    { triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll' }: Props) {
+    const expand = onOverflow === 'expand';
+
     return (
         <button
             type="button"
             ref={triggerRef}
-            className={cn(styles.TriggerContainer, isOpen && styles.Open)}
+            className={cn(
+                styles.TriggerContainer,
+                isOpen && styles.Open,
+                multiSelect && styles.MultiSelect,
+                expand && styles.ExpandHeight,
+            )}
             onClick={onClick}
             aria-expanded={isOpen}
             aria-haspopup="listbox"
         >
             {multiSelect && selectedOptions.length > 0 ? (
-                <div className={styles.ChipsWrapper}>
+                <div className={cn(styles.ChipsWrapper, expand && styles.Expand)}>
                     {selectedOptions.map((opt, i) => (
                         <span key={i} className={styles.Chip}>
                             {getOptionLabel(opt)}

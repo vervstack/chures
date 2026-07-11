@@ -7,6 +7,7 @@ import type { DropdownOption } from './Dropdown.types';
 import { DropdownPanel } from './DropdownPanel';
 import { DropdownTrigger } from './DropdownTrigger';
 import styles from './Dropdown.module.css';
+import { useComponentClassName } from '../../theme/useComponentClassName';
 
 export type { DropdownOption };
 
@@ -31,6 +32,8 @@ interface Props {
     onCreate?: (name: string) => Promise<DropdownOption>;
     excluded?: string[];
     multiSelect?: boolean;
+    selectedAtTop?: boolean;
+    onOverflow?: 'scroll' | 'expand';
     label?: string;
     placeholder?: string;
     searchPlaceholder?: string;
@@ -46,12 +49,13 @@ export type DropdownProps = Props;
 
 export function Dropdown(
     {
-        options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, label,
+        options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
         onError, className, children,
     }: Props) {
 
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
+    const resolvedClassName = useComponentClassName('Dropdown', className);
 
     const selectedOptions = resolveSelectedOptions(value, options);
     const lifted = isOpen || selectedOptions.length > 0;
@@ -74,7 +78,7 @@ export function Dropdown(
     };
 
     return (
-        <div className={cn(styles.DropdownContainer, className)}>
+        <div className={cn(styles.DropdownContainer, resolvedClassName)}>
             {label && (
                 <label className={cn(styles.Label, { [styles.lifted]: lifted })}>
                     {label}
@@ -89,6 +93,7 @@ export function Dropdown(
                         onClick={toggleOpen}
                         selectedOptions={selectedOptions}
                         multiSelect={multiSelect}
+                        onOverflow={onOverflow}
                         placeholder={triggerPlaceholder}
                     />
                 )}
@@ -102,6 +107,7 @@ export function Dropdown(
                     anchorRef={triggerRef}
                     excluded={excluded}
                     multiSelect={multiSelect}
+                    selectedAtTop={selectedAtTop}
                     selected={value}
                     placeholder={searchPlaceholder}
                     emptyHint={emptyHint}

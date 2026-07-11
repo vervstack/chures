@@ -18,6 +18,8 @@ function mockSearch(q: string): Promise<DropdownOption[]> {
 
 export function DropdownPage() {
     const [multiSelect, setMultiSelect] = useState(false)
+    const [selectedAtTop, setSelectedAtTop] = useState(false)
+    const [onOverflow, setOnOverflow] = useState<"scroll" | "expand">("scroll")
     const [isLoading, setIsLoading] = useState(false)
     const [searchEnabled, setSearchEnabled] = useState(false)
     const [createEnabled, setCreateEnabled] = useState(false)
@@ -31,6 +33,12 @@ export function DropdownPage() {
     useEffect(() => {
         setControls([
             { type: "toggleGroup", label: "multiSelect", options: ["false", "true"], value: String(multiSelect), onChange: (v) => { setMultiSelect(v === "true"); setValue([]) } },
+            { type: "toggleGroup", label: "selectedAtTop", options: ["false", "true"], value: String(selectedAtTop), onChange: (v) => setSelectedAtTop(v === "true") },
+            {
+                type: "toggleGroup", label: "onOverflow", options: ["scroll", "expand"], value: onOverflow,
+                onChange: (v) => setOnOverflow(v as "scroll" | "expand"),
+                disabled: !multiSelect, tooltip: "Requires multiSelect to be enabled",
+            },
             { type: "toggleGroup", label: "isLoading", options: ["false", "true"], value: String(isLoading), onChange: (v) => setIsLoading(v === "true") },
             { type: "toggleGroup", label: "onSearch", options: ["off", "on"], value: searchEnabled ? "on" : "off", onChange: (v) => setSearchEnabled(v === "on") },
             { type: "toggleGroup", label: "onCreate", options: ["off", "on"], value: createEnabled ? "on" : "off", onChange: (v) => setCreateEnabled(v === "on") },
@@ -40,7 +48,7 @@ export function DropdownPage() {
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [multiSelect, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, value, setControls])
+    }, [multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
@@ -61,6 +69,8 @@ export function DropdownPage() {
                 onSearch={searchEnabled ? mockSearch : undefined}
                 onCreate={createEnabled ? handleCreate : undefined}
                 multiSelect={multiSelect}
+                selectedAtTop={selectedAtTop}
+                onOverflow={onOverflow}
                 isLoading={isLoading}
                 skeletonRowCount={skeletonRowCount}
                 placeholder={placeholder || undefined}

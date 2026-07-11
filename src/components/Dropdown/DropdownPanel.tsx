@@ -18,6 +18,7 @@ interface Props {
     anchorRef?: React.RefObject<HTMLElement | null>;
     excluded?: string[];
     multiSelect?: boolean;
+    selectedAtTop?: boolean;
     selected?: string[];
     placeholder?: string;
     emptyHint?: string;
@@ -31,6 +32,7 @@ export function DropdownPanel(
         onSearch, onCreate, onPick, onClose, anchorRef, placeholder,
         options = [], excluded = [], selected = [],
         multiSelect = false,
+        selectedAtTop = false,
         isLoading = false,
         emptyHint = 'no results found',
         skeletonRowCount = 4,
@@ -52,10 +54,17 @@ export function DropdownPanel(
         if (hasSearch) inputRef.current?.focus();
     }, [hasSearch]);
 
-    const visibleOptions = (onSearch ? searchResults : options)
+    const filteredOptions = (onSearch ? searchResults : options)
         .filter(
             (opt) => !excluded.includes(getOptionId(opt)),
         );
+
+    const visibleOptions = selectedAtTop
+        ? [
+            ...filteredOptions.filter((opt) => selected.includes(getOptionId(opt))),
+            ...filteredOptions.filter((opt) => !selected.includes(getOptionId(opt))),
+        ]
+        : filteredOptions;
 
     const trimmedQuery = query.trim();
     const exactMatch = visibleOptions.some(
