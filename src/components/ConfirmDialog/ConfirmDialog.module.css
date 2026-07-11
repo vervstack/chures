@@ -1,11 +1,9 @@
-.ConfirmContainer {
+/* Entrance animation lives on this outer wrapper, not on .ConfirmContainer itself,
+   so the glass container never has a transform/opacity animation running on it at
+   the same time as backdrop-filter. */
+.ConfirmWrapper {
     width: 100%;
     max-width: 24rem;
-    background: var(--chures-surface, #000000);
-    border: 1px solid rgb(255 255 255 / 14%);
-    border-radius: 1.25rem;
-    padding: 1.75rem 1.75rem 1.5rem;
-    box-shadow: 0 32px 80px -20px rgba(0,0,0,0.8);
     animation: confirmIn 280ms cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -14,11 +12,19 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+.ConfirmContainer {
+    width: 100%;
+    background: var(--chures-surface, #000000);
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    box-shadow: 0 32px 80px -20px rgba(0,0,0,0.8);
+}
+
 .Glass {
     background: var(--chures-dialog-glass-bg, rgb(255 255 255 / 6%));
     backdrop-filter: blur(var(--chures-dialog-glass-blur, 1.25rem));
     -webkit-backdrop-filter: blur(var(--chures-dialog-glass-blur, 1.25rem));
-    box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.8), 0 0 4rem var(--chures-dialog-glass-glow, rgb(124 58 237 / 35%));
 }
 
 .ConfirmTitle {

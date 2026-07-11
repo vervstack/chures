@@ -35,9 +35,9 @@ body {
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        radial-gradient(rgba(124, 58, 237, 0.35) 1.5px, transparent 1.5px),
-        radial-gradient(rgba(34, 158, 217, 0.3) 1.5px, transparent 1.5px),
-        radial-gradient(rgba(219, 39, 119, 0.3) 1.5px, transparent 1.5px);
+        radial-gradient(rgba(124, 58, 237, 0.35) 4px, transparent 4px),
+        radial-gradient(rgba(34, 158, 217, 0.3) 4px, transparent 4px),
+        radial-gradient(rgba(219, 39, 119, 0.3) 4px, transparent 4px);
     background-size:
         2.5rem 2.5rem,
         2.5rem 2.5rem,
@@ -563,9 +563,9 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(1rem);
-    -webkit-backdrop-filter: blur(1rem);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0.75rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);

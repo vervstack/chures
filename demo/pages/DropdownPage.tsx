@@ -26,6 +26,7 @@ export function DropdownPage() {
     const [skeletonRowCount, setSkeletonRowCount] = useState(4)
     const [placeholder, setPlaceholder] = useState("")
     const [emptyHint, setEmptyHint] = useState("no results found")
+    const [glass, setGlass] = useState(false)
     const [options, setOptions] = useState<DropdownOption[]>(FRUITS)
     const [value, setValue] = useState<string[]>([])
     const setControls = useDemoStore((s) => s.setControls)
@@ -45,10 +46,14 @@ export function DropdownPage() {
             { type: "toggleGroup", label: "skeletonRowCount", options: ["2", "4", "6"], value: String(skeletonRowCount), onChange: (v) => setSkeletonRowCount(Number(v)) },
             { type: "input", label: "placeholder", value: placeholder, onChange: setPlaceholder, placeholder: "(default)" },
             { type: "input", label: "emptyHint", value: emptyHint, onChange: setEmptyHint },
+            {
+                type: "toggle", label: "glass", value: glass, onChange: setGlass,
+                tooltip: "Frosted-glass look for the open panel: translucent background + backdrop blur + a soft glow.",
+            },
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, value, setControls])
+    }, [multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, glass, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
@@ -75,6 +80,7 @@ export function DropdownPage() {
                 skeletonRowCount={skeletonRowCount}
                 placeholder={placeholder || undefined}
                 emptyHint={emptyHint}
+                glass={glass}
                 label="Fruit"
             />
         </div>

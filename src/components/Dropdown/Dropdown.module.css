@@ -15,17 +15,40 @@
     width: 100%;
 }
 
-.PanelContainer {
+/* The entrance animation lives on this outer wrapper so .PanelContainer itself never
+   has a transform/opacity animation running on it at the same time as backdrop-filter. */
+.PanelWrapper {
     position: absolute;
     top: calc(100% + var(--chures-dropdown-panel-gap));
     left: 0;
     width: 100%;
+    animation: panelIn 0.14s ease;
+}
+
+/* glass panels are portaled to document.body (see DropdownPanel.tsx) so their
+   backdrop-filter always blurs the real page behind them — an element with
+   backdrop-filter establishes a "backdrop root" for its descendants, so a panel
+   nested inside any ancestor that itself uses backdrop-filter (a card, a modal)
+   could otherwise only ever blur within that ancestor, never reach past it. Position
+   switches to fixed with top/left/width set inline from the anchor's live rect. */
+.PanelWrapper.Portal {
+    position: fixed;
+    width: auto;
+    margin-top: var(--chures-dropdown-panel-gap);
+}
+
+.PanelContainer {
     background: var(--chures-dropdown-bg);
     border: 1px solid var(--chures-dropdown-border);
     border-radius: var(--chures-dropdown-radius);
     overflow: hidden;
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 80%);
-    animation: panelIn 0.14s ease;
+}
+
+.PanelContainer.Glass {
+    background: var(--chures-dropdown-glass-bg, rgb(255 255 255 / 6%));
+    backdrop-filter: blur(var(--chures-dropdown-glass-blur, 1.25rem));
+    -webkit-backdrop-filter: blur(var(--chures-dropdown-glass-blur, 1.25rem));
 }
 
 .Label {

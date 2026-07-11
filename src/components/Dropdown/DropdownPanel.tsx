@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
 import { getOptionId, getOptionLabel } from './Dropdown.types';
@@ -25,6 +27,7 @@ interface Props {
     isLoading?: boolean;
     skeletonRowCount?: number;
     onError?: (err: unknown) => void;
+    glass?: boolean;
 }
 
 export function DropdownPanel(
@@ -37,10 +40,12 @@ export function DropdownPanel(
         emptyHint = 'no results found',
         skeletonRowCount = 4,
         onError = console.error,
+        glass = false,
     }: Props) {
 
     const [query, setQuery] = useState('');
     const [creating, setCreating] = useState(false);
+    const [anchorRect, setAnchorRect] = useState<DOMRect | null>(null);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
@@ -49,6 +54,26 @@ export function DropdownPanel(
     const searchResults = useSearchResults(query, onSearch);
 
     useDropdownClose(panelRef, onClose, anchorRef);
+
+    // `glass` needs to blur whatever's *actually* rendered behind the panel — but an
+    // element with backdrop-filter establishes a "backdrop root" for its descendants,
+    // so a nested backdrop-filter panel can only ever sample within its nearest
+    // backdrop-filter ancestor (e.g. a card or modal the Dropdown happens to sit in),
+    // never reaching what's behind that ancestor. Portaling to document.body escapes
+    // any such ancestor so the blur always applies to the real page content behind it.
+    useLayoutEffect(() => {
+        if (!glass) return;
+        function updateRect() {
+            if (anchorRef?.current) setAnchorRect(anchorRef.current.getBoundingClientRect());
+        }
+        updateRect();
+        window.addEventListener('scroll', updateRect, true);
+        window.addEventListener('resize', updateRect);
+        return () => {
+            window.removeEventListener('scroll', updateRect, true);
+            window.removeEventListener('resize', updateRect);
+        };
+    }, [glass, anchorRef]);
 
     useEffect(() => {
         if (hasSearch) inputRef.current?.focus();
@@ -104,44 +129,54 @@ export function DropdownPanel(
 
     const resolvedPlaceholder = placeholder ?? (onCreate ? 'search or add new…' : 'search…');
 
-    return (
-        <div ref={panelRef} className={styles.PanelContainer}>
-            {hasSearch && (
-                <DropdownSearchRow
-                    inputRef={inputRef}
-                    query={query}
-                    onChange={handleQueryChange}
-                    onKeyDown={handleInputKeyDown}
-                    placeholder={resolvedPlaceholder}
-                />
-            )}
-            <div className={styles.ResultsList}>
-                {isLoading ? (
-                    <DropdownSkeletonList count={skeletonRowCount} />
-                ) : (
-                    <>
-                        {visibleOptions.map((opt) => (
-                            <DropdownOptionRow
-                                key={getOptionId(opt)}
-                                opt={opt}
-                                isSelected={selected.includes(getOptionId(opt))}
-                                multiSelect={multiSelect}
-                                onPick={handlePick}
-                            />
-                        ))}
-                        {showCreate && (
-                            <DropdownCreateRow
-                                query={trimmedQuery}
-                                withBorder={visibleOptions.length > 0}
-                                onCreate={handleCreate}
-                            />
-                        )}
-                        {visibleOptions.length === 0 && !showCreate && (
-                            <div className={styles.EmptyHint}>{emptyHint}</div>
-                        )}
-                    </>
+    if (glass && !anchorRect) return null;
+
+    const panel = (
+        <div
+            ref={panelRef}
+            className={cn(styles.PanelWrapper, { [styles.Portal]: glass })}
+            style={glass && anchorRect ? { top: anchorRect.bottom, left: anchorRect.left, width: anchorRect.width } : undefined}
+        >
+            <div className={cn(styles.PanelContainer, { [styles.Glass]: glass })}>
+                {hasSearch && (
+                    <DropdownSearchRow
+                        inputRef={inputRef}
+                        query={query}
+                        onChange={handleQueryChange}
+                        onKeyDown={handleInputKeyDown}
+                        placeholder={resolvedPlaceholder}
+                    />
                 )}
+                <div className={styles.ResultsList}>
+                    {isLoading ? (
+                        <DropdownSkeletonList count={skeletonRowCount} />
+                    ) : (
+                        <>
+                            {visibleOptions.map((opt) => (
+                                <DropdownOptionRow
+                                    key={getOptionId(opt)}
+                                    opt={opt}
+                                    isSelected={selected.includes(getOptionId(opt))}
+                                    multiSelect={multiSelect}
+                                    onPick={handlePick}
+                                />
+                            ))}
+                            {showCreate && (
+                                <DropdownCreateRow
+                                    query={trimmedQuery}
+                                    withBorder={visibleOptions.length > 0}
+                                    onCreate={handleCreate}
+                                />
+                            )}
+                            {visibleOptions.length === 0 && !showCreate && (
+                                <div className={styles.EmptyHint}>{emptyHint}</div>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );
+
+    return glass ? createPortal(panel, document.body) : panel;
 }

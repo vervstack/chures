@@ -43,21 +43,23 @@ export function ConfirmDialog({
     }
 
     return (
-        <div className={cn(styles.ConfirmContainer, { [styles.Glass]: glass }, resolvedClassName)} role="dialog" aria-modal="true">
-            <h2 className={styles.ConfirmTitle}>{title}</h2>
-            <p className={styles.ConfirmMessage}>{message}</p>
-            <div className={styles.ConfirmActions}>
-                <button className={styles.BtnCancel} type="button" onClick={onClose} disabled={loading}>
-                    {cancelLabel}
-                </button>
-                <button
-                    className={cn(danger ? styles.BtnDanger : styles.BtnConfirm)}
-                    type="button"
-                    onClick={handleConfirm}
-                    disabled={loading}
-                >
-                    {loading ? '…' : confirmLabel}
-                </button>
+        <div className={styles.ConfirmWrapper}>
+            <div className={cn(styles.ConfirmContainer, { [styles.Glass]: glass }, resolvedClassName)} role="dialog" aria-modal="true">
+                <h2 className={styles.ConfirmTitle}>{title}</h2>
+                <p className={styles.ConfirmMessage}>{message}</p>
+                <div className={styles.ConfirmActions}>
+                    <button className={styles.BtnCancel} type="button" onClick={onClose} disabled={loading}>
+                        {cancelLabel}
+                    </button>
+                    <button
+                        className={cn(danger ? styles.BtnDanger : styles.BtnConfirm)}
+                        type="button"
+                        onClick={handleConfirm}
+                        disabled={loading}
+                    >
+                        {loading ? '…' : confirmLabel}
+                    </button>
+                </div>
             </div>
         </div>
     )
