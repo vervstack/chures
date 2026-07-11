@@ -59,9 +59,9 @@
       "source_file": "demo/assets/icons/DragHandleIcon.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_assets_icons_draghandleicon_draghandleicon",
       "community": 8,
-      "norm_label": "draghandleicon()"
+      "norm_label": "draghandleicon()",
+      "id": "demo_assets_icons_draghandleicon_draghandleicon"
     },
     {
       "label": "SidePanelIcon.tsx",
@@ -79,9 +79,9 @@
       "source_file": "demo/assets/icons/SidePanelIcon.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_assets_icons_sidepanelicon_sidepanelicon",
       "community": 11,
-      "norm_label": "sidepanelicon()"
+      "norm_label": "sidepanelicon()",
+      "id": "demo_assets_icons_sidepanelicon_sidepanelicon"
     },
     {
       "label": "Sidebar.tsx",
@@ -99,9 +99,9 @@
       "source_file": "demo/components/Sidebar.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_components_sidebar_navitem",
       "community": 8,
-      "norm_label": "navitem"
+      "norm_label": "navitem",
+      "id": "demo_components_sidebar_navitem"
     },
     {
       "label": "NAV",
@@ -109,29 +109,29 @@
       "source_file": "demo/components/Sidebar.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "demo_components_sidebar_nav",
       "community": 8,
-      "norm_label": "nav"
+      "norm_label": "nav",
+      "id": "demo_components_sidebar_nav"
     },
     {
       "label": "Props",
       "file_type": "code",
       "source_file": "demo/components/Sidebar.tsx",
-      "source_location": "L22",
+      "source_location": "L16",
       "_origin": "ast",
-      "id": "demo_components_sidebar_props",
       "community": 8,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_components_sidebar_props"
     },
     {
       "label": "Sidebar()",
       "file_type": "code",
       "source_file": "demo/components/Sidebar.tsx",
-      "source_location": "L26",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "demo_components_sidebar_sidebar",
       "community": 8,
-      "norm_label": "sidebar()"
+      "norm_label": "sidebar()",
+      "id": "demo_components_sidebar_sidebar"
     },
     {
       "label": "main.tsx",
@@ -167,11 +167,11 @@
       "label": "ButtonPage()",
       "file_type": "code",
       "source_file": "demo/pages/ButtonPage.tsx",
-      "source_location": "L9",
+      "source_location": "L6",
       "_origin": "ast",
-      "id": "demo_pages_buttonpage_buttonpage",
       "community": 10,
-      "norm_label": "buttonpage()"
+      "norm_label": "buttonpage()",
+      "id": "demo_pages_buttonpage_buttonpage"
     },
     {
       "label": "ConfirmDialogPage.tsx",
@@ -207,31 +207,31 @@
       "label": "FRUITS",
       "file_type": "code",
       "source_file": "demo/pages/DropdownPage.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast",
-      "id": "demo_pages_dropdownpage_fruits",
       "community": 3,
-      "norm_label": "fruits"
+      "norm_label": "fruits",
+      "id": "demo_pages_dropdownpage_fruits"
     },
     {
       "label": "mockSearch()",
       "file_type": "code",
       "source_file": "demo/pages/DropdownPage.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
-      "id": "demo_pages_dropdownpage_mocksearch",
       "community": 3,
-      "norm_label": "mocksearch()"
+      "norm_label": "mocksearch()",
+      "id": "demo_pages_dropdownpage_mocksearch"
     },
     {
       "label": "DropdownPage()",
       "file_type": "code",
       "source_file": "demo/pages/DropdownPage.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "demo_pages_dropdownpage_dropdownpage",
       "community": 3,
-      "norm_label": "dropdownpage()"
+      "norm_label": "dropdownpage()",
+      "id": "demo_pages_dropdownpage_dropdownpage"
     },
     {
       "label": "IconsPage.tsx",
@@ -287,11 +287,11 @@
       "label": "InputPage()",
       "file_type": "code",
       "source_file": "demo/pages/InputPage.tsx",
-      "source_location": "L8",
+      "source_location": "L5",
       "_origin": "ast",
-      "id": "demo_pages_inputpage_inputpage",
       "community": 10,
-      "norm_label": "inputpage()"
+      "norm_label": "inputpage()",
+      "id": "demo_pages_inputpage_inputpage"
     },
     {
       "label": "LoaderPage.tsx",
@@ -309,9 +309,9 @@
       "source_file": "demo/pages/LoaderPage.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "demo_pages_loaderpage_loader_variants",
       "community": 5,
-      "norm_label": "loader_variants"
+      "norm_label": "loader_variants",
+      "id": "demo_pages_loaderpage_loader_variants"
     },
     {
       "label": "LoaderVariant",
@@ -319,9 +319,9 @@
       "source_file": "demo/pages/LoaderPage.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "demo_pages_loaderpage_loadervariant",
       "community": 5,
-      "norm_label": "loadervariant"
+      "norm_label": "loadervariant",
+      "id": "demo_pages_loaderpage_loadervariant"
     },
     {
       "label": "DemoVariant",
@@ -329,9 +329,9 @@
       "source_file": "demo/pages/LoaderPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "demo_pages_loaderpage_demovariant",
       "community": 5,
-      "norm_label": "demovariant"
+      "norm_label": "demovariant",
+      "id": "demo_pages_loaderpage_demovariant"
     },
     {
       "label": "LoaderPage()",
@@ -339,9 +339,9 @@
       "source_file": "demo/pages/LoaderPage.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "demo_pages_loaderpage_loaderpage",
       "community": 5,
-      "norm_label": "loaderpage()"
+      "norm_label": "loaderpage()",
+      "id": "demo_pages_loaderpage_loaderpage"
     },
     {
       "label": "LoadingWrapperPage.tsx",
@@ -359,9 +359,9 @@
       "source_file": "demo/pages/LoadingWrapperPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "demo_pages_loadingwrapperpage_variants",
       "community": 5,
-      "norm_label": "variants"
+      "norm_label": "variants",
+      "id": "demo_pages_loadingwrapperpage_variants"
     },
     {
       "label": "UserCard()",
@@ -369,9 +369,9 @@
       "source_file": "demo/pages/LoadingWrapperPage.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "demo_pages_loadingwrapperpage_usercard",
       "community": 5,
-      "norm_label": "usercard()"
+      "norm_label": "usercard()",
+      "id": "demo_pages_loadingwrapperpage_usercard"
     },
     {
       "label": "UserCardSkeleton()",
@@ -379,9 +379,9 @@
       "source_file": "demo/pages/LoadingWrapperPage.tsx",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "demo_pages_loadingwrapperpage_usercardskeleton",
       "community": 5,
-      "norm_label": "usercardskeleton()"
+      "norm_label": "usercardskeleton()",
+      "id": "demo_pages_loadingwrapperpage_usercardskeleton"
     },
     {
       "label": "LoadingWrapperPage()",
@@ -389,9 +389,9 @@
       "source_file": "demo/pages/LoadingWrapperPage.tsx",
       "source_location": "L46",
       "_origin": "ast",
-      "id": "demo_pages_loadingwrapperpage_loadingwrapperpage",
       "community": 5,
-      "norm_label": "loadingwrapperpage()"
+      "norm_label": "loadingwrapperpage()",
+      "id": "demo_pages_loadingwrapperpage_loadingwrapperpage"
     },
     {
       "label": "ModalActionsPage.tsx",
@@ -469,9 +469,9 @@
       "source_file": "demo/pages/ThemePage.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "demo_pages_themepage_themepage",
       "community": 2,
-      "norm_label": "themepage()"
+      "norm_label": "themepage()",
+      "id": "demo_pages_themepage_themepage"
     },
     {
       "label": "ToasterPage.tsx",
@@ -489,9 +489,9 @@
       "source_file": "demo/pages/ToasterPage.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "demo_pages_toasterpage_level",
       "community": 2,
-      "norm_label": "level"
+      "norm_label": "level",
+      "id": "demo_pages_toasterpage_level"
     },
     {
       "label": "ToasterPage()",
@@ -499,9 +499,9 @@
       "source_file": "demo/pages/ToasterPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "demo_pages_toasterpage_toasterpage",
       "community": 2,
-      "norm_label": "toasterpage()"
+      "norm_label": "toasterpage()",
+      "id": "demo_pages_toasterpage_toasterpage"
     },
     {
       "label": "TogglePage.tsx",
@@ -519,9 +519,9 @@
       "source_file": "demo/pages/TogglePage.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "demo_pages_togglepage_togglepage",
       "community": 18,
-      "norm_label": "togglepage()"
+      "norm_label": "togglepage()",
+      "id": "demo_pages_togglepage_togglepage"
     },
     {
       "label": "useDemoStore.ts",
@@ -597,21 +597,21 @@
       "label": "DemoState",
       "file_type": "code",
       "source_file": "demo/store/useDemoStore.ts",
-      "source_location": "L72",
+      "source_location": "L25",
       "_origin": "ast",
-      "id": "demo_store_usedemostore_demostate",
       "community": 0,
-      "norm_label": "demostate"
+      "norm_label": "demostate",
+      "id": "demo_store_usedemostore_demostate"
     },
     {
       "label": "useDemoStore",
       "file_type": "code",
       "source_file": "demo/store/useDemoStore.ts",
-      "source_location": "L84",
+      "source_location": "L35",
       "_origin": "ast",
-      "id": "demo_store_usedemostore_usedemostore",
       "community": 10,
-      "norm_label": "usedemostore"
+      "norm_label": "usedemostore",
+      "id": "demo_store_usedemostore_usedemostore"
     },
     {
       "label": "BottomControls.tsx",
@@ -629,9 +629,9 @@
       "source_file": "demo/widgets/BottomControls.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "demo_widgets_bottomcontrols_bottomcontrols",
       "community": 8,
-      "norm_label": "bottomcontrols()"
+      "norm_label": "bottomcontrols()",
+      "id": "demo_widgets_bottomcontrols_bottomcontrols"
     },
     {
       "label": "ControlDef.ts",
@@ -649,9 +649,9 @@
       "source_file": "demo/widgets/ControlDef.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_widgets_controldef_controldef",
       "community": 0,
-      "norm_label": "controldef"
+      "norm_label": "controldef",
+      "id": "demo_widgets_controldef_controldef"
     },
     {
       "label": "ControlItem.tsx",
@@ -669,9 +669,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_togglecontrol",
       "community": 4,
-      "norm_label": "togglecontrol()"
+      "norm_label": "togglecontrol()",
+      "id": "demo_widgets_controlitem_togglecontrol"
     },
     {
       "label": "ToggleGroupControl()",
@@ -679,9 +679,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_togglegroupcontrol",
       "community": 4,
-      "norm_label": "togglegroupcontrol()"
+      "norm_label": "togglegroupcontrol()",
+      "id": "demo_widgets_controlitem_togglegroupcontrol"
     },
     {
       "label": "InputControl()",
@@ -689,9 +689,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_inputcontrol",
       "community": 4,
-      "norm_label": "inputcontrol()"
+      "norm_label": "inputcontrol()",
+      "id": "demo_widgets_controlitem_inputcontrol"
     },
     {
       "label": "ColorControl()",
@@ -699,9 +699,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_colorcontrol",
       "community": 4,
-      "norm_label": "colorcontrol()"
+      "norm_label": "colorcontrol()",
+      "id": "demo_widgets_controlitem_colorcontrol"
     },
     {
       "label": "SelectControl()",
@@ -709,9 +709,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L54",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_selectcontrol",
       "community": 4,
-      "norm_label": "selectcontrol()"
+      "norm_label": "selectcontrol()",
+      "id": "demo_widgets_controlitem_selectcontrol"
     },
     {
       "label": "DisplayControl()",
@@ -719,9 +719,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L70",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_displaycontrol",
       "community": 4,
-      "norm_label": "displaycontrol()"
+      "norm_label": "displaycontrol()",
+      "id": "demo_widgets_controlitem_displaycontrol"
     },
     {
       "label": "Props",
@@ -729,9 +729,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_props",
       "community": 4,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_widgets_controlitem_props"
     },
     {
       "label": "ControlItem()",
@@ -739,9 +739,9 @@
       "source_file": "demo/widgets/ControlItem.tsx",
       "source_location": "L84",
       "_origin": "ast",
-      "id": "demo_widgets_controlitem_controlitem",
       "community": 8,
-      "norm_label": "controlitem()"
+      "norm_label": "controlitem()",
+      "id": "demo_widgets_controlitem_controlitem"
     },
     {
       "label": "IconButton.tsx",
@@ -759,9 +759,9 @@
       "source_file": "demo/widgets/IconButton.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_widgets_iconbutton_props",
       "community": 8,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_widgets_iconbutton_props"
     },
     {
       "label": "IconButton()",
@@ -769,9 +769,9 @@
       "source_file": "demo/widgets/IconButton.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "id": "demo_widgets_iconbutton_iconbutton",
       "community": 8,
-      "norm_label": "iconbutton()"
+      "norm_label": "iconbutton()",
+      "id": "demo_widgets_iconbutton_iconbutton"
     },
     {
       "label": "PreviewCard.tsx",
@@ -789,9 +789,9 @@
       "source_file": "demo/widgets/PreviewCard.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "demo_widgets_previewcard_props",
       "community": 8,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_widgets_previewcard_props"
     },
     {
       "label": "PreviewCard()",
@@ -799,9 +799,9 @@
       "source_file": "demo/widgets/PreviewCard.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "demo_widgets_previewcard_previewcard",
       "community": 8,
-      "norm_label": "previewcard()"
+      "norm_label": "previewcard()",
+      "id": "demo_widgets_previewcard_previewcard"
     },
     {
       "label": "PropRow.tsx",
@@ -819,9 +819,9 @@
       "source_file": "demo/widgets/PropRow.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "demo_widgets_proprow_props",
       "community": 4,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_widgets_proprow_props"
     },
     {
       "label": "PropRow()",
@@ -829,9 +829,9 @@
       "source_file": "demo/widgets/PropRow.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "demo_widgets_proprow_proprow",
       "community": 4,
-      "norm_label": "proprow()"
+      "norm_label": "proprow()",
+      "id": "demo_widgets_proprow_proprow"
     },
     {
       "label": "ToggleGroupProps",
@@ -839,9 +839,9 @@
       "source_file": "demo/widgets/PropRow.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "demo_widgets_proprow_togglegroupprops",
       "community": 4,
-      "norm_label": "togglegroupprops"
+      "norm_label": "togglegroupprops",
+      "id": "demo_widgets_proprow_togglegroupprops"
     },
     {
       "label": "ToggleGroup()",
@@ -849,9 +849,9 @@
       "source_file": "demo/widgets/PropRow.tsx",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "demo_widgets_proprow_togglegroup",
       "community": 4,
-      "norm_label": "togglegroup()"
+      "norm_label": "togglegroup()",
+      "id": "demo_widgets_proprow_togglegroup"
     },
     {
       "label": "Switch.tsx",
@@ -869,9 +869,9 @@
       "source_file": "demo/widgets/Switch.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "demo_widgets_switch_props",
       "community": 4,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "demo_widgets_switch_props"
     },
     {
       "label": "Switch()",
@@ -879,9 +879,9 @@
       "source_file": "demo/widgets/Switch.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "demo_widgets_switch_switch",
       "community": 4,
-      "norm_label": "switch()"
+      "norm_label": "switch()",
+      "id": "demo_widgets_switch_switch"
     },
     {
       "label": "ThemeVariables.tsx",
@@ -899,9 +899,9 @@
       "source_file": "demo/widgets/ThemeVariables.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "demo_widgets_themevariables_vardef",
       "community": 0,
-      "norm_label": "vardef"
+      "norm_label": "vardef",
+      "id": "demo_widgets_themevariables_vardef"
     },
     {
       "label": "Group",
@@ -909,9 +909,9 @@
       "source_file": "demo/widgets/ThemeVariables.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "id": "demo_widgets_themevariables_group",
       "community": 0,
-      "norm_label": "group"
+      "norm_label": "group",
+      "id": "demo_widgets_themevariables_group"
     },
     {
       "label": "PAGE_VARS",
@@ -927,11 +927,11 @@
       "label": "GROUPS",
       "file_type": "code",
       "source_file": "demo/widgets/ThemeVariables.tsx",
-      "source_location": "L91",
+      "source_location": "L15",
       "_origin": "ast",
-      "id": "demo_widgets_themevariables_groups",
       "community": 0,
-      "norm_label": "groups"
+      "norm_label": "groups",
+      "id": "demo_widgets_themevariables_groups"
     },
     {
       "label": "useHash()",
@@ -947,11 +947,11 @@
       "label": "ThemeVariables()",
       "file_type": "code",
       "source_file": "demo/widgets/ThemeVariables.tsx",
-      "source_location": "L152",
+      "source_location": "L61",
       "_origin": "ast",
-      "id": "demo_widgets_themevariables_themevariables",
       "community": 0,
-      "norm_label": "themevariables()"
+      "norm_label": "themevariables()",
+      "id": "demo_widgets_themevariables_themevariables"
     },
     {
       "label": "package.json",
@@ -1537,21 +1537,21 @@
       "label": "useDropdownClose()",
       "file_type": "code",
       "source_file": "src/components/Dropdown/Dropdown.hooks.ts",
-      "source_location": "L15",
+      "source_location": "L5",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_hooks_usedropdownclose",
       "community": 3,
-      "norm_label": "usedropdownclose()"
+      "norm_label": "usedropdownclose()",
+      "id": "src_components_dropdown_dropdown_hooks_usedropdownclose"
     },
     {
       "label": "useSearchResults()",
       "file_type": "code",
       "source_file": "src/components/Dropdown/Dropdown.hooks.ts",
-      "source_location": "L39",
+      "source_location": "L29",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_hooks_usesearchresults",
       "community": 3,
-      "norm_label": "usesearchresults()"
+      "norm_label": "usesearchresults()",
+      "id": "src_components_dropdown_dropdown_hooks_usesearchresults"
     },
     {
       "label": "Dropdown.tsx",
@@ -1577,31 +1577,31 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "src/components/Dropdown/Dropdown.tsx",
-      "source_location": "L26",
+      "source_location": "L14",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_props",
       "community": 3,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_dropdown_dropdown_props"
     },
     {
       "label": "DropdownProps",
       "file_type": "code",
       "source_file": "src/components/Dropdown/Dropdown.tsx",
-      "source_location": "L45",
+      "source_location": "L31",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_dropdownprops",
       "community": 3,
-      "norm_label": "dropdownprops"
+      "norm_label": "dropdownprops",
+      "id": "src_components_dropdown_dropdown_dropdownprops"
     },
     {
       "label": "Dropdown()",
       "file_type": "code",
       "source_file": "src/components/Dropdown/Dropdown.tsx",
-      "source_location": "L47",
+      "source_location": "L33",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_dropdown",
       "community": 3,
-      "norm_label": "dropdown()"
+      "norm_label": "dropdown()",
+      "id": "src_components_dropdown_dropdown_dropdown"
     },
     {
       "label": "Dropdown.types.ts",
@@ -1619,9 +1619,9 @@
       "source_file": "src/components/Dropdown/Dropdown.types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_types_dropdownoption",
       "community": 3,
-      "norm_label": "dropdownoption"
+      "norm_label": "dropdownoption",
+      "id": "src_components_dropdown_dropdown_types_dropdownoption"
     },
     {
       "label": "getOptionId()",
@@ -1629,9 +1629,9 @@
       "source_file": "src/components/Dropdown/Dropdown.types.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_types_getoptionid",
       "community": 3,
-      "norm_label": "getoptionid()"
+      "norm_label": "getoptionid()",
+      "id": "src_components_dropdown_dropdown_types_getoptionid"
     },
     {
       "label": "getOptionLabel()",
@@ -1639,9 +1639,9 @@
       "source_file": "src/components/Dropdown/Dropdown.types.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdown_types_getoptionlabel",
       "community": 3,
-      "norm_label": "getoptionlabel()"
+      "norm_label": "getoptionlabel()",
+      "id": "src_components_dropdown_dropdown_types_getoptionlabel"
     },
     {
       "label": "resolveSelectedOptions()",
@@ -1669,9 +1669,9 @@
       "source_file": "src/components/Dropdown/DropdownCreateRow.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdowncreaterow_props",
       "community": 3,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_dropdown_dropdowncreaterow_props"
     },
     {
       "label": "DropdownCreateRow()",
@@ -1679,9 +1679,9 @@
       "source_file": "src/components/Dropdown/DropdownCreateRow.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdowncreaterow_dropdowncreaterow",
       "community": 3,
-      "norm_label": "dropdowncreaterow()"
+      "norm_label": "dropdowncreaterow()",
+      "id": "src_components_dropdown_dropdowncreaterow_dropdowncreaterow"
     },
     {
       "label": "DropdownOptionRow.tsx",
@@ -1699,9 +1699,9 @@
       "source_file": "src/components/Dropdown/DropdownOptionRow.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownoptionrow_props",
       "community": 3,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_dropdown_dropdownoptionrow_props"
     },
     {
       "label": "DropdownOptionRow()",
@@ -1709,9 +1709,9 @@
       "source_file": "src/components/Dropdown/DropdownOptionRow.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownoptionrow_dropdownoptionrow",
       "community": 3,
-      "norm_label": "dropdownoptionrow()"
+      "norm_label": "dropdownoptionrow()",
+      "id": "src_components_dropdown_dropdownoptionrow_dropdownoptionrow"
     },
     {
       "label": "DropdownPanel.tsx",
@@ -1759,9 +1759,9 @@
       "source_file": "src/components/Dropdown/DropdownSearchRow.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownsearchrow_props",
       "community": 3,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_dropdown_dropdownsearchrow_props"
     },
     {
       "label": "DropdownSearchRow()",
@@ -1769,9 +1769,9 @@
       "source_file": "src/components/Dropdown/DropdownSearchRow.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownsearchrow_dropdownsearchrow",
       "community": 3,
-      "norm_label": "dropdownsearchrow()"
+      "norm_label": "dropdownsearchrow()",
+      "id": "src_components_dropdown_dropdownsearchrow_dropdownsearchrow"
     },
     {
       "label": "DropdownSkeletonList.tsx",
@@ -1789,9 +1789,9 @@
       "source_file": "src/components/Dropdown/DropdownSkeletonList.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownskeletonlist_props",
       "community": 3,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_dropdown_dropdownskeletonlist_props"
     },
     {
       "label": "DropdownSkeletonList()",
@@ -1799,9 +1799,9 @@
       "source_file": "src/components/Dropdown/DropdownSkeletonList.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_components_dropdown_dropdownskeletonlist_dropdownskeletonlist",
       "community": 3,
-      "norm_label": "dropdownskeletonlist()"
+      "norm_label": "dropdownskeletonlist()",
+      "id": "src_components_dropdown_dropdownskeletonlist_dropdownskeletonlist"
     },
     {
       "label": "DropdownTrigger.tsx",
@@ -1917,31 +1917,31 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "src/components/Input/Input.tsx",
-      "source_location": "L10",
+      "source_location": "L5",
       "_origin": "ast",
-      "id": "src_components_input_input_props",
       "community": 10,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_input_input_props"
     },
     {
       "label": "InputProps",
       "file_type": "code",
       "source_file": "src/components/Input/Input.tsx",
-      "source_location": "L27",
+      "source_location": "L16",
       "_origin": "ast",
-      "id": "src_components_input_input_inputprops",
       "community": 10,
-      "norm_label": "inputprops"
+      "norm_label": "inputprops",
+      "id": "src_components_input_input_inputprops"
     },
     {
-      "label": "Input",
+      "label": "Input()",
       "file_type": "code",
       "source_file": "src/components/Input/Input.tsx",
-      "source_location": "L29",
+      "source_location": "L18",
       "_origin": "ast",
-      "id": "src_components_input_input_input",
       "community": 10,
-      "norm_label": "input"
+      "norm_label": "input()",
+      "id": "src_components_input_input_input"
     },
     {
       "label": "index.ts",
@@ -1969,9 +1969,9 @@
       "source_file": "src/components/Loader/Loader.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "src_components_loader_loader_props",
       "community": 5,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_loader_loader_props"
     },
     {
       "label": "LoaderProps",
@@ -1979,9 +1979,9 @@
       "source_file": "src/components/Loader/Loader.tsx",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "src_components_loader_loader_loaderprops",
       "community": 5,
-      "norm_label": "loaderprops"
+      "norm_label": "loaderprops",
+      "id": "src_components_loader_loader_loaderprops"
     },
     {
       "label": "renderInner()",
@@ -1989,9 +1989,9 @@
       "source_file": "src/components/Loader/Loader.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "src_components_loader_loader_renderinner",
       "community": 5,
-      "norm_label": "renderinner()"
+      "norm_label": "renderinner()",
+      "id": "src_components_loader_loader_renderinner"
     },
     {
       "label": "Loader()",
@@ -1999,9 +1999,9 @@
       "source_file": "src/components/Loader/Loader.tsx",
       "source_location": "L53",
       "_origin": "ast",
-      "id": "src_components_loader_loader_loader",
       "community": 5,
-      "norm_label": "loader()"
+      "norm_label": "loader()",
+      "id": "src_components_loader_loader_loader"
     },
     {
       "label": "index.ts",
@@ -2029,9 +2029,9 @@
       "source_file": "src/components/LoadingWrapper/LoadingWrapper.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "src_components_loadingwrapper_loadingwrapper_props",
       "community": 5,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_loadingwrapper_loadingwrapper_props"
     },
     {
       "label": "LoadingWrapperProps",
@@ -2039,9 +2039,9 @@
       "source_file": "src/components/LoadingWrapper/LoadingWrapper.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "src_components_loadingwrapper_loadingwrapper_loadingwrapperprops",
       "community": 5,
-      "norm_label": "loadingwrapperprops"
+      "norm_label": "loadingwrapperprops",
+      "id": "src_components_loadingwrapper_loadingwrapper_loadingwrapperprops"
     },
     {
       "label": "LoadingWrapper()",
@@ -2049,9 +2049,9 @@
       "source_file": "src/components/LoadingWrapper/LoadingWrapper.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "src_components_loadingwrapper_loadingwrapper_loadingwrapper",
       "community": 5,
-      "norm_label": "loadingwrapper()"
+      "norm_label": "loadingwrapper()",
+      "id": "src_components_loadingwrapper_loadingwrapper_loadingwrapper"
     },
     {
       "label": "index.ts",
@@ -2189,9 +2189,9 @@
       "source_file": "src/components/TelegramAuth/TelegramAuth.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "src_components_telegramauth_telegramauth_telegramauthprops",
       "community": 2,
-      "norm_label": "telegramauthprops"
+      "norm_label": "telegramauthprops",
+      "id": "src_components_telegramauth_telegramauth_telegramauthprops"
     },
     {
       "label": "TelegramAuth()",
@@ -2199,9 +2199,9 @@
       "source_file": "src/components/TelegramAuth/TelegramAuth.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "src_components_telegramauth_telegramauth_telegramauth",
       "community": 2,
-      "norm_label": "telegramauth()"
+      "norm_label": "telegramauth()",
+      "id": "src_components_telegramauth_telegramauth_telegramauth"
     },
     {
       "label": "index.ts",
@@ -2229,9 +2229,9 @@
       "source_file": "src/components/TelegramSignInButton/TelegramSignInButton.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "src_components_telegramsigninbutton_telegramsigninbutton_labels",
       "community": 2,
-      "norm_label": "labels"
+      "norm_label": "labels",
+      "id": "src_components_telegramsigninbutton_telegramsigninbutton_labels"
     },
     {
       "label": "TelegramSignInButtonProps",
@@ -2239,9 +2239,9 @@
       "source_file": "src/components/TelegramSignInButton/TelegramSignInButton.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramsigninbuttonprops",
       "community": 2,
-      "norm_label": "telegramsigninbuttonprops"
+      "norm_label": "telegramsigninbuttonprops",
+      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramsigninbuttonprops"
     },
     {
       "label": "TelegramIcon()",
@@ -2249,9 +2249,9 @@
       "source_file": "src/components/TelegramSignInButton/TelegramSignInButton.tsx",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramicon",
       "community": 2,
-      "norm_label": "telegramicon()"
+      "norm_label": "telegramicon()",
+      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramicon"
     },
     {
       "label": "TelegramSignInButton()",
@@ -2259,9 +2259,9 @@
       "source_file": "src/components/TelegramSignInButton/TelegramSignInButton.tsx",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramsigninbutton",
       "community": 2,
-      "norm_label": "telegramsigninbutton()"
+      "norm_label": "telegramsigninbutton()",
+      "id": "src_components_telegramsigninbutton_telegramsigninbutton_telegramsigninbutton"
     },
     {
       "label": "index.ts",
@@ -2289,9 +2289,9 @@
       "source_file": "src/components/Toggle/Toggle.tsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "src_components_toggle_toggle_props",
       "community": 18,
-      "norm_label": "props"
+      "norm_label": "props",
+      "id": "src_components_toggle_toggle_props"
     },
     {
       "label": "ToggleProps",
@@ -2299,9 +2299,9 @@
       "source_file": "src/components/Toggle/Toggle.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "src_components_toggle_toggle_toggleprops",
       "community": 18,
-      "norm_label": "toggleprops"
+      "norm_label": "toggleprops",
+      "id": "src_components_toggle_toggle_toggleprops"
     },
     {
       "label": "Toggle()",
@@ -2309,9 +2309,9 @@
       "source_file": "src/components/Toggle/Toggle.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "src_components_toggle_toggle_toggle",
       "community": 18,
-      "norm_label": "toggle()"
+      "norm_label": "toggle()",
+      "id": "src_components_toggle_toggle_toggle"
     },
     {
       "label": "index.ts",
@@ -2469,9 +2469,9 @@
       "source_file": "src/components/notifications/Toaster.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "src_components_notifications_toaster_toaster",
       "community": 2,
-      "norm_label": "toaster()"
+      "norm_label": "toaster()",
+      "id": "src_components_notifications_toaster_toaster"
     },
     {
       "label": "Toast()",
@@ -2479,9 +2479,9 @@
       "source_file": "src/components/notifications/Toaster.tsx",
       "source_location": "L31",
       "_origin": "ast",
-      "id": "src_components_notifications_toaster_toast",
       "community": 2,
-      "norm_label": "toast()"
+      "norm_label": "toast()",
+      "id": "src_components_notifications_toaster_toast"
     },
     {
       "label": "index.ts",
@@ -2529,9 +2529,9 @@
       "source_file": "src/hooks/toaster/useToaster.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "src_hooks_toaster_usetoaster_toast",
       "community": 2,
-      "norm_label": "toast"
+      "norm_label": "toast",
+      "id": "src_hooks_toaster_usetoaster_toast"
     },
     {
       "label": "ToasterStore",
@@ -2539,9 +2539,9 @@
       "source_file": "src/hooks/toaster/useToaster.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "src_hooks_toaster_usetoaster_toasterstore",
       "community": 2,
-      "norm_label": "toasterstore"
+      "norm_label": "toasterstore",
+      "id": "src_hooks_toaster_usetoaster_toasterstore"
     },
     {
       "label": "useToaster",
@@ -2549,9 +2549,9 @@
       "source_file": "src/hooks/toaster/useToaster.ts",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "src_hooks_toaster_usetoaster_usetoaster",
       "community": 2,
-      "norm_label": "usetoaster"
+      "norm_label": "usetoaster",
+      "id": "src_hooks_toaster_usetoaster_usetoaster"
     },
     {
       "label": "useTelegramLogin.ts",
@@ -2569,9 +2569,9 @@
       "source_file": "src/hooks/useTelegramLogin.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "src_hooks_usetelegramlogin_usetelegramloginoptions",
       "community": 2,
-      "norm_label": "usetelegramloginoptions"
+      "norm_label": "usetelegramloginoptions",
+      "id": "src_hooks_usetelegramlogin_usetelegramloginoptions"
     },
     {
       "label": "UseTelegramLoginReturn",
@@ -2579,9 +2579,9 @@
       "source_file": "src/hooks/useTelegramLogin.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "src_hooks_usetelegramlogin_usetelegramloginreturn",
       "community": 2,
-      "norm_label": "usetelegramloginreturn"
+      "norm_label": "usetelegramloginreturn",
+      "id": "src_hooks_usetelegramlogin_usetelegramloginreturn"
     },
     {
       "label": "useTelegramLogin()",
@@ -2589,9 +2589,9 @@
       "source_file": "src/hooks/useTelegramLogin.ts",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "src_hooks_usetelegramlogin_usetelegramlogin",
       "community": 2,
-      "norm_label": "usetelegramlogin()"
+      "norm_label": "usetelegramlogin()",
+      "id": "src_hooks_usetelegramlogin_usetelegramlogin"
     },
     {
       "label": "index.ts",
@@ -4316,7 +4316,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "demo/pages/InputPage.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "demo_pages_inputpage",
       "target": "demo_pages_inputpage_inputpage",
@@ -4416,7 +4416,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "demo/pages/InputPage.tsx",
-      "source_location": "L19",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "demo_pages_inputpage_inputpage",
       "target": "demo_store_usedemostore_usedemostore"
@@ -4427,7 +4427,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "demo/pages/InputPage.tsx",
-      "source_location": "L18",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "demo_pages_inputpage_inputpage",
       "target": "src_hooks_toaster_usetoaster_usetoaster"
@@ -7235,7 +7235,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Input/Input.tsx",
-      "source_location": "L29",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "src_components_input_input",
       "target": "src_components_input_input_input",
@@ -7245,7 +7245,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Input/Input.tsx",
-      "source_location": "L27",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_components_input_input",
       "target": "src_components_input_input_inputprops",
@@ -8929,5 +8929,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "80e3c3faa0fe4bc169be1e13e9ac0c136bc830ad"
+  "built_at_commit": "197556ae5cd0d9db4b7bc419805f0c0b611c8176"
 }
