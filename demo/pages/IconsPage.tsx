@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AvatarFallbackIcon, CheckmarkIcon, ChevronDownIcon, EditPencilIcon } from "../../src/components/icons"
+import { AvatarFallbackIcon, CheckmarkIcon, ChevronDownIcon, EditPencilIcon, SearchIcon } from "../../src/components/icons"
 import { useDemoStore } from "../store/useDemoStore"
 
 export function IconsPage() {
@@ -20,6 +20,7 @@ export function IconsPage() {
         { name: "CheckmarkIcon", node: <CheckmarkIcon size={size} strokeWidth={strokeWidth} /> },
         { name: "EditPencilIcon", node: <EditPencilIcon /> },
         { name: "AvatarFallbackIcon", node: <AvatarFallbackIcon /> },
+        { name: "SearchIcon", node: <SearchIcon size={size} strokeWidth={strokeWidth} /> },
     ]
 
     return (

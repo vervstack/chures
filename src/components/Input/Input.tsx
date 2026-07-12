@@ -23,12 +23,15 @@ interface Props extends NativeInputProps {
     // for anything that must reach the rendered text/box itself (border, padding,
     // border-radius, font, color) — `className` only ever lands on the wrapper.
     inputClassName?: string
+    // Rendered inside the input box, left of the text (e.g. a search icon).
+    // Not combinable with `label` — floating labels assume no leading content.
+    startIcon?: React.ReactNode
 }
 
 export type InputProps = Props
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-    { value, setValue, label, isLoader, type = 'text', disabled, error, className, inputClassName, ...rest },
+    { value, setValue, label, isLoader, type = 'text', disabled, error, className, inputClassName, startIcon, ...rest },
     ref
 ) {
     const [focused, setFocused] = useState(false)
@@ -41,9 +44,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
     return (
         <div className={cn(styles.InputContainer, { [styles.hasError]: !!error, [styles.disabled]: disabled }, resolvedClassName)}>
+            {startIcon && <span className={styles.StartIcon}>{startIcon}</span>}
             <input
                 ref={ref}
-                className={cn(styles.InputField, inputClassName)}
+                className={cn(styles.InputField, { [styles.hasStartIcon]: !!startIcon }, inputClassName)}
                 type={type}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}

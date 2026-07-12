@@ -23,6 +23,21 @@
     box-sizing: border-box;
 }
 
+:where(.InputField.hasStartIcon) {
+    padding-left: 2.25rem;
+}
+
+:where(.StartIcon) {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: var(--chures-fg-muted, #9ca3af);
+    pointer-events: none;
+}
+
 .InputField:focus {
     border-color: rgb(255 255 255 / 35%);
 }
