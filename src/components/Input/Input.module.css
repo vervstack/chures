@@ -3,13 +3,22 @@
     100% { background-position:  200% 0; }
 }
 
-.InputContainer {
+/*
+ * Every base/variant class below is wrapped in :where(...), which drops its
+ * specificity to 0 regardless of how many classes are chained. Chures injects
+ * this stylesheet into document.head at JS-execution time (see
+ * vite-plugin-css-injected-by-js in vite.config.ts), so it always lands after
+ * a consuming app's own compiled CSS in the DOM — without :where(), a
+ * same-specificity override in the consumer would tie and lose to load order.
+ * With :where(), a single consumer class (specificity 0-1-0) always wins.
+ */
+:where(.InputContainer) {
     position: relative;
     width: 100%;
     height: var(--chures-input-height, 3rem);
 }
 
-.InputField {
+:where(.InputField) {
     width: 100%;
     height: 100%;
     background: var(--chures-input-bg, #111111);
@@ -27,6 +36,10 @@
     padding-left: 2.25rem;
 }
 
+:where(.InputField.hasEndIcon) {
+    padding-right: 2.25rem;
+}
+
 :where(.StartIcon) {
     position: absolute;
     left: 0.875rem;
@@ -38,21 +51,32 @@
     pointer-events: none;
 }
 
-.InputField:focus {
+:where(.EndIcon) {
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: var(--chures-fg-muted, #9ca3af);
+    pointer-events: none;
+}
+
+:where(.InputField):focus {
     border-color: rgb(255 255 255 / 35%);
 }
 
-.hasError .InputField,
-.hasError .InputField:focus {
+:where(.hasError .InputField),
+:where(.hasError .InputField):focus {
     border-color: var(--chures-error, #ef4444);
 }
 
-.disabled .InputField {
+:where(.disabled .InputField) {
     opacity: 0.45;
     cursor: not-allowed;
 }
 
-.Label {
+:where(.Label) {
     position: absolute;
     left: 0.875rem;
     top: 50%;
@@ -66,18 +90,18 @@
     border-radius: 0.1875rem;
 }
 
-.Label.lifted {
+:where(.Label.lifted) {
     top: 0;
     transform: translateY(-50%) scale(0.82);
     background: var(--chures-input-bg, #111111);
     color: var(--chures-fg-muted, #9ca3af);
 }
 
-.hasError .Label.lifted {
+:where(.hasError .Label.lifted) {
     color: var(--chures-error, #ef4444);
 }
 
-.ErrorText {
+:where(.ErrorText) {
     display: block;
     margin-top: 0.25rem;
     padding-left: 0.875rem;
@@ -85,7 +109,7 @@
     color: var(--chures-error, #ef4444);
 }
 
-.Skeleton {
+:where(.Skeleton) {
     width: 100%;
     height: var(--chures-input-height, 3rem);
     border-radius: var(--chures-input-radius, 0.75rem);

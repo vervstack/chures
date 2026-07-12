@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "../../src/components/Button"
 import { Input } from "../../src/components/Input"
-import { SearchIcon } from "../../src/components/icons"
+import { CheckmarkIcon, SearchIcon } from "../../src/components/icons"
 import { useToaster } from "../../src/hooks/toaster/useToaster"
 import { useDemoStore } from "../store/useDemoStore"
 import cls from "./InputPage.module.css"
@@ -12,6 +12,7 @@ export function InputPage() {
     const [showLabel, setShowLabel] = useState(true)
     const [placeholder, setPlaceholder] = useState("Email address")
     const [showStartIcon, setShowStartIcon] = useState(false)
+    const [showEndIcon, setShowEndIcon] = useState(false)
     const [isLoader, setIsLoader] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [showError, setShowError] = useState(false)
@@ -26,6 +27,7 @@ export function InputPage() {
             { type: "toggleGroup", label: "label", options: ["none", "show"], value: showLabel ? "show" : "none", onChange: (v) => setShowLabel(v === "show") },
             { type: "input", label: "placeholder", value: placeholder, onChange: setPlaceholder },
             { type: "toggleGroup", label: "startIcon", options: ["none", "search"], value: showStartIcon ? "search" : "none", onChange: (v) => setShowStartIcon(v === "search") },
+            { type: "toggleGroup", label: "endIcon", options: ["none", "check"], value: showEndIcon ? "check" : "none", onChange: (v) => setShowEndIcon(v === "check") },
             { type: "toggleGroup", label: "isLoader", options: ["false", "true"], value: String(isLoader), onChange: (v) => setIsLoader(v === "true") },
             { type: "toggleGroup", label: "disabled", options: ["false", "true"], value: String(disabled), onChange: (v) => setDisabled(v === "true") },
             { type: "toggleGroup", label: "error", options: ["none", "show"], value: showError ? "show" : "none", onChange: (v) => setShowError(v === "show") },
@@ -47,7 +49,7 @@ export function InputPage() {
             },
         ])
         return () => setControls([])
-    }, [type, showLabel, placeholder, showStartIcon, isLoader, disabled, showError, highlightInput, value, bake, setControls])
+    }, [type, showLabel, placeholder, showStartIcon, showEndIcon, isLoader, disabled, showError, highlightInput, value, bake, setControls])
 
     return (
         <div style={{ width: "18rem" }}>
@@ -58,11 +60,13 @@ export function InputPage() {
                 label={showLabel ? "Email address" : undefined}
                 placeholder={showLabel ? undefined : placeholder}
                 startIcon={showStartIcon ? <SearchIcon size={14} /> : undefined}
+                endIcon={showEndIcon ? <CheckmarkIcon size={14} /> : undefined}
                 type={type}
                 isLoader={isLoader}
                 disabled={disabled}
                 error={showError ? "This field is required" : undefined}
                 inputClassName={highlightInput ? cls.DemoInputHighlight : undefined}
+                onBlur={() => bake({ title: "Blurred", description: "Consumer onBlur fired alongside the internal focus-tracking handler — label still settles correctly.", level: "Info" })}
             />
         </div>
     )

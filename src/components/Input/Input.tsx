@@ -26,17 +26,22 @@ interface Props extends NativeInputProps {
     // Rendered inside the input box, left of the text (e.g. a search icon).
     // Not combinable with `label` — floating labels assume no leading content.
     startIcon?: React.ReactNode
+    // Rendered inside the input box, right of the text (e.g. a hint/tooltip
+    // trigger icon). Unlike `startIcon`, this combines fine with `label` —
+    // the floating label lives on the left, so there's no overlap.
+    endIcon?: React.ReactNode
 }
 
 export type InputProps = Props
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-    { value, setValue, label, isLoader, type = 'text', disabled, error, className, inputClassName, startIcon, ...rest },
+    { value, setValue, label, isLoader, type = 'text', disabled, error, className, inputClassName, startIcon, endIcon, ...rest },
     ref
 ) {
     const [focused, setFocused] = useState(false)
     const lifted = focused || value.length > 0
     const resolvedClassName = useComponentClassName('Input', className)
+    const { onFocus: consumerOnFocus, onBlur: consumerOnBlur, ...restProps } = rest
 
     if (isLoader) {
         return <div className={cn(styles.Skeleton, resolvedClassName)} aria-hidden="true" />
@@ -47,16 +52,23 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             {startIcon && <span className={styles.StartIcon}>{startIcon}</span>}
             <input
                 ref={ref}
-                className={cn(styles.InputField, { [styles.hasStartIcon]: !!startIcon }, inputClassName)}
+                className={cn(styles.InputField, { [styles.hasStartIcon]: !!startIcon, [styles.hasEndIcon]: !!endIcon }, inputClassName)}
                 type={type}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={(e) => {
+                    setFocused(true)
+                    consumerOnFocus?.(e)
+                }}
+                onBlur={(e) => {
+                    setFocused(false)
+                    consumerOnBlur?.(e)
+                }}
                 disabled={disabled}
-                {...rest}
+                {...restProps}
             />
             {label && <label className={cn(styles.Label, { [styles.lifted]: lifted })}>{label}</label>}
+            {endIcon && <span className={styles.EndIcon}>{endIcon}</span>}
             {error && <span className={styles.ErrorText}>{error}</span>}
         </div>
     )
