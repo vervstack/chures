@@ -28,6 +28,7 @@ interface Props {
     skeletonRowCount?: number;
     onError?: (err: unknown) => void;
     glass?: boolean;
+    portal?: boolean;
 }
 
 export function DropdownPanel(
@@ -41,6 +42,7 @@ export function DropdownPanel(
         skeletonRowCount = 4,
         onError = console.error,
         glass = false,
+        portal = false,
     }: Props) {
 
     const [query, setQuery] = useState('');
@@ -55,14 +57,19 @@ export function DropdownPanel(
 
     useDropdownClose(panelRef, onClose, anchorRef);
 
-    // `glass` needs to blur whatever's *actually* rendered behind the panel — but an
-    // element with backdrop-filter establishes a "backdrop root" for its descendants,
-    // so a nested backdrop-filter panel can only ever sample within its nearest
-    // backdrop-filter ancestor (e.g. a card or modal the Dropdown happens to sit in),
-    // never reaching what's behind that ancestor. Portaling to document.body escapes
-    // any such ancestor so the blur always applies to the real page content behind it.
+    // Two independent reasons to escape into a portal: an explicit `portal` request
+    // (e.g. the anchor sits in a flex/grid container where a later sibling would
+    // otherwise paint over the panel, or in an overflow:hidden ancestor that would
+    // clip it), or `glass`, which *needs* to blur whatever's actually rendered behind
+    // the panel — an element with backdrop-filter establishes a "backdrop root" for
+    // its descendants, so a nested backdrop-filter panel can only ever sample within
+    // its nearest backdrop-filter ancestor (e.g. a card or modal), never reaching past
+    // it. Either way, portaling to document.body and positioning from the anchor's
+    // live rect sidesteps the ancestor entirely.
+    const usePortal = glass || portal;
+
     useLayoutEffect(() => {
-        if (!glass) return;
+        if (!usePortal) return;
         function updateRect() {
             if (anchorRef?.current) setAnchorRect(anchorRef.current.getBoundingClientRect());
         }
@@ -73,7 +80,7 @@ export function DropdownPanel(
             window.removeEventListener('scroll', updateRect, true);
             window.removeEventListener('resize', updateRect);
         };
-    }, [glass, anchorRef]);
+    }, [usePortal, anchorRef]);
 
     useEffect(() => {
         if (hasSearch) inputRef.current?.focus();
@@ -129,13 +136,13 @@ export function DropdownPanel(
 
     const resolvedPlaceholder = placeholder ?? (onCreate ? 'search or add new…' : 'search…');
 
-    if (glass && !anchorRect) return null;
+    if (usePortal && !anchorRect) return null;
 
     const panel = (
         <div
             ref={panelRef}
-            className={cn(styles.PanelWrapper, { [styles.Portal]: glass })}
-            style={glass && anchorRect ? { top: anchorRect.bottom, left: anchorRect.left, width: anchorRect.width } : undefined}
+            className={cn(styles.PanelWrapper, { [styles.Portal]: usePortal })}
+            style={usePortal && anchorRect ? { top: anchorRect.bottom, left: anchorRect.left, width: anchorRect.width } : undefined}
         >
             <div className={cn(styles.PanelContainer, { [styles.Glass]: glass })}>
                 {hasSearch && (
@@ -178,5 +185,5 @@ export function DropdownPanel(
         </div>
     );
 
-    return glass ? createPortal(panel, document.body) : panel;
+    return usePortal ? createPortal(panel, document.body) : panel;
 }
