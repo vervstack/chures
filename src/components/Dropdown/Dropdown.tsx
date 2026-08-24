@@ -28,7 +28,7 @@ interface Props {
     options?: DropdownItem[];
     value: string[];
     onChange: (value: string[]) => void;
-    onSearch?: (query: string) => Promise<DropdownOption[]>;
+    onSearch?: (query: string) => Promise<DropdownItem[]>;
     onCreate?: (name: string) => Promise<DropdownOption>;
     excluded?: string[];
     multiSelect?: boolean;
