@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { DropdownOption } from './Dropdown.types';
+import type { DropdownItem } from './Dropdown.types';
 
 export function useDropdownOpenState() {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +36,8 @@ export function useDropdownClose(
     }, [onClose, panelRef, anchorRef]);
 }
 
-export function useSearchResults(query: string, onSearch?: (q: string) => Promise<DropdownOption[]>) {
-    const [searchResults, setSearchResults] = useState<DropdownOption[]>([]);
+export function useSearchResults(query: string, onSearch?: (q: string) => Promise<DropdownItem[]>) {
+    const [searchResults, setSearchResults] = useState<DropdownItem[]>([]);
 
     useEffect(() => {
         if (!onSearch) return;

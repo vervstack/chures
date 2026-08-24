@@ -9,9 +9,10 @@ interface Props {
     isSelected: boolean;
     multiSelect: boolean;
     onPick: (opt: DropdownOption) => void;
+    indented?: boolean;
 }
 
-export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick }: Props) {
+export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick, indented = false }: Props) {
     function handleMouseDown(e: React.MouseEvent) {
         e.preventDefault();
         onPick(opt);
@@ -19,7 +20,7 @@ export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick }: Prop
 
     return (
         <div
-            className={cn(styles.OptionRow, isSelected && styles.Selected)}
+            className={cn(styles.OptionRow, isSelected && styles.Selected, indented && styles.Indented)}
             onMouseDown={handleMouseDown}
         >
             {multiSelect && isSelected && <span className={styles.Checkmark}>✓</span>}

@@ -231,6 +231,23 @@
     &.Selected {
         color: var(--chures-fg);
     }
+
+    &.Indented {
+        padding-left: 1.875rem;
+    }
+}
+
+.GroupHeader {
+    padding: 0.5625rem 0.875rem 0.25rem;
+    font-size: var(--chures-font-xs);
+    color: var(--chures-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+
+    &:not(:first-child) {
+        margin-top: 0.25rem;
+        border-top: 1px solid var(--chures-dropdown-border-subtle);
+    }
 }
 
 .Checkmark {

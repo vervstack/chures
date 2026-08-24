@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react"
 import { Dropdown } from "../../src/components/Dropdown/Dropdown"
-import type { DropdownOption } from "../../src/components/Dropdown/Dropdown.types"
+import { getOptionLabel, isGroupOption } from "../../src/components/Dropdown/Dropdown.types"
+import type { DropdownItem, DropdownOption } from "../../src/components/Dropdown/Dropdown.types"
 import { useDemoStore } from "../store/useDemoStore"
 
 const FRUITS: DropdownOption[] = [
     "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew",
+]
+
+// A grouped example: two families of leaves plus one ungrouped flat item, to make
+// the group-header + indented-row rendering obvious.
+const GROUPED_FRUITS: DropdownItem[] = [
+    { group: "Citrus", options: ["Orange", "Lemon", "Lime", "Grapefruit"] },
+    { group: "Berries", options: ["Strawberry", "Blueberry", "Raspberry"] },
+    "Kiwi",
 ]
 
 function mockSearch(q: string): Promise<DropdownOption[]> {
@@ -12,6 +21,27 @@ function mockSearch(q: string): Promise<DropdownOption[]> {
         setTimeout(() => {
             const lower = q.toLowerCase()
             resolve(FRUITS.filter((f) => (f as string).toLowerCase().includes(lower)))
+        }, 150)
+    })
+}
+
+// Group-aware mock search: keeps a group only if its own name matches or at least
+// one of its leaves does (and in that case, only the matching leaves survive).
+function mockGroupedSearch(q: string): Promise<DropdownItem[]> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const lower = q.toLowerCase()
+            const matchesLeaf = (opt: DropdownOption) => getOptionLabel(opt).toLowerCase().includes(lower)
+            resolve(
+                GROUPED_FRUITS.flatMap((item): DropdownItem[] => {
+                    if (isGroupOption(item)) {
+                        if (item.group.toLowerCase().includes(lower)) return [item]
+                        const leaves = item.options.filter(matchesLeaf)
+                        return leaves.length > 0 ? [{ ...item, options: leaves }] : []
+                    }
+                    return matchesLeaf(item) ? [item] : []
+                }),
+            )
         }, 150)
     })
 }
@@ -28,12 +58,23 @@ export function DropdownPage() {
     const [emptyHint, setEmptyHint] = useState("no results found")
     const [glass, setGlass] = useState(false)
     const [portal, setPortal] = useState(false)
-    const [options, setOptions] = useState<DropdownOption[]>(FRUITS)
+    const [grouped, setGrouped] = useState(false)
+    const [options, setOptions] = useState<DropdownItem[]>(FRUITS)
     const [value, setValue] = useState<string[]>([])
     const setControls = useDemoStore((s) => s.setControls)
 
     useEffect(() => {
         setControls([
+            {
+                type: "toggleGroup", label: "grouped", options: ["false", "true"], value: String(grouped),
+                onChange: (v) => {
+                    const next = v === "true"
+                    setGrouped(next)
+                    setOptions(next ? GROUPED_FRUITS : FRUITS)
+                    setValue([])
+                },
+                tooltip: "Switches between a flat option list and a 2-level grouped one (DropdownOptionGroup).",
+            },
             { type: "toggleGroup", label: "multiSelect", options: ["false", "true"], value: String(multiSelect), onChange: (v) => { setMultiSelect(v === "true"); setValue([]) } },
             { type: "toggleGroup", label: "selectedAtTop", options: ["false", "true"], value: String(selectedAtTop), onChange: (v) => setSelectedAtTop(v === "true") },
             {
@@ -58,12 +99,14 @@ export function DropdownPage() {
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
+    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
             setTimeout(() => {
                 const created: DropdownOption = name
+                // A created option is always ungrouped — it's appended as a flat item
+                // alongside whatever groups are currently shown.
                 setOptions((prev) => [...prev, created])
                 resolve(created)
             }, 300)
@@ -76,7 +119,7 @@ export function DropdownPage() {
                 options={options}
                 value={value}
                 onChange={setValue}
-                onSearch={searchEnabled ? mockSearch : undefined}
+                onSearch={searchEnabled ? (grouped ? mockGroupedSearch : mockSearch) : undefined}
                 onCreate={createEnabled ? handleCreate : undefined}
                 multiSelect={multiSelect}
                 selectedAtTop={selectedAtTop}

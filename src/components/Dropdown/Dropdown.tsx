@@ -2,14 +2,14 @@ import type { ReactNode } from 'react';
 import cn from 'classnames';
 
 import { useDropdownOpenState } from './Dropdown.hooks';
-import { getOptionId, resolveSelectedOptions } from './Dropdown.types';
-import type { DropdownOption } from './Dropdown.types';
+import { flattenItems, getOptionId, resolveSelectedOptions } from './Dropdown.types';
+import type { DropdownItem, DropdownOption, DropdownOptionGroup } from './Dropdown.types';
 import { DropdownPanel } from './DropdownPanel';
 import { DropdownTrigger } from './DropdownTrigger';
 import styles from './Dropdown.module.css';
 import { useComponentClassName } from '../../theme/useComponentClassName';
 
-export type { DropdownOption };
+export type { DropdownOption, DropdownItem, DropdownOptionGroup };
 
 interface TriggerRenderProps {
     selectedOptions: DropdownOption[];
@@ -25,7 +25,7 @@ interface TriggerRenderProps {
 }
 
 interface Props {
-    options?: DropdownOption[];
+    options?: DropdownItem[];
     value: string[];
     onChange: (value: string[]) => void;
     onSearch?: (query: string) => Promise<DropdownOption[]>;
@@ -70,7 +70,7 @@ export function Dropdown(
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
     const resolvedClassName = useComponentClassName('Dropdown', className);
 
-    const selectedOptions = resolveSelectedOptions(value, options);
+    const selectedOptions = resolveSelectedOptions(value, flattenItems(options));
     const lifted = isOpen || selectedOptions.length > 0;
     const triggerPlaceholder = label && !lifted ? '' : placeholder;
 

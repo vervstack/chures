@@ -1,19 +1,20 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
-import { getOptionId, getOptionLabel } from './Dropdown.types';
-import type { DropdownOption } from './Dropdown.types';
+import { flattenItems, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
+import type { DropdownItem, DropdownOption } from './Dropdown.types';
 import { DropdownCreateRow } from './DropdownCreateRow';
+import { DropdownGroupHeader } from './DropdownGroupHeader';
 import { DropdownOptionRow } from './DropdownOptionRow';
 import { DropdownSearchRow } from './DropdownSearchRow';
 import { DropdownSkeletonList } from './DropdownSkeletonList';
 import styles from './Dropdown.module.css';
 
 interface Props {
-    options?: DropdownOption[];
-    onSearch?: (query: string) => Promise<DropdownOption[]>;
+    options?: DropdownItem[];
+    onSearch?: (query: string) => Promise<DropdownItem[]>;
     onCreate?: (name: string) => Promise<DropdownOption>;
     onPick: (option: DropdownOption) => void;
     onClose: () => void;
@@ -86,17 +87,31 @@ export function DropdownPanel(
         if (hasSearch) inputRef.current?.focus();
     }, [hasSearch]);
 
-    const filteredOptions = (onSearch ? searchResults : options)
-        .filter(
-            (opt) => !excluded.includes(getOptionId(opt)),
-        );
+    // Group-aware exclusion: a leaf is dropped by the existing excluded check; a group
+    // is filtered leaf-by-leaf and dropped entirely once it has no leaves left, but
+    // otherwise keeps its original top-level position (relative to flat leaves) —
+    // that ordering choice belongs to whatever data the caller supplies, not to this
+    // filtering step.
+    const filteredItems: DropdownItem[] = (onSearch ? searchResults : options).flatMap((item): DropdownItem[] => {
+        if (isGroupOption(item)) {
+            const leaves = item.options.filter((opt) => !excluded.includes(getOptionId(opt)));
+            return leaves.length > 0 ? [{ ...item, options: leaves }] : [];
+        }
+        return excluded.includes(getOptionId(item)) ? [] : [item];
+    });
 
-    const visibleOptions = selectedAtTop
+    // selectedAtTop only reorders flat top-level leaves (selected-first/rest); any
+    // group item keeps its original relative position. Pulling a selected leaf out
+    // of a group to the top is a deliberate scope limit, not a bug — groups are a
+    // caller-authored structure and this component doesn't reshape them.
+    const visibleItems: DropdownItem[] = selectedAtTop
         ? [
-            ...filteredOptions.filter((opt) => selected.includes(getOptionId(opt))),
-            ...filteredOptions.filter((opt) => !selected.includes(getOptionId(opt))),
+            ...filteredItems.filter((item) => !isGroupOption(item) && selected.includes(getOptionId(item))),
+            ...filteredItems.filter((item) => isGroupOption(item) || !selected.includes(getOptionId(item))),
         ]
-        : filteredOptions;
+        : filteredItems;
+
+    const visibleOptions = flattenItems(visibleItems);
 
     const trimmedQuery = query.trim();
     const exactMatch = visibleOptions.some(
@@ -159,14 +174,30 @@ export function DropdownPanel(
                         <DropdownSkeletonList count={skeletonRowCount} />
                     ) : (
                         <>
-                            {visibleOptions.map((opt) => (
-                                <DropdownOptionRow
-                                    key={getOptionId(opt)}
-                                    opt={opt}
-                                    isSelected={selected.includes(getOptionId(opt))}
-                                    multiSelect={multiSelect}
-                                    onPick={handlePick}
-                                />
+                            {visibleItems.map((item) => (
+                                isGroupOption(item) ? (
+                                    <Fragment key={`group:${item.group}`}>
+                                        <DropdownGroupHeader label={item.group} />
+                                        {item.options.map((opt) => (
+                                            <DropdownOptionRow
+                                                key={getOptionId(opt)}
+                                                opt={opt}
+                                                isSelected={selected.includes(getOptionId(opt))}
+                                                multiSelect={multiSelect}
+                                                onPick={handlePick}
+                                                indented
+                                            />
+                                        ))}
+                                    </Fragment>
+                                ) : (
+                                    <DropdownOptionRow
+                                        key={getOptionId(item)}
+                                        opt={item}
+                                        isSelected={selected.includes(getOptionId(item))}
+                                        multiSelect={multiSelect}
+                                        onPick={handlePick}
+                                    />
+                                )
                             ))}
                             {showCreate && (
                                 <DropdownCreateRow
