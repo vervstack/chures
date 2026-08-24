@@ -1,8 +1,36 @@
 import { useEffect, useState } from "react"
 import { Dropdown } from "../../src/components/Dropdown/Dropdown"
 import { getOptionLabel, isGroupOption } from "../../src/components/Dropdown/Dropdown.types"
-import type { DropdownItem, DropdownOption } from "../../src/components/Dropdown/Dropdown.types"
+import type { DropdownItem, DropdownOption, RenderOptionState } from "../../src/components/Dropdown/Dropdown.types"
 import { useDemoStore } from "../store/useDemoStore"
+
+// A minimal custom row: swaps the checkmark for an emoji marker and dims unselected
+// rows, to make it obvious this is a fully consumer-owned row while pick/selection
+// still flow through chures' own `state.onPick`.
+function renderCustomOption(opt: DropdownOption, state: RenderOptionState) {
+    return (
+        <div
+            onMouseDown={(e) => {
+                e.preventDefault()
+                state.onPick()
+            }}
+            style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.5625rem 0.875rem",
+                paddingLeft: state.indented ? "1.875rem" : "0.875rem",
+                fontSize: "0.875rem",
+                color: state.isSelected ? "#ffffff" : "#9ca3af",
+                cursor: "pointer",
+            }}
+        >
+            <span>{state.isSelected ? "🟢" : "⚪"}</span>
+            {getOptionLabel(opt)}
+            <span style={{ marginLeft: "auto", fontSize: "0.7rem", opacity: 0.6 }}>custom</span>
+        </div>
+    )
+}
 
 const FRUITS: DropdownOption[] = [
     "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew",
@@ -59,6 +87,7 @@ export function DropdownPage() {
     const [glass, setGlass] = useState(false)
     const [portal, setPortal] = useState(false)
     const [grouped, setGrouped] = useState(false)
+    const [customRenderEnabled, setCustomRenderEnabled] = useState(false)
     const [options, setOptions] = useState<DropdownItem[]>(FRUITS)
     const [value, setValue] = useState<string[]>([])
     const setControls = useDemoStore((s) => s.setControls)
@@ -85,6 +114,10 @@ export function DropdownPage() {
             { type: "toggleGroup", label: "isLoading", options: ["false", "true"], value: String(isLoading), onChange: (v) => setIsLoading(v === "true") },
             { type: "toggleGroup", label: "onSearch", options: ["off", "on"], value: searchEnabled ? "on" : "off", onChange: (v) => setSearchEnabled(v === "on") },
             { type: "toggleGroup", label: "onCreate", options: ["off", "on"], value: createEnabled ? "on" : "off", onChange: (v) => setCreateEnabled(v === "on") },
+            {
+                type: "toggleGroup", label: "renderOption", options: ["off", "on"], value: customRenderEnabled ? "on" : "off", onChange: (v) => setCustomRenderEnabled(v === "on"),
+                tooltip: "Overrides how each leaf option row renders; chures still owns search/selection/grouping/positioning.",
+            },
             { type: "toggleGroup", label: "skeletonRowCount", options: ["2", "4", "6"], value: String(skeletonRowCount), onChange: (v) => setSkeletonRowCount(Number(v)) },
             { type: "input", label: "placeholder", value: placeholder, onChange: setPlaceholder, placeholder: "(default)" },
             { type: "input", label: "emptyHint", value: emptyHint, onChange: setEmptyHint },
@@ -99,7 +132,7 @@ export function DropdownPage() {
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
+    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, customRenderEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
@@ -130,6 +163,7 @@ export function DropdownPage() {
                 emptyHint={emptyHint}
                 glass={glass}
                 portal={portal}
+                renderOption={customRenderEnabled ? renderCustomOption : undefined}
                 label="Fruit"
             />
             {/* A later flex sibling: without portal/glass, this paints over the open

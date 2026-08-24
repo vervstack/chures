@@ -1,10 +1,11 @@
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
 import { flattenItems, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
-import type { DropdownItem, DropdownOption } from './Dropdown.types';
+import type { DropdownItem, DropdownOption, RenderOptionState } from './Dropdown.types';
 import { DropdownCreateRow } from './DropdownCreateRow';
 import { DropdownGroupHeader } from './DropdownGroupHeader';
 import { DropdownOptionRow } from './DropdownOptionRow';
@@ -30,6 +31,7 @@ interface Props {
     onError?: (err: unknown) => void;
     glass?: boolean;
     portal?: boolean;
+    renderOption?: (opt: DropdownOption, state: RenderOptionState) => ReactNode;
 }
 
 export function DropdownPanel(
@@ -44,6 +46,7 @@ export function DropdownPanel(
         onError = console.error,
         glass = false,
         portal = false,
+        renderOption,
     }: Props) {
 
     const [query, setQuery] = useState('');
@@ -179,24 +182,40 @@ export function DropdownPanel(
                                     <Fragment key={`group:${item.group}`}>
                                         <DropdownGroupHeader label={item.group} />
                                         {item.options.map((opt) => (
-                                            <DropdownOptionRow
-                                                key={getOptionId(opt)}
-                                                opt={opt}
-                                                isSelected={selected.includes(getOptionId(opt))}
-                                                multiSelect={multiSelect}
-                                                onPick={handlePick}
-                                                indented
-                                            />
+                                            <Fragment key={getOptionId(opt)}>
+                                                {renderOption ? renderOption(opt, {
+                                                    isSelected: selected.includes(getOptionId(opt)),
+                                                    multiSelect,
+                                                    indented: true,
+                                                    onPick: () => handlePick(opt),
+                                                }) : (
+                                                    <DropdownOptionRow
+                                                        opt={opt}
+                                                        isSelected={selected.includes(getOptionId(opt))}
+                                                        multiSelect={multiSelect}
+                                                        onPick={handlePick}
+                                                        indented
+                                                    />
+                                                )}
+                                            </Fragment>
                                         ))}
                                     </Fragment>
                                 ) : (
-                                    <DropdownOptionRow
-                                        key={getOptionId(item)}
-                                        opt={item}
-                                        isSelected={selected.includes(getOptionId(item))}
-                                        multiSelect={multiSelect}
-                                        onPick={handlePick}
-                                    />
+                                    <Fragment key={getOptionId(item)}>
+                                        {renderOption ? renderOption(item, {
+                                            isSelected: selected.includes(getOptionId(item)),
+                                            multiSelect,
+                                            indented: false,
+                                            onPick: () => handlePick(item),
+                                        }) : (
+                                            <DropdownOptionRow
+                                                opt={item}
+                                                isSelected={selected.includes(getOptionId(item))}
+                                                multiSelect={multiSelect}
+                                                onPick={handlePick}
+                                            />
+                                        )}
+                                    </Fragment>
                                 )
                             ))}
                             {showCreate && (

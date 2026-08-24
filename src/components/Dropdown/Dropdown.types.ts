@@ -12,6 +12,17 @@ export interface DropdownOptionGroup {
 // leaves. A flat consumer (no groups) is just DropdownItem[] with every item a leaf.
 export type DropdownItem = DropdownOption | DropdownOptionGroup;
 
+// The state handed to a consumer-supplied `renderOption` for a single leaf row.
+// Mirrors DropdownOptionRow's own props, minus `opt` (passed as the first
+// callback argument instead) — `onPick` is pre-bound to this row's option so a
+// custom renderer never needs to know about DropdownOption identity to wire a click.
+export interface RenderOptionState {
+    isSelected: boolean;
+    multiSelect: boolean;
+    indented: boolean;
+    onPick: () => void;
+}
+
 export function isGroupOption(item: DropdownItem): item is DropdownOptionGroup {
     return typeof item === 'object' && item !== null && 'group' in item;
 }

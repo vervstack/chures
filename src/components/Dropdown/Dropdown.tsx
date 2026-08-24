@@ -3,13 +3,13 @@ import cn from 'classnames';
 
 import { useDropdownOpenState } from './Dropdown.hooks';
 import { flattenItems, getOptionId, resolveSelectedOptions } from './Dropdown.types';
-import type { DropdownItem, DropdownOption, DropdownOptionGroup } from './Dropdown.types';
+import type { DropdownItem, DropdownOption, DropdownOptionGroup, RenderOptionState } from './Dropdown.types';
 import { DropdownPanel } from './DropdownPanel';
 import { DropdownTrigger } from './DropdownTrigger';
 import styles from './Dropdown.module.css';
 import { useComponentClassName } from '../../theme/useComponentClassName';
 
-export type { DropdownOption, DropdownItem, DropdownOptionGroup };
+export type { DropdownOption, DropdownItem, DropdownOptionGroup, RenderOptionState };
 
 interface TriggerRenderProps {
     selectedOptions: DropdownOption[];
@@ -55,6 +55,13 @@ interface Props {
     // the panel's own position/z-index — see the "Never use z-index" flex/grid
     // gotcha in consuming apps' style guides). Does not change the panel's look.
     portal?: boolean;
+    // Fully overrides how a single leaf option row renders (icon, layout, custom
+    // affordances, etc). chures still owns search/selection/grouping/positioning —
+    // this only swaps the row's own markup. Receives the pre-bound `onPick` for
+    // that option, so a custom renderer never re-implements the multiSelect/close
+    // logic in Dropdown/DropdownPanel's own handlePick. Omit to keep the default
+    // DropdownOptionRow rendering (fully backward-compatible).
+    renderOption?: (opt: DropdownOption, state: RenderOptionState) => ReactNode;
     children?: (props: TriggerRenderProps) => ReactNode;
 }
 
@@ -64,7 +71,7 @@ export function Dropdown(
     {
         options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
-        onError, className, glass = false, portal = false, children,
+        onError, className, glass = false, portal = false, renderOption, children,
     }: Props) {
 
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
@@ -129,6 +136,7 @@ export function Dropdown(
                     onError={onError}
                     glass={glass}
                     portal={portal}
+                    renderOption={renderOption}
                 />
             )}
         </div>
