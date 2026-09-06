@@ -46,5 +46,8 @@
 
     --chures-dialog-glass-bg: rgb(255 255 255 / 6%);
     --chures-dialog-glass-blur: 1.25rem;
+
+    --chures-overlay: rgb(0 0 0 / 58%);
+    --chures-side-drawer-size: 22rem;
 }
 }

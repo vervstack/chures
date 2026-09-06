@@ -15,6 +15,7 @@ export type ChuresComponentName =
     | 'ConfirmDialog'
     | 'InfoDialog'
     | 'Toaster'
+    | 'SideDrawer'
 
 export type ComponentClassNames = Partial<Record<ChuresComponentName, string>>
 

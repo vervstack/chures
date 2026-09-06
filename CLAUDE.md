@@ -50,6 +50,8 @@ src/
   components/
     TelegramAuth.tsx                # container: wires hook → button or render prop
     TelegramSignInButton.tsx        # presentational button with Telegram branding
+    SideDrawer/
+      SideDrawer.tsx                # portaled panel sliding in from any of 4 sides
     notifications/
       Toaster.tsx                   # fixed-position toast list (Framer Motion)
       Toast.module.css              # theming via --chures-* CSS custom properties
@@ -57,7 +59,26 @@ src/
     useTelegramLogin.ts             # loads Telegram OAuth script, manages state
     toaster/
       useToaster.ts                 # Zustand store: bake / dismiss, 5s auto-dismiss
+    overlayBack/
+      overlayBackStack.ts           # framework-free global back-gesture stack
+      useBackableOverlay.ts         # React binding used by SideDrawer and any dialog
 ```
+
+### Back-gesture handling for overlays
+
+`useBackableOverlay(depth, onPopLevel)` (from `hooks/overlayBack/`) traps the mobile
+"swipe from edge" back gesture and the hardware/browser back button so it closes the
+topmost open overlay instead of navigating the page away. `overlayBackStack.ts` is the
+framework-free mechanism: every overlay level registers with one shared module-level
+stack and gets one matching `history.pushState` entry; a single shared `popstate`
+listener always pops the true top of that stack, so nested overlays (a drawer opened
+from inside a dialog) close one level at a time in the order they were actually opened,
+instead of every overlay's own listener reacting to the same gesture. `SideDrawer` wires
+this in already (`open ? 1 : 0`); a component with its own internal back/forward stack
+(e.g. a dialog that swaps its contents) can pass a larger `depth` and step it down one
+level per pop instead. Closing any other way (X button, backdrop click, Escape,
+unmount) must go through the same `open`/`depth` prop so the hook consumes the matching
+history entry — don't call `history.back()` directly from a component.
 
 ### Component styling contract
 
@@ -103,6 +124,8 @@ Defaults live in `src/theme.css` (a `:root {}` block injected with the library b
 | `--chures-surface` | `#000000` | toast background |
 | `--chures-font-sm` | `0.875rem` | title size |
 | `--chures-font-xs` | `0.75rem` | description size |
+| `--chures-overlay` | `rgb(0 0 0 / 58%)` | `SideDrawer` backdrop dim |
+| `--chures-side-drawer-size` | `22rem` | `SideDrawer` panel width (left/right) or height (top/bottom) |
 
 ## Codebase Navigation
 

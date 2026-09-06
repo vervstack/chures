@@ -16,6 +16,7 @@ const NAV: NavItem[] = [
     { hash: "#/info-dialog", label: "InfoDialog" },
     { hash: "#/modal-actions", label: "ModalActions" },
     { hash: "#/modal-close", label: "ModalClose" },
+    { hash: "#/side-drawer", label: "SideDrawer" },
     { hash: "#/icons", label: "Icons" },
     { hash: "#/component-defaults", label: "Component Defaults" },
 ]

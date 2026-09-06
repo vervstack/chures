@@ -18,6 +18,7 @@ import { ConfirmDialogPage } from "./pages/ConfirmDialogPage"
 import { InfoDialogPage } from "./pages/InfoDialogPage"
 import { ModalActionsPage } from "./pages/ModalActionsPage"
 import { ModalClosePage } from "./pages/ModalClosePage"
+import { SideDrawerPage } from "./pages/SideDrawerPage"
 import { IconsPage } from "./pages/IconsPage"
 import { ComponentDefaultsPage } from "./pages/ComponentDefaultsPage"
 
@@ -79,6 +80,8 @@ export function App() {
         page = <ModalActionsPage />
     } else if (hash === "#/modal-close") {
         page = <ModalClosePage />
+    } else if (hash === "#/side-drawer") {
+        page = <SideDrawerPage />
     } else if (hash === "#/icons") {
         page = <IconsPage />
     } else if (hash === "#/component-defaults") {

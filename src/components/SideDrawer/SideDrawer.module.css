@@ -1,0 +1,69 @@
+/*
+ * Every base/variant class below is wrapped in :where(...), which drops its
+ * specificity to 0 regardless of how many classes are chained -- see
+ * Button.module.css for why this matters. A single consumer class passed as
+ * `className` always wins, no wrapper-div or !important needed.
+ */
+:where(.Backdrop) {
+    position: fixed;
+    inset: 0;
+    background: var(--chures-overlay, rgb(0 0 0 / 58%));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.26s ease;
+}
+
+:where(.BackdropOpen) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+:where(.Panel) {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--chures-surface, #000000);
+    box-shadow: 0 0 3rem rgb(0 0 0 / 35%);
+    transition: transform 0.28s cubic-bezier(0.32, 0, 0, 1);
+}
+
+:where(.Right) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--chures-side-drawer-size, 22rem);
+    max-width: 100vw;
+    transform: translateX(100%);
+}
+
+:where(.Left) {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--chures-side-drawer-size, 22rem);
+    max-width: 100vw;
+    transform: translateX(-100%);
+}
+
+:where(.Top) {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--chures-side-drawer-size, 22rem);
+    max-height: 100vh;
+    transform: translateY(-100%);
+}
+
+:where(.Bottom) {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--chures-side-drawer-size, 22rem);
+    max-height: 100vh;
+    transform: translateY(100%);
+}
+
+:where(.PanelOpen) {
+    transform: translate(0, 0);
+}
