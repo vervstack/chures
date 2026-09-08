@@ -70,12 +70,24 @@ export function pushOverlayBack(onBack: () => void): OverlayBackHandle {
 // history entry via history.back() so the browser's back stack doesn't grow by one
 // for every overlay opened this session. A no-op if the handle was already popped
 // by a real back gesture.
+//
+// Only calls history.back() when our own pushed entry is still the current one.
+// If something else navigated forward in the meantime (e.g. a link inside the
+// overlay that closes it on click), the current entry belongs to that navigation,
+// not to us -- calling history.back() there would silently revert it. In that
+// case we just drop our bookkeeping and leave the now-buried placeholder entry in
+// place; a later back gesture lands on it and finds the same URL the overlay was
+// opened on, which is harmless.
 export function popOverlayBack(handle: OverlayBackHandle) {
     const index = stack.findIndex(entry => entry.handle === handle)
     if (index === -1) return
 
     stack.splice(index, 1)
     detachListenerIfIdle()
+
+    const state = window.history.state as { churesOverlayBackHandle?: OverlayBackHandle } | null
+    if (state?.churesOverlayBackHandle !== handle) return
+
     pendingProgrammaticPops += 1
     window.history.back()
 }
