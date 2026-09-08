@@ -12,6 +12,7 @@ const NAV: NavItem[] = [
     { hash: "#/input", label: "Input" },
     { hash: "#/toggle", label: "Toggle" },
     { hash: "#/dropdown", label: "Dropdown" },
+    { hash: "#/flyout-menu", label: "FlyoutMenu" },
     { hash: "#/confirm-dialog", label: "ConfirmDialog" },
     { hash: "#/info-dialog", label: "InfoDialog" },
     { hash: "#/modal-actions", label: "ModalActions" },

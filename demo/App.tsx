@@ -14,6 +14,7 @@ import { TogglePage } from "./pages/TogglePage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
 import { ToasterPage } from "./pages/ToasterPage"
 import { DropdownPage } from "./pages/DropdownPage"
+import { FlyoutMenuPage } from "./pages/FlyoutMenuPage"
 import { ConfirmDialogPage } from "./pages/ConfirmDialogPage"
 import { InfoDialogPage } from "./pages/InfoDialogPage"
 import { ModalActionsPage } from "./pages/ModalActionsPage"
@@ -70,6 +71,8 @@ export function App() {
         page = <TogglePage />
     } else if (hash === "#/dropdown") {
         page = <DropdownPage />
+    } else if (hash === "#/flyout-menu") {
+        page = <FlyoutMenuPage />
     } else if (hash === "#/telegram-button") {
         page = <TelegramSignInButtonPage />
     } else if (hash === "#/confirm-dialog") {

@@ -49,5 +49,19 @@
 
     --chures-overlay: rgb(0 0 0 / 58%);
     --chures-side-drawer-size: 22rem;
+
+    --chures-flyout-bg: #0d0d0d;
+    --chures-flyout-border: rgb(255 255 255 / 11%);
+    --chures-flyout-radius: 0.5rem;
+    --chures-flyout-shadow: rgb(0 0 0 / 80%);
+    --chures-flyout-fg: rgb(255 255 255 / 55%);
+    --chures-flyout-fg-strong: rgb(255 255 255 / 92%);
+    --chures-flyout-fg-muted: rgb(255 255 255 / 32%);
+    --chures-flyout-hover: rgb(255 255 255 / 4%);
+    --chures-flyout-skeleton: rgb(255 255 255 / 7%);
+    --chures-flyout-font: 0.8125rem;
+    --chures-flyout-font-sm: 0.6875rem;
+    --chures-flyout-font-md: 0.75rem;
+    --chures-flyout-font-mono: "JetBrains Mono", ui-monospace, sfmono-regular, menlo, monospace;
 }
 }

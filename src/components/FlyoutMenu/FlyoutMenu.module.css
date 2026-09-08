@@ -1,0 +1,193 @@
+@import "./../../theme.css";
+
+/* --- portaled shell (FlyoutMenu.tsx) --------------------------------------- */
+
+.FlyoutMenuContainer {
+    display: contents;
+}
+
+.Backdrop {
+    position: fixed;
+    inset: 0;
+}
+
+.Panel {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    min-width: 10rem;
+    padding: 0.35rem;
+    background: var(--chures-flyout-bg);
+    border: 1px solid var(--chures-flyout-border);
+    border-radius: var(--chures-flyout-radius);
+    box-shadow: 0 1rem 2.5rem -0.75rem var(--chures-flyout-shadow);
+    overflow-y: auto;
+}
+
+.Submenu {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background: var(--chures-flyout-bg);
+    border: 1px solid var(--chures-flyout-border);
+    border-radius: var(--chures-flyout-radius);
+    box-shadow: 0 1rem 2.5rem -0.75rem var(--chures-flyout-shadow);
+    overflow-y: auto;
+}
+
+/* --- one panel's frame (FlyoutPanel.tsx) --------------------------------- */
+
+.FlyoutPanelContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.Back {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid transparent;
+    border-radius: var(--chures-flyout-radius);
+    background: transparent;
+    color: var(--chures-flyout-fg);
+    font-size: var(--chures-flyout-font);
+    text-align: left;
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+}
+
+.Back:hover {
+    background: var(--chures-flyout-hover);
+    color: var(--chures-flyout-fg-strong);
+}
+
+.Chevron {
+    flex-shrink: 0;
+    color: var(--chures-flyout-fg-muted);
+}
+
+/* --- section rows (MenuList.tsx) --------------------------------------- */
+
+.MenuListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.Heading {
+    padding: 0.35rem 0.55rem 0.25rem;
+    color: var(--chures-flyout-fg-muted);
+    font-family: var(--chures-flyout-font-mono);
+    font-size: var(--chures-flyout-font-sm);
+    letter-spacing: 0.06rem;
+    text-transform: uppercase;
+}
+
+.Divider {
+    height: 1px;
+    margin: 0.3rem 0.2rem;
+    background: var(--chures-flyout-border);
+}
+
+/* --- one selectable row (MenuRow.tsx) -------------------------------------- */
+
+.MenuRowContainer {
+    display: flex;
+}
+
+.MenuRowContainer.Dim {
+    opacity: 0.5;
+}
+
+.Row {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0.55rem;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: var(--chures-flyout-radius);
+    background: transparent;
+    color: var(--chures-flyout-fg);
+    font-size: var(--chures-flyout-font);
+    text-align: left;
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+}
+
+.Row:hover:not(:disabled) {
+    background: var(--chures-flyout-hover);
+    color: var(--chures-flyout-fg-strong);
+}
+
+.Row:disabled {
+    color: var(--chures-flyout-fg-muted);
+    cursor: default;
+}
+
+.Icon {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.Label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.Arrow {
+    flex-shrink: 0;
+    color: var(--chures-flyout-fg-muted);
+    font-size: var(--chures-flyout-font-md);
+}
+
+/* --- loading placeholder (MenuSkeleton.tsx) ------------------------------- */
+
+.MenuSkeletonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.35rem 0.5rem;
+}
+
+.MenuSkeletonRow {
+    height: 1.75rem;
+    border-radius: var(--chures-flyout-radius);
+    background: var(--chures-flyout-skeleton);
+    animation: churesFlyoutSkeletonPulse 1.5s ease-in-out infinite;
+}
+
+.MenuSkeletonRow:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.MenuSkeletonRow:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes churesFlyoutSkeletonPulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* --- type-to-search field (MenuSearchField.tsx) ------------------------- */
+
+.MenuSearchFieldContainer {
+    overflow: hidden;
+    padding-bottom: 0.35rem;
+}
