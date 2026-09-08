@@ -15,7 +15,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    min-width: 10rem;
+    min-width: var(--chures-flyout-min-width);
     padding: 0.35rem;
     background: var(--chures-flyout-bg);
     border: 1px solid var(--chures-flyout-border);
@@ -28,6 +28,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
+    min-width: var(--chures-flyout-min-width);
     background: var(--chures-flyout-bg);
     border: 1px solid var(--chures-flyout-border);
     border-radius: var(--chures-flyout-radius);

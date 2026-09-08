@@ -51,6 +51,7 @@
     --chures-side-drawer-size: 22rem;
 
     --chures-flyout-bg: #0d0d0d;
+    --chures-flyout-min-width: 10rem;
     --chures-flyout-border: rgb(255 255 255 / 11%);
     --chures-flyout-radius: 0.5rem;
     --chures-flyout-shadow: rgb(0 0 0 / 80%);
