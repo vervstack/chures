@@ -1,0 +1,410 @@
+{
+  "communities": {
+    "0": [
+      "components_sidebar_nav",
+      "components_sidebar_navitem",
+      "components_sidebar_props",
+      "components_sidebar_sidebar",
+      "demo_app_app",
+      "demo_app_tsx",
+      "demo_app_usehash",
+      "demo_components_sidebar_tsx",
+      "demo_main_tsx",
+      "demo_pages_loaderpage_tsx",
+      "demo_pages_toasterpage_tsx",
+      "demo_pages_togglepage_tsx",
+      "demo_store_usedemostore_ts",
+      "demo_widgets_controldef_ts",
+      "demo_widgets_themevariables_tsx",
+      "pages_dropdownpage_dropdownpage",
+      "pages_loaderpage_demovariant",
+      "pages_loaderpage_loader_variants",
+      "pages_loaderpage_loaderpage",
+      "pages_loaderpage_loadervariant",
+      "pages_toasterpage_level",
+      "pages_toasterpage_toasterpage",
+      "pages_togglepage_togglepage",
+      "src_components_toggle_index_ts",
+      "src_components_toggle_toggle_tsx",
+      "store_usedemostore_css_defaults",
+      "store_usedemostore_demostate",
+      "store_usedemostore_usedemostore",
+      "toggle_toggle_props",
+      "toggle_toggle_toggle",
+      "toggle_toggle_toggleprops",
+      "widgets_controldef_controldef",
+      "widgets_themevariables_group",
+      "widgets_themevariables_groups",
+      "widgets_themevariables_themevariables",
+      "widgets_themevariables_vardef"
+    ],
+    "1": [
+      "chures_package_dependencies",
+      "chures_package_dependencies_classnames",
+      "chures_package_description",
+      "chures_package_exports",
+      "chures_package_files",
+      "chures_package_homepage",
+      "chures_package_import",
+      "chures_package_keywords",
+      "chures_package_license",
+      "chures_package_main",
+      "chures_package_module",
+      "chures_package_name",
+      "chures_package_peerdependencies",
+      "chures_package_peerdependencies_framer_motion",
+      "chures_package_peerdependencies_react",
+      "chures_package_peerdependencies_react_dom",
+      "chures_package_peerdependencies_zustand",
+      "chures_package_repository",
+      "chures_package_repository_type",
+      "chures_package_repository_url",
+      "chures_package_require",
+      "chures_package_scripts",
+      "chures_package_scripts_build",
+      "chures_package_scripts_build_demo",
+      "chures_package_scripts_demo",
+      "chures_package_scripts_dev",
+      "chures_package_scripts_patch",
+      "chures_package_scripts_type_check",
+      "chures_package_type",
+      "chures_package_types",
+      "chures_package_version",
+      "package_json"
+    ],
+    "2": [
+      "demo_pages_buttonpage_tsx",
+      "demo_pages_themepage_tsx",
+      "hooks_usetelegramlogin_usetelegramlogin",
+      "hooks_usetelegramlogin_usetelegramloginoptions",
+      "hooks_usetelegramlogin_usetelegramloginreturn",
+      "notifications_toaster_toast",
+      "notifications_toaster_toaster",
+      "pages_buttonpage_buttonpage",
+      "pages_themepage_themepage",
+      "src_components_notifications_index_ts",
+      "src_components_notifications_toaster_tsx",
+      "src_components_telegramauth_index_ts",
+      "src_components_telegramauth_telegramauth_tsx",
+      "src_components_telegramsigninbutton_index_ts",
+      "src_components_telegramsigninbutton_telegramsigninbutton_tsx",
+      "src_hooks_toaster_usetoaster_ts",
+      "src_hooks_usetelegramlogin_ts",
+      "src_index_ts",
+      "src_types_telegramauthdata",
+      "src_types_telegramloginwindow",
+      "src_types_ts",
+      "telegramauth_telegramauth_telegramauth",
+      "telegramauth_telegramauth_telegramauthprops",
+      "telegramsigninbutton_telegramsigninbutton_labels",
+      "telegramsigninbutton_telegramsigninbutton_telegramicon",
+      "telegramsigninbutton_telegramsigninbutton_telegramsigninbutton",
+      "telegramsigninbutton_telegramsigninbutton_telegramsigninbuttonprops",
+      "toaster_usetoaster_toast",
+      "toaster_usetoaster_toasterstore",
+      "toaster_usetoaster_usetoaster"
+    ],
+    "3": [
+      "demo_pages_dropdownpage_tsx",
+      "dropdown_dropdown_dropdown",
+      "dropdown_dropdown_dropdownprops",
+      "dropdown_dropdown_hooks_usedropdownclose",
+      "dropdown_dropdown_hooks_usesearchresults",
+      "dropdown_dropdown_props",
+      "dropdown_dropdown_types_dropdownoption",
+      "dropdown_dropdown_types_getoptionid",
+      "dropdown_dropdown_types_getoptionlabel",
+      "dropdown_dropdowncreaterow_dropdowncreaterow",
+      "dropdown_dropdowncreaterow_props",
+      "dropdown_dropdownoptionrow_dropdownoptionrow",
+      "dropdown_dropdownoptionrow_props",
+      "dropdown_dropdownsearchrow_dropdownsearchrow",
+      "dropdown_dropdownsearchrow_props",
+      "dropdown_dropdownskeletonlist_dropdownskeletonlist",
+      "dropdown_dropdownskeletonlist_props",
+      "pages_dropdownpage_fruits",
+      "pages_dropdownpage_mocksearch",
+      "src_components_dropdown_dropdown_hooks_ts",
+      "src_components_dropdown_dropdown_tsx",
+      "src_components_dropdown_dropdown_types_ts",
+      "src_components_dropdown_dropdowncreaterow_tsx",
+      "src_components_dropdown_dropdownoptionrow_tsx",
+      "src_components_dropdown_dropdownsearchrow_tsx",
+      "src_components_dropdown_dropdownskeletonlist_tsx",
+      "src_components_dropdown_index_ts"
+    ],
+    "4": [
+      "demo_widgets_controlitem_tsx",
+      "demo_widgets_proprow_tsx",
+      "demo_widgets_switch_tsx",
+      "widgets_controlitem_colorcontrol",
+      "widgets_controlitem_displaycontrol",
+      "widgets_controlitem_inputcontrol",
+      "widgets_controlitem_props",
+      "widgets_controlitem_selectcontrol",
+      "widgets_controlitem_togglecontrol",
+      "widgets_controlitem_togglegroupcontrol",
+      "widgets_proprow_proprow",
+      "widgets_proprow_props",
+      "widgets_proprow_togglegroup",
+      "widgets_proprow_togglegroupprops",
+      "widgets_switch_props",
+      "widgets_switch_switch"
+    ],
+    "5": [
+      "demo_pages_loadingwrapperpage_tsx",
+      "loader_loader_loader",
+      "loader_loader_loaderprops",
+      "loader_loader_props",
+      "loader_loader_renderinner",
+      "loadingwrapper_loadingwrapper_loadingwrapper",
+      "loadingwrapper_loadingwrapper_loadingwrapperprops",
+      "loadingwrapper_loadingwrapper_props",
+      "pages_loadingwrapperpage_loadingwrapperpage",
+      "pages_loadingwrapperpage_usercard",
+      "pages_loadingwrapperpage_usercardskeleton",
+      "pages_loadingwrapperpage_variants",
+      "src_components_loader_index_ts",
+      "src_components_loader_loader_tsx",
+      "src_components_loadingwrapper_index_ts",
+      "src_components_loadingwrapper_loadingwrapper_tsx"
+    ],
+    "6": [
+      "chures_tsconfig_compileroptions",
+      "chures_tsconfig_compileroptions_jsx",
+      "chures_tsconfig_compileroptions_lib",
+      "chures_tsconfig_compileroptions_module",
+      "chures_tsconfig_compileroptions_moduleresolution",
+      "chures_tsconfig_compileroptions_noemit",
+      "chures_tsconfig_compileroptions_nounusedlocals",
+      "chures_tsconfig_compileroptions_nounusedparameters",
+      "chures_tsconfig_compileroptions_skiplibcheck",
+      "chures_tsconfig_compileroptions_strict",
+      "chures_tsconfig_compileroptions_target",
+      "chures_tsconfig_include",
+      "tsconfig_json"
+    ],
+    "7": [
+      "chures_package_devdependencies",
+      "chures_package_devdependencies_framer_motion",
+      "chures_package_devdependencies_react_tooltip",
+      "chures_package_devdependencies_types_classnames",
+      "chures_package_devdependencies_types_react",
+      "chures_package_devdependencies_types_react_dom",
+      "chures_package_devdependencies_typescript",
+      "chures_package_devdependencies_vite",
+      "chures_package_devdependencies_vite_plugin_css_injected_by_js",
+      "chures_package_devdependencies_vite_plugin_dts",
+      "chures_package_devdependencies_vitejs_plugin_react",
+      "chures_package_devdependencies_zustand"
+    ],
+    "8": [
+      "demo_assets_icons_draghandleicon_tsx",
+      "demo_widgets_bottomcontrols_tsx",
+      "demo_widgets_iconbutton_tsx",
+      "demo_widgets_previewcard_tsx",
+      "icons_draghandleicon_draghandleicon",
+      "widgets_bottomcontrols_bottomcontrols",
+      "widgets_controlitem_controlitem",
+      "widgets_iconbutton_iconbutton",
+      "widgets_iconbutton_props",
+      "widgets_previewcard_previewcard",
+      "widgets_previewcard_props"
+    ],
+    "9": [
+      "chures_tsconfig_build_compileroptions",
+      "chures_tsconfig_build_compileroptions_declaration",
+      "chures_tsconfig_build_compileroptions_declarationdir",
+      "chures_tsconfig_build_compileroptions_emitdeclarationonly",
+      "chures_tsconfig_build_compileroptions_noemit",
+      "chures_tsconfig_build_compileroptions_outdir",
+      "chures_tsconfig_build_extends",
+      "tsconfig_build_json"
+    ],
+    "10": [
+      "demo_pages_inputpage_tsx",
+      "input_input_input",
+      "input_input_inputprops",
+      "input_input_props",
+      "pages_inputpage_inputpage",
+      "src_components_input_index_ts",
+      "src_components_input_input_tsx"
+    ],
+    "11": [
+      "demo_assets_icons_sidepanelicon_tsx",
+      "icons_sidepanelicon_sidepanelicon"
+    ],
+    "12": [
+      "vite_config_demo_ts"
+    ],
+    "13": [
+      "vite_config_ts"
+    ],
+    "14": [
+      "src_css_modules_d_ts"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09523809523809523,
+    "1": 0.06451612903225806,
+    "2": 0.1471264367816092,
+    "3": 0.14814814814814814,
+    "4": 0.15833333333333333,
+    "5": 0.21666666666666667,
+    "6": 0.15384615384615385,
+    "7": 0.16666666666666666,
+    "8": 0.23636363636363636,
+    "9": 0.25,
+    "10": 0.42857142857142855,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0
+  },
+  "gods": [
+    {
+      "id": "store_usedemostore_usedemostore",
+      "label": "useDemoStore",
+      "degree": 19
+    },
+    {
+      "id": "chures_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 11
+    },
+    {
+      "id": "toaster_usetoaster_usetoaster",
+      "label": "useToaster",
+      "degree": 11
+    },
+    {
+      "id": "chures_package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "dropdown_dropdown_types_dropdownoption",
+      "label": "DropdownOption",
+      "degree": 7
+    },
+    {
+      "id": "chures_tsconfig_build_compileroptions",
+      "label": "compilerOptions",
+      "degree": 6
+    },
+    {
+      "id": "widgets_controldef_controldef",
+      "label": "ControlDef",
+      "degree": 5
+    },
+    {
+      "id": "dropdown_dropdown_types_getoptionlabel",
+      "label": "getOptionLabel()",
+      "degree": 5
+    },
+    {
+      "id": "dropdown_dropdown_dropdown",
+      "label": "Dropdown()",
+      "degree": 5
+    },
+    {
+      "id": "loader_loader_loaderprops",
+      "label": "LoaderProps",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ToasterPage()",
+      "target": "useToaster",
+      "source_files": [
+        "demo/pages/ToasterPage.tsx",
+        "src/hooks/toaster/useToaster.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "ThemePage()",
+      "target": "useToaster",
+      "source_files": [
+        "demo/pages/ThemePage.tsx",
+        "src/hooks/toaster/useToaster.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `ThemePage()` unexpectedly reaches hub `useToaster`"
+    },
+    {
+      "source": "ButtonPage()",
+      "target": "useToaster",
+      "source_files": [
+        "demo/pages/ButtonPage.tsx",
+        "src/hooks/toaster/useToaster.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "ButtonPage()",
+      "target": "useDemoStore",
+      "source_files": [
+        "demo/pages/ButtonPage.tsx",
+        "demo/store/useDemoStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "InputPage()",
+      "target": "useDemoStore",
+      "source_files": [
+        "demo/pages/InputPage.tsx",
+        "demo/store/useDemoStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `useDemoStore` connect `Community 0` to `Community 2`, `Community 3`, `Community 5`, `Community 8`, `Community 10`?",
+      "why": "High betweenness centrality (0.057) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `useToaster` connect `Community 2` to `Community 0`?",
+      "why": "High betweenness centrality (0.020) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ControlDef` connect `Community 0` to `Community 4`, `Community 5`?",
+      "why": "High betweenness centrality (0.020) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `version`, `description` to the rest of the system?",
+      "why": "78 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1471264367816092 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-export type DropdownOption = string | { id: string; name: string };
+export type DropdownOption = string | { id: string; name: string; disabled?: boolean; title?: string };
 
 // A named family of leaf options, rendered as a non-interactive header followed by
 // its indented options. Leaves only — no nesting deeper than 2 levels, that's out
@@ -39,6 +39,14 @@ export function getOptionId(opt: DropdownOption): string {
 
 export function getOptionLabel(opt: DropdownOption): string {
     return typeof opt === 'string' ? opt : opt.name;
+}
+
+export function getOptionDisabled(opt: DropdownOption): boolean {
+    return typeof opt === 'string' ? false : Boolean(opt.disabled);
+}
+
+export function getOptionTitle(opt: DropdownOption): string | undefined {
+    return typeof opt === 'string' ? undefined : opt.title;
 }
 
 export function resolveSelectedOptions(value: string[], options: DropdownOption[]): DropdownOption[] {

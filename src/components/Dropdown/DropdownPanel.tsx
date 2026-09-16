@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
-import { flattenItems, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
+import { flattenItems, getOptionDisabled, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
 import type { DropdownItem, DropdownOption, RenderOptionState } from './Dropdown.types';
 import { DropdownCreateRow } from './DropdownCreateRow';
 import { DropdownGroupHeader } from './DropdownGroupHeader';
@@ -133,6 +133,7 @@ export function DropdownPanel(
     }
 
     function handlePick(opt: DropdownOption) {
+        if (getOptionDisabled(opt)) return;
         onPick(opt);
         if (!multiSelect) onClose();
     }

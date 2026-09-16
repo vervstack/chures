@@ -36,6 +36,12 @@ const FRUITS: DropdownOption[] = [
     "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew",
 ]
 
+// Same fruit set, but "Cherry" is swapped for a disabled option carrying a
+// tooltip — demonstrates DropdownOption's object-form disabled/title fields.
+const FRUITS_WITH_DISABLED: DropdownOption[] = FRUITS.map((f) =>
+    f === "Cherry" ? { id: "Cherry", name: "Cherry", disabled: true, title: "Coming soon" } : f,
+)
+
 // A grouped example: two families of leaves plus one ungrouped flat item, to make
 // the group-header + indented-row rendering obvious.
 const GROUPED_FRUITS: DropdownItem[] = [
@@ -88,6 +94,7 @@ export function DropdownPage() {
     const [portal, setPortal] = useState(false)
     const [grouped, setGrouped] = useState(false)
     const [customRenderEnabled, setCustomRenderEnabled] = useState(false)
+    const [disabledOptionEnabled, setDisabledOptionEnabled] = useState(false)
     const [options, setOptions] = useState<DropdownItem[]>(FRUITS)
     const [value, setValue] = useState<string[]>([])
     const setControls = useDemoStore((s) => s.setControls)
@@ -99,6 +106,7 @@ export function DropdownPage() {
                 onChange: (v) => {
                     const next = v === "true"
                     setGrouped(next)
+                    setDisabledOptionEnabled(false)
                     setOptions(next ? GROUPED_FRUITS : FRUITS)
                     setValue([])
                 },
@@ -118,6 +126,15 @@ export function DropdownPage() {
                 type: "toggleGroup", label: "renderOption", options: ["off", "on"], value: customRenderEnabled ? "on" : "off", onChange: (v) => setCustomRenderEnabled(v === "on"),
                 tooltip: "Overrides how each leaf option row renders; chures still owns search/selection/grouping/positioning.",
             },
+            {
+                type: "toggleGroup", label: "disabled option", options: ["off", "on"], value: disabledOptionEnabled ? "on" : "off",
+                onChange: (v) => {
+                    const next = v === "on"
+                    setDisabledOptionEnabled(next)
+                    setOptions(next ? FRUITS_WITH_DISABLED : FRUITS)
+                },
+                disabled: grouped, tooltip: "Swaps Cherry for a disabled option with a 'Coming soon' tooltip. Requires the flat (non-grouped) list.",
+            },
             { type: "toggleGroup", label: "skeletonRowCount", options: ["2", "4", "6"], value: String(skeletonRowCount), onChange: (v) => setSkeletonRowCount(Number(v)) },
             { type: "input", label: "placeholder", value: placeholder, onChange: setPlaceholder, placeholder: "(default)" },
             { type: "input", label: "emptyHint", value: emptyHint, onChange: setEmptyHint },
@@ -132,7 +149,7 @@ export function DropdownPage() {
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, customRenderEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
+    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, customRenderEnabled, disabledOptionEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
