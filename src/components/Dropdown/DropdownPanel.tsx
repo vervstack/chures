@@ -45,7 +45,7 @@ export function DropdownPanel(
         skeletonRowCount = 4,
         onError = console.error,
         glass = false,
-        portal = false,
+        portal = true,
         renderOption,
     }: Props) {
 

@@ -49,11 +49,14 @@ interface Props {
     glass?: boolean;
     // Renders the open panel via a portal to document.body, positioned from the
     // anchor's live getBoundingClientRect(), instead of a plain `position: absolute`
-    // inside this component. Use when an ancestor would otherwise clip the panel
-    // (overflow: hidden) or paint over it (a flex/grid container where a later
+    // inside this component. Defaults to true: an ancestor can otherwise clip the
+    // panel (overflow: hidden) or paint over it (a flex/grid container where a later
     // sibling item paints over an earlier item's overflowing content, regardless of
     // the panel's own position/z-index — see the "Never use z-index" flex/grid
-    // gotcha in consuming apps' style guides). Does not change the panel's look.
+    // gotcha in consuming apps' style guides), and there's no reliable way for this
+    // component to know in advance whether the caller's layout is safe. Pass `false`
+    // only when the caller has verified the plain in-flow panel never gets clipped or
+    // overpainted. Does not change the panel's look.
     portal?: boolean;
     // Fully overrides how a single leaf option row renders (icon, layout, custom
     // affordances, etc). chures still owns search/selection/grouping/positioning —
@@ -71,7 +74,7 @@ export function Dropdown(
     {
         options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
-        onError, className, glass = false, portal = false, renderOption, children,
+        onError, className, glass = false, portal = true, renderOption, children,
     }: Props) {
 
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
