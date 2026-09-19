@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export type DropdownOption = string | { id: string; name: string; disabled?: boolean; title?: string };
 
 // A named family of leaf options, rendered as a non-interactive header followed by
@@ -11,6 +13,14 @@ export interface DropdownOptionGroup {
 // What a Dropdown's `options` array is made of: either a plain leaf, or a group of
 // leaves. A flat consumer (no groups) is just DropdownItem[] with every item a leaf.
 export type DropdownItem = DropdownOption | DropdownOptionGroup;
+
+// A persistent action row pinned to the bottom of the panel's results list,
+// always visible regardless of search query — see DropdownFooterActionRow.
+export interface DropdownFooterAction {
+    label: string;
+    icon?: ReactNode;
+    onAction: () => void;
+}
 
 // The state handed to a consumer-supplied `renderOption` for a single leaf row.
 // Mirrors DropdownOptionRow's own props, minus `opt` (passed as the first

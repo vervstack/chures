@@ -158,6 +158,18 @@
     min-height: var(--chures-input-height);
 }
 
+.TriggerContainer.RichValue {
+    height: auto;
+    min-height: calc(var(--chures-input-height) * 1.25);
+    padding: 0.625rem 0.875rem;
+}
+
+.TriggerValueRich {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
 .Chip {
     display: inline-flex;
     align-items: center;

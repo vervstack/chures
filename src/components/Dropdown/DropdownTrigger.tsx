@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import cn from 'classnames';
 
 import { ChevronDownIcon } from '../icons';
@@ -13,11 +14,18 @@ interface Props {
     multiSelect: boolean;
     placeholder: string;
     onOverflow?: 'scroll' | 'expand';
+    // Overrides how a selected option's label renders inside the closed trigger
+    // (single value or a chip), mirroring `renderOption` for the open panel's
+    // rows. Omit to keep the default plain-text label (backward-compatible).
+    renderValue?: (opt: DropdownOption) => ReactNode;
 }
 
 export function DropdownTrigger(
-    { triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll' }: Props) {
+    {
+        triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll', renderValue,
+    }: Props) {
     const expand = onOverflow === 'expand';
+    const rich = Boolean(renderValue) && !multiSelect && selectedOptions.length === 1;
 
     return (
         <button
@@ -28,6 +36,7 @@ export function DropdownTrigger(
                 isOpen && styles.Open,
                 multiSelect && styles.MultiSelect,
                 expand && styles.ExpandHeight,
+                rich && styles.RichValue,
             )}
             onClick={onClick}
             aria-expanded={isOpen}
@@ -37,9 +46,13 @@ export function DropdownTrigger(
                 <div className={cn(styles.ChipsWrapper, expand && styles.Expand)}>
                     {selectedOptions.map((opt, i) => (
                         <span key={i} className={styles.Chip}>
-                            {getOptionLabel(opt)}
+                            {renderValue ? renderValue(opt) : getOptionLabel(opt)}
                         </span>
                     ))}
+                </div>
+            ) : rich ? (
+                <div className={styles.TriggerValueRich}>
+                    {renderValue!(selectedOptions[0])}
                 </div>
             ) : (
                 <span className={selectedOptions.length === 0 ? styles.TriggerPlaceholder : styles.TriggerValue}>

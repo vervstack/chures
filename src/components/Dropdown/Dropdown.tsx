@@ -3,13 +3,13 @@ import cn from 'classnames';
 
 import { useDropdownOpenState } from './Dropdown.hooks';
 import { flattenItems, getOptionId, resolveSelectedOptions } from './Dropdown.types';
-import type { DropdownItem, DropdownOption, DropdownOptionGroup, RenderOptionState } from './Dropdown.types';
+import type { DropdownFooterAction, DropdownItem, DropdownOption, DropdownOptionGroup, RenderOptionState } from './Dropdown.types';
 import { DropdownPanel } from './DropdownPanel';
 import { DropdownTrigger } from './DropdownTrigger';
 import styles from './Dropdown.module.css';
 import { useComponentClassName } from '../../theme/useComponentClassName';
 
-export type { DropdownOption, DropdownItem, DropdownOptionGroup, RenderOptionState };
+export type { DropdownOption, DropdownItem, DropdownOptionGroup, RenderOptionState, DropdownFooterAction };
 
 interface TriggerRenderProps {
     selectedOptions: DropdownOption[];
@@ -65,6 +65,18 @@ interface Props {
     // logic in Dropdown/DropdownPanel's own handlePick. Omit to keep the default
     // DropdownOptionRow rendering (fully backward-compatible).
     renderOption?: (opt: DropdownOption, state: RenderOptionState) => ReactNode;
+    // Overrides how a selected option renders inside the closed trigger (single
+    // value or a multiSelect chip) — see DropdownTrigger. Independent of
+    // `renderOption`: a caller often wants a rich open-panel row and a rich
+    // trigger value with different markup, so this is its own prop rather than
+    // reusing renderOption's signature (which also carries panel-only state
+    // like `indented`/`onPick`). Omit to keep the default plain-text value.
+    renderValue?: (opt: DropdownOption) => ReactNode;
+    // A persistent row pinned to the bottom of the panel's results list, always
+    // visible regardless of search query — for an affordance that isn't about
+    // creating an option from typed text (unlike `onCreate`), e.g. a static
+    // "add a new connection" link that opens elsewhere.
+    footerAction?: DropdownFooterAction;
     children?: (props: TriggerRenderProps) => ReactNode;
 }
 
@@ -74,7 +86,7 @@ export function Dropdown(
     {
         options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
-        onError, className, glass = false, portal = true, renderOption, children,
+        onError, className, glass = false, portal = true, renderOption, renderValue, footerAction, children,
     }: Props) {
 
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
@@ -118,6 +130,7 @@ export function Dropdown(
                         multiSelect={multiSelect}
                         onOverflow={onOverflow}
                         placeholder={triggerPlaceholder}
+                        renderValue={renderValue}
                     />
                 )}
             {isOpen && (
@@ -140,6 +153,7 @@ export function Dropdown(
                     glass={glass}
                     portal={portal}
                     renderOption={renderOption}
+                    footerAction={footerAction}
                 />
             )}
         </div>

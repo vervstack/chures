@@ -5,8 +5,9 @@ import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
 import { flattenItems, getOptionDisabled, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
-import type { DropdownItem, DropdownOption, RenderOptionState } from './Dropdown.types';
+import type { DropdownFooterAction, DropdownItem, DropdownOption, RenderOptionState } from './Dropdown.types';
 import { DropdownCreateRow } from './DropdownCreateRow';
+import { DropdownFooterActionRow } from './DropdownFooterActionRow';
 import { DropdownGroupHeader } from './DropdownGroupHeader';
 import { DropdownOptionRow } from './DropdownOptionRow';
 import { DropdownSearchRow } from './DropdownSearchRow';
@@ -32,6 +33,7 @@ interface Props {
     glass?: boolean;
     portal?: boolean;
     renderOption?: (opt: DropdownOption, state: RenderOptionState) => ReactNode;
+    footerAction?: DropdownFooterAction;
 }
 
 export function DropdownPanel(
@@ -47,6 +49,7 @@ export function DropdownPanel(
         glass = false,
         portal = true,
         renderOption,
+        footerAction,
     }: Props) {
 
     const [query, setQuery] = useState('');
@@ -136,6 +139,11 @@ export function DropdownPanel(
         if (getOptionDisabled(opt)) return;
         onPick(opt);
         if (!multiSelect) onClose();
+    }
+
+    function handleFooterAction() {
+        footerAction?.onAction();
+        onClose();
     }
 
     function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -228,6 +236,14 @@ export function DropdownPanel(
                             )}
                             {visibleOptions.length === 0 && !showCreate && (
                                 <div className={styles.EmptyHint}>{emptyHint}</div>
+                            )}
+                            {footerAction && (
+                                <DropdownFooterActionRow
+                                    label={footerAction.label}
+                                    icon={footerAction.icon}
+                                    withBorder={visibleOptions.length > 0 || showCreate}
+                                    onAction={handleFooterAction}
+                                />
                             )}
                         </>
                     )}
