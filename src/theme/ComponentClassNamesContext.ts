@@ -6,6 +6,7 @@ export type ChuresComponentName =
     | 'Button'
     | 'Input'
     | 'Toggle'
+    | 'Checkbox'
     | 'Loader'
     | 'LoadingWrapper'
     | 'TelegramSignInButton'

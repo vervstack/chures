@@ -1,0 +1,65 @@
+/*
+ * See Button.module.css for why every class below is wrapped in :where(...).
+ */
+:where(.CheckboxContainer) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+:where(.CheckboxContainer.disabled) {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+:where(.BoxWrapper) {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    width: var(--chures-checkbox-size, 1.125rem);
+    height: var(--chures-checkbox-size, 1.125rem);
+}
+
+:where(.BoxWrapper) input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+:where(.CheckboxContainer.disabled) .BoxWrapper input {
+    cursor: not-allowed;
+}
+
+:where(.Box) {
+    position: absolute;
+    inset: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--chures-checkbox-radius, 0.3125rem);
+    border: 1px solid var(--chures-checkbox-border, rgb(255 255 255 / 25%));
+    background: var(--chures-checkbox-bg, transparent);
+    color: transparent;
+    pointer-events: none;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+:where(.BoxWrapper) input:checked + :where(.Box) {
+    background: var(--chures-checkbox-bg-on, var(--chures-accent, #229ED9));
+    border-color: var(--chures-checkbox-bg-on, var(--chures-accent, #229ED9));
+    color: var(--chures-checkbox-tick, #ffffff);
+}
+
+:where(.BoxWrapper) input:focus-visible + :where(.Box) {
+    outline: 2px solid var(--chures-accent, #229ED9);
+    outline-offset: 0.125rem;
+}
+
+:where(.Label) {
+    font-size: var(--chures-font-sm, 0.875rem);
+    color: var(--chures-fg, #ffffff);
+}

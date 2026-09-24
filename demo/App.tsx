@@ -11,6 +11,7 @@ import { TelegramSignInButtonPage } from "./pages/TelegramSignInButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
 import { InputPage } from "./pages/InputPage"
 import { TogglePage } from "./pages/TogglePage"
+import { CheckboxPage } from "./pages/CheckboxPage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
 import { ToasterPage } from "./pages/ToasterPage"
 import { DropdownPage } from "./pages/DropdownPage"
@@ -69,6 +70,8 @@ export function App() {
         page = <InputPage />
     } else if (hash === "#/toggle") {
         page = <TogglePage />
+    } else if (hash === "#/checkbox") {
+        page = <CheckboxPage />
     } else if (hash === "#/dropdown") {
         page = <DropdownPage />
     } else if (hash === "#/flyout-menu") {
