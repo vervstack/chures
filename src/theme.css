@@ -64,5 +64,13 @@
     --chures-flyout-font-sm: 0.6875rem;
     --chures-flyout-font-md: 0.75rem;
     --chures-flyout-font-mono: "JetBrains Mono", ui-monospace, sfmono-regular, menlo, monospace;
+
+    --chures-segmented-bg: var(--chures-input-bg);
+    --chures-segmented-radius: var(--chures-input-radius);
+    --chures-segmented-pad: 0.25rem;
+    --chures-segmented-highlight: var(--chures-accent);
+    --chures-segmented-fg: var(--chures-fg-muted);
+    --chures-segmented-fg-active: var(--chures-fg);
+    --chures-segmented-gap: 0.25rem;
 }
 }

@@ -11,6 +11,7 @@ const NAV: NavItem[] = [
     { hash: "#/loading-wrapper", label: "LoadingWrapper" },
     { hash: "#/input", label: "Input" },
     { hash: "#/toggle", label: "Toggle" },
+    { hash: "#/segmented-control", label: "SegmentedControl" },
     { hash: "#/checkbox", label: "Checkbox" },
     { hash: "#/dropdown", label: "Dropdown" },
     { hash: "#/flyout-menu", label: "FlyoutMenu" },

@@ -1,0 +1,67 @@
+/* Base rules are wrapped in :where() so a consumer className always wins — see Button.module.css. */
+:where(.SegmentedControlContainer) {
+    position: relative;
+    display: inline-flex;
+    align-items: stretch;
+    gap: var(--chures-segmented-gap);
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: var(--chures-segmented-pad);
+    border-radius: var(--chures-segmented-radius);
+    background: var(--chures-segmented-bg);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+:where(.SegmentedControlContainer)::-webkit-scrollbar {
+    display: none;
+}
+
+:where(.Disabled) {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+:where(.Highlight) {
+    position: absolute;
+    top: var(--chures-segmented-pad);
+    bottom: var(--chures-segmented-pad);
+    border-radius: max(0rem, calc(var(--chures-segmented-radius) - var(--chures-segmented-pad)));
+    background: var(--chures-segmented-highlight);
+    pointer-events: none;
+}
+
+:where(.Option) {
+    position: relative;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: max(0rem, calc(var(--chures-segmented-radius) - var(--chures-segmented-pad)));
+    background: transparent;
+    color: var(--chures-segmented-fg);
+    font-family: inherit;
+    font-size: var(--chures-font-sm);
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 200ms ease;
+}
+
+:where(.Option):hover:not(:disabled) {
+    color: var(--chures-segmented-fg-active);
+}
+
+:where(.Option):disabled {
+    cursor: not-allowed;
+}
+
+:where(.OptionDisabled) {
+    opacity: 0.45;
+}
+
+:where(.Selected) {
+    color: var(--chures-segmented-fg-active);
+}
