@@ -16,6 +16,7 @@ const variantClass: Partial<Record<ButtonVariant, string>> = {
     danger: styles.Danger,
     ghost: styles.Ghost,
     iconDanger: styles.IconDanger,
+    unstyled: styles.Unstyled,
 }
 
 export function Button({ variant = 'default', className, children, ...rest }: Props) {
@@ -25,7 +26,7 @@ export function Button({ variant = 'default', className, children, ...rest }: Pr
         <button
             type="button"
             {...rest}
-            className={cn(!isUnstyled && styles.Btn, !isUnstyled && variantClass[variant], resolvedClassName)}>
+            className={cn(!isUnstyled && styles.Btn, variantClass[variant], resolvedClassName)}>
             {children}
         </button>
     )
