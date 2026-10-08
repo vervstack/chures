@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
 import { useDropdownClose, useSearchResults } from './Dropdown.hooks';
+import { computePanelPlacement } from './Dropdown.placement';
 import { flattenItems, getOptionDisabled, getOptionId, getOptionLabel, isGroupOption } from './Dropdown.types';
 import type { DropdownFooterAction, DropdownItem, DropdownOption, RenderOptionState } from './Dropdown.types';
 import { DropdownCreateRow } from './DropdownCreateRow';
@@ -55,6 +56,8 @@ export function DropdownPanel(
     const [query, setQuery] = useState('');
     const [creating, setCreating] = useState(false);
     const [anchorRect, setAnchorRect] = useState<DOMRect | null>(null);
+    const [panelHeight, setPanelHeight] = useState(0);
+    const [panelGap, setPanelGap] = useState(0);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
@@ -88,6 +91,20 @@ export function DropdownPanel(
             window.removeEventListener('resize', updateRect);
         };
     }, [usePortal, anchorRef]);
+
+    // Measures the panel's natural height (the --dropdown-available-height cap lifted
+    // for the measurement) so the placement decision never depends on its own cap.
+    // Runs after every render; the state setters bail out on an unchanged value.
+    useLayoutEffect(() => {
+        const panelEl = panelRef.current;
+        if (!usePortal || !panelEl) return;
+        const capName = '--dropdown-available-height';
+        const previousCap = panelEl.style.getPropertyValue(capName);
+        panelEl.style.removeProperty(capName);
+        setPanelHeight(panelEl.offsetHeight);
+        setPanelGap(parseFloat(getComputedStyle(panelEl).marginTop) || 0);
+        if (previousCap) panelEl.style.setProperty(capName, previousCap);
+    });
 
     useEffect(() => {
         if (hasSearch) inputRef.current?.focus();
@@ -165,11 +182,29 @@ export function DropdownPanel(
 
     if (usePortal && !anchorRect) return null;
 
+    const placement = usePortal && anchorRect
+        ? computePanelPlacement({ anchorRect, panelHeight, viewportHeight: window.innerHeight, gap: panelGap })
+        : null;
+
+    const portalStyle: React.CSSProperties | undefined = usePortal && anchorRect && placement
+        ? {
+            left: anchorRect.left,
+            width: anchorRect.width,
+            ...(placement.side === 'above'
+                ? { bottom: window.innerHeight - anchorRect.top }
+                : { top: anchorRect.bottom }),
+            ...({ '--dropdown-available-height': `${placement.availableHeight}px` } as React.CSSProperties),
+        }
+        : undefined;
+
     const panel = (
         <div
             ref={panelRef}
-            className={cn(styles.PanelWrapper, { [styles.Portal]: usePortal })}
-            style={usePortal && anchorRect ? { top: anchorRect.bottom, left: anchorRect.left, width: anchorRect.width } : undefined}
+            className={cn(styles.PanelWrapper, {
+                [styles.Portal]: usePortal,
+                [styles.Above]: placement?.side === 'above',
+            })}
+            style={portalStyle}
         >
             <div className={cn(styles.PanelContainer, { [styles.Glass]: glass })}>
                 {hasSearch && (

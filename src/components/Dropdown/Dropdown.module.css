@@ -5,6 +5,11 @@
     to   { opacity: 1; transform: none; }
 }
 
+@keyframes panelInAbove {
+    from { opacity: 0; transform: scale(0.96) translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+}
+
 @keyframes shimmer {
     from { background-position: -200% center; }
     to   { background-position: 200% center; }
@@ -34,7 +39,14 @@
 .PanelWrapper.Portal {
     position: fixed;
     width: auto;
-    margin-top: var(--chures-dropdown-panel-gap);
+    margin: var(--chures-dropdown-panel-gap) 0;
+}
+
+/* Positioned by `bottom` instead of `top` (see computePanelPlacement); only the
+   entrance animation's direction differs. */
+.PanelWrapper.Above {
+    transform-origin: bottom center;
+    animation-name: panelInAbove;
 }
 
 .PanelContainer {
@@ -42,6 +54,9 @@
     border: 1px solid var(--chures-dropdown-border);
     border-radius: var(--chures-dropdown-radius);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: var(--dropdown-available-height, none);
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 80%);
 }
 
@@ -185,6 +200,7 @@
 }
 
 .SearchRow {
+    flex-shrink: 0;
     padding: 0.5rem;
     border-bottom: 1px solid var(--chures-dropdown-border-subtle);
 }
@@ -222,6 +238,7 @@
 
 .ResultsList {
     max-height: 13rem;
+    min-height: 0;
     overflow-y: auto;
 }
 

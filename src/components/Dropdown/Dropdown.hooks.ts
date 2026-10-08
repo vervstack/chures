@@ -25,13 +25,16 @@ export function useDropdownClose(
             onClose();
         }
         function handleKeyDown(e: KeyboardEvent) {
-            if (e.key === 'Escape') onClose();
+            if (e.key !== 'Escape') return;
+            e.preventDefault();
+            e.stopPropagation();
+            onClose();
         }
         document.addEventListener('mousedown', handleMousedown, true);
-        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keydown', handleKeyDown, true);
         return () => {
             document.removeEventListener('mousedown', handleMousedown, true);
-            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown, true);
         };
     }, [onClose, panelRef, anchorRef]);
 }
