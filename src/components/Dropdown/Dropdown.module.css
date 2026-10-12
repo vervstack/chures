@@ -45,6 +45,7 @@
 /* Positioned by `bottom` instead of `top` (see computePanelPlacement); only the
    entrance animation's direction differs. */
 .PanelWrapper.Above {
+    top: auto;
     transform-origin: bottom center;
     animation-name: panelInAbove;
 }
