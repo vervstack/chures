@@ -18,11 +18,12 @@ interface Props {
     // (single value or a chip), mirroring `renderOption` for the open panel's
     // rows. Omit to keep the default plain-text label (backward-compatible).
     renderValue?: (opt: DropdownOption) => ReactNode;
+    hasIcon?: boolean;
 }
 
 export function DropdownTrigger(
     {
-        triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll', renderValue,
+        triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll', renderValue, hasIcon = false,
     }: Props) {
     const expand = onOverflow === 'expand';
     const rich = Boolean(renderValue) && !multiSelect && selectedOptions.length === 1;
@@ -37,6 +38,7 @@ export function DropdownTrigger(
                 multiSelect && styles.MultiSelect,
                 expand && styles.ExpandHeight,
                 rich && styles.RichValue,
+                hasIcon && styles.WithIcon,
             )}
             onClick={onClick}
             aria-expanded={isOpen}

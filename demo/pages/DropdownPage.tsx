@@ -3,6 +3,7 @@ import { Dropdown } from "../../src/components/Dropdown/Dropdown"
 import { getOptionLabel, isGroupOption } from "../../src/components/Dropdown/Dropdown.types"
 import type { DropdownItem, DropdownOption, RenderOptionState } from "../../src/components/Dropdown/Dropdown.types"
 import { useDemoStore } from "../store/useDemoStore"
+import { SearchIcon } from "../../src/components/icons"
 
 // A minimal custom row: swaps the checkmark for an emoji marker and dims unselected
 // rows, to make it obvious this is a fully consumer-owned row while pick/selection
@@ -93,6 +94,7 @@ export function DropdownPage() {
     const [glass, setGlass] = useState(false)
     const [portal, setPortal] = useState(false)
     const [grouped, setGrouped] = useState(false)
+    const [iconEnabled, setIconEnabled] = useState(false)
     const [customRenderEnabled, setCustomRenderEnabled] = useState(false)
     const [disabledOptionEnabled, setDisabledOptionEnabled] = useState(false)
     const [options, setOptions] = useState<DropdownItem[]>(FRUITS)
@@ -135,6 +137,10 @@ export function DropdownPage() {
                 },
                 disabled: grouped, tooltip: "Swaps Cherry for a disabled option with a 'Coming soon' tooltip. Requires the flat (non-grouped) list.",
             },
+            {
+                type: "toggleGroup", label: "icon", options: ["off", "on"], value: iconEnabled ? "on" : "off", onChange: (v) => setIconEnabled(v === "on"),
+                tooltip: "Leading icon inside the trigger; the floating label shifts right to clear it while resting.",
+            },
             { type: "toggleGroup", label: "skeletonRowCount", options: ["2", "4", "6"], value: String(skeletonRowCount), onChange: (v) => setSkeletonRowCount(Number(v)) },
             { type: "input", label: "placeholder", value: placeholder, onChange: setPlaceholder, placeholder: "(default)" },
             { type: "input", label: "emptyHint", value: emptyHint, onChange: setEmptyHint },
@@ -149,7 +155,7 @@ export function DropdownPage() {
             { type: "display", label: "selected", value: value.length > 0 ? value.join(", ") : "(none)" },
         ])
         return () => setControls([])
-    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, customRenderEnabled, disabledOptionEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
+    }, [grouped, multiSelect, selectedAtTop, onOverflow, isLoading, searchEnabled, createEnabled, customRenderEnabled, iconEnabled, disabledOptionEnabled, skeletonRowCount, placeholder, emptyHint, glass, portal, value, setControls])
 
     function handleCreate(name: string): Promise<DropdownOption> {
         return new Promise((resolve) => {
@@ -181,6 +187,7 @@ export function DropdownPage() {
                 glass={glass}
                 portal={portal}
                 renderOption={customRenderEnabled ? renderCustomOption : undefined}
+                icon={iconEnabled ? <SearchIcon size={16} /> : undefined}
                 label="Fruit"
             />
             {/* A later flex sibling: without portal/glass, this paints over the open

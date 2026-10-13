@@ -81,6 +81,10 @@
     border-radius: 0.1875rem;
 }
 
+.Label.WithIcon:not(.lifted) {
+    left: calc(0.875rem + var(--chures-dropdown-icon-size) + 0.5rem);
+}
+
 .Label.lifted {
     top: 0;
     transform: translateY(-50%) scale(0.82);
@@ -178,6 +182,24 @@
     height: auto;
     min-height: calc(var(--chures-input-height) * 1.25);
     padding: 0.625rem 0.875rem;
+}
+
+.TriggerContainer.WithIcon {
+    padding-left: calc(0.875rem + var(--chures-dropdown-icon-size) + 0.5rem);
+}
+
+.LeadingIcon {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--chures-dropdown-icon-size);
+    height: var(--chures-dropdown-icon-size);
+    color: var(--chures-fg-muted);
+    pointer-events: none;
 }
 
 .TriggerValueRich {
@@ -290,10 +312,49 @@
     }
 }
 
-.Checkmark {
-    color: var(--chures-accent);
-    font-size: var(--chures-font-xs);
+/* The slot is always rendered in multiSelect rows: a negative right margin cancels the
+   row's flex gap while unchecked, so the label only slides right once a tick is picked. */
+.CheckSlot {
+    display: inline-flex;
+    align-items: center;
     flex-shrink: 0;
+    width: 0;
+    margin-right: -0.5rem;
+    overflow: hidden;
+    color: var(--chures-accent);
+    transition: width 0.18s ease, margin-right 0.18s ease;
+
+    &.Checked {
+        width: 1rem;
+        margin-right: 0;
+    }
+}
+
+.CheckIcon {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
+
+    & path {
+        stroke: currentColor;
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset 0.22s ease 0.06s;
+    }
+}
+
+.CheckSlot.Checked .CheckIcon path {
+    stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .CheckSlot,
+    .CheckIcon path {
+        transition: none;
+    }
 }
 
 .CreateRow {

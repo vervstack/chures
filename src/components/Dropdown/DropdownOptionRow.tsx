@@ -1,5 +1,6 @@
 import cn from 'classnames';
 
+import { DropdownCheckmark } from './DropdownCheckmark';
 import { getOptionDisabled, getOptionLabel, getOptionTitle } from './Dropdown.types';
 import type { DropdownOption } from './Dropdown.types';
 import styles from './Dropdown.module.css';
@@ -27,7 +28,7 @@ export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick, indent
             onMouseDown={handleMouseDown}
             title={getOptionTitle(opt)}
         >
-            {multiSelect && isSelected && <span className={styles.Checkmark}>✓</span>}
+            {multiSelect && <DropdownCheckmark isChecked={isSelected} />}
             {getOptionLabel(opt)}
         </div>
     );

@@ -126,6 +126,7 @@ Defaults live in `src/theme.css` (a `:root {}` block injected with the library b
 | `--chures-font-xs` | `0.75rem` | description size |
 | `--chures-overlay` | `rgb(0 0 0 / 58%)` | `SideDrawer` backdrop dim |
 | `--chures-side-drawer-size` | `22rem` | `SideDrawer` panel width (left/right) or height (top/bottom) |
+| `--chures-dropdown-icon-size` | `1rem` | `Dropdown` leading `icon` slot width/height |
 
 ## Codebase Navigation
 

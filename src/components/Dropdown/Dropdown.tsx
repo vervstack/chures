@@ -77,6 +77,10 @@ interface Props {
     // creating an option from typed text (unlike `onCreate`), e.g. a static
     // "add a new connection" link that opens elsewhere.
     footerAction?: DropdownFooterAction;
+    // Leading icon drawn inside the default trigger, left of the value/placeholder.
+    // Size it via --chures-dropdown-icon-size (default 1rem). The floating label
+    // shifts right to clear it while resting; once lifted it keeps its offset.
+    icon?: ReactNode;
     children?: (props: TriggerRenderProps) => ReactNode;
 }
 
@@ -86,7 +90,7 @@ export function Dropdown(
     {
         options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
         placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
-        onError, className, glass = false, portal = true, renderOption, renderValue, footerAction, children,
+        onError, className, glass = false, portal = true, renderOption, renderValue, footerAction, icon, children,
     }: Props) {
 
     const { isOpen, triggerRef, toggleOpen, close } = useDropdownOpenState();
@@ -115,23 +119,27 @@ export function Dropdown(
     return (
         <div className={cn(styles.DropdownContainer, resolvedClassName)}>
             {label && (
-                <label className={cn(styles.Label, { [styles.lifted]: lifted })}>
+                <label className={cn(styles.Label, { [styles.lifted]: lifted, [styles.WithIcon]: Boolean(icon) })}>
                     {label}
                 </label>
             )}
             {children
                 ? children({ selectedOptions, isOpen, toggleOpen, close, triggerProps })
                 : (
-                    <DropdownTrigger
-                        triggerRef={triggerRef}
-                        isOpen={isOpen}
-                        onClick={toggleOpen}
-                        selectedOptions={selectedOptions}
-                        multiSelect={multiSelect}
-                        onOverflow={onOverflow}
-                        placeholder={triggerPlaceholder}
-                        renderValue={renderValue}
-                    />
+                    <>
+                        {icon && <span className={styles.LeadingIcon}>{icon}</span>}
+                        <DropdownTrigger
+                            triggerRef={triggerRef}
+                            isOpen={isOpen}
+                            onClick={toggleOpen}
+                            selectedOptions={selectedOptions}
+                            multiSelect={multiSelect}
+                            onOverflow={onOverflow}
+                            placeholder={triggerPlaceholder}
+                            renderValue={renderValue}
+                            hasIcon={Boolean(icon)}
+                        />
+                    </>
                 )}
             {isOpen && (
                 <DropdownPanel
