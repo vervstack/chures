@@ -66,6 +66,11 @@
     border-color: rgb(255 255 255 / 35%);
 }
 
+/* The label doubles as the resting hint, so a placeholder only shows once the label has lifted (focus). */
+:where(.InputField:not(:focus):has(+ .Label))::placeholder {
+    color: transparent;
+}
+
 :where(.hasError .InputField),
 :where(.hasError .InputField):focus {
     border-color: var(--chures-error, #ef4444);
