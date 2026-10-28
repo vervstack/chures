@@ -49,26 +49,28 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
     return (
         <div className={cn(styles.InputContainer, { [styles.hasError]: !!error, [styles.disabled]: disabled }, resolvedClassName)}>
-            {startIcon && <span className={styles.StartIcon}>{startIcon}</span>}
-            <input
-                ref={ref}
-                className={cn(styles.InputField, { [styles.hasStartIcon]: !!startIcon, [styles.hasEndIcon]: !!endIcon }, inputClassName)}
-                type={type}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                onFocus={(e) => {
-                    setFocused(true)
-                    consumerOnFocus?.(e)
-                }}
-                onBlur={(e) => {
-                    setFocused(false)
-                    consumerOnBlur?.(e)
-                }}
-                disabled={disabled}
-                {...restProps}
-            />
-            {label && <label className={cn(styles.Label, { [styles.lifted]: lifted })}>{label}</label>}
-            {endIcon && <span className={styles.EndIcon}>{endIcon}</span>}
+            <div className={styles.InputBox}>
+                {startIcon && <span className={styles.StartIcon}>{startIcon}</span>}
+                <input
+                    ref={ref}
+                    className={cn(styles.InputField, { [styles.hasStartIcon]: !!startIcon, [styles.hasEndIcon]: !!endIcon }, inputClassName)}
+                    type={type}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    onFocus={(e) => {
+                        setFocused(true)
+                        consumerOnFocus?.(e)
+                    }}
+                    onBlur={(e) => {
+                        setFocused(false)
+                        consumerOnBlur?.(e)
+                    }}
+                    disabled={disabled}
+                    {...restProps}
+                />
+                {label && <label className={cn(styles.Label, { [styles.lifted]: lifted })}>{label}</label>}
+                {endIcon && <span className={styles.EndIcon}>{endIcon}</span>}
+            </div>
             {error && <span className={styles.ErrorText}>{error}</span>}
         </div>
     )

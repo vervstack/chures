@@ -14,6 +14,13 @@
  */
 :where(.InputContainer) {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+:where(.InputBox) {
+    position: relative;
     width: 100%;
     height: var(--chures-input-height, 3rem);
 }
@@ -106,12 +113,25 @@
     color: var(--chures-error, #ef4444);
 }
 
+@keyframes errorIn {
+    from { opacity: 0; max-height: 0; }
+    to   { opacity: 1; max-height: 3rem; }
+}
+
 :where(.ErrorText) {
     display: block;
     margin-top: 0.25rem;
     padding-left: 0.875rem;
     font-size: var(--chures-font-xs, 0.75rem);
     color: var(--chures-error, #ef4444);
+    overflow: hidden;
+    animation: errorIn 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :where(.ErrorText) {
+        animation: none;
+    }
 }
 
 :where(.Skeleton) {
