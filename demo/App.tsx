@@ -11,6 +11,7 @@ import { TelegramSignInButtonPage } from "./pages/TelegramSignInButtonPage"
 import { LoaderPage } from "./pages/LoaderPage"
 import { InputPage } from "./pages/InputPage"
 import { TogglePage } from "./pages/TogglePage"
+import { AccordionPage } from "./pages/AccordionPage"
 import { SegmentedControlPage } from "./pages/SegmentedControlPage"
 import { CheckboxPage } from "./pages/CheckboxPage"
 import { LoadingWrapperPage } from "./pages/LoadingWrapperPage"
@@ -71,6 +72,8 @@ export function App() {
         page = <InputPage />
     } else if (hash === "#/toggle") {
         page = <TogglePage />
+    } else if (hash === "#/accordion") {
+        page = <AccordionPage />
     } else if (hash === "#/segmented-control") {
         page = <SegmentedControlPage />
     } else if (hash === "#/checkbox") {

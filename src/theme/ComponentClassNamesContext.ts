@@ -6,6 +6,7 @@ export type ChuresComponentName =
     | 'Button'
     | 'Input'
     | 'Toggle'
+    | 'Accordion'
     | 'SegmentedControl'
     | 'Checkbox'
     | 'Loader'
