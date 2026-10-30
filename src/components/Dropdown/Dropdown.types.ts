@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type DropdownOption = string | { id: string; name: string; disabled?: boolean; title?: string };
+export type DropdownOption = string | { id: string; name: string; disabled?: boolean; title?: string; icon?: ReactNode };
 
 // A named family of leaf options, rendered as a non-interactive header followed by
 // its indented options. Leaves only — no nesting deeper than 2 levels, that's out
@@ -57,6 +57,10 @@ export function getOptionDisabled(opt: DropdownOption): boolean {
 
 export function getOptionTitle(opt: DropdownOption): string | undefined {
     return typeof opt === 'string' ? undefined : opt.title;
+}
+
+export function getOptionIcon(opt: DropdownOption): ReactNode {
+    return typeof opt === 'string' ? undefined : opt.icon;
 }
 
 export function resolveSelectedOptions(value: string[], options: DropdownOption[]): DropdownOption[] {

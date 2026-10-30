@@ -18,6 +18,7 @@ export function AccordionPage() {
     return (
         <Accordion
             title="Models"
+            icon={<span>◆</span>}
             meta={showMeta ? "2 of 5 selected" : undefined}
             isOpen={isOpen}
             onToggle={setIsOpen}>

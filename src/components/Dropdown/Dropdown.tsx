@@ -39,6 +39,8 @@ interface Props {
     searchPlaceholder?: string;
     emptyHint?: string;
     isLoading?: boolean;
+    // Locks the trigger: it neither opens nor takes focus, and renders dimmed.
+    isDisabled?: boolean;
     skeletonRowCount?: number;
     onError?: (err: unknown) => void;
     className?: string;
@@ -89,7 +91,7 @@ export type DropdownProps = Props;
 export function Dropdown(
     {
         options = [], value, onChange, onSearch, onCreate, excluded, multiSelect = false, selectedAtTop = false, onOverflow = 'scroll', label,
-        placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, skeletonRowCount,
+        placeholder = 'select…', searchPlaceholder, emptyHint, isLoading, isDisabled = false, skeletonRowCount,
         onError, className, glass = false, portal = true, renderOption, renderValue, footerAction, icon, children,
     }: Props) {
 
@@ -119,7 +121,7 @@ export function Dropdown(
     return (
         <div className={cn(styles.DropdownContainer, resolvedClassName)}>
             {label && (
-                <label className={cn(styles.Label, { [styles.lifted]: lifted, [styles.WithIcon]: Boolean(icon) })}>
+                <label className={cn(styles.Label, { [styles.lifted]: lifted, [styles.WithIcon]: Boolean(icon), [styles.Disabled]: isDisabled })}>
                     {label}
                 </label>
             )}
@@ -138,10 +140,11 @@ export function Dropdown(
                             placeholder={triggerPlaceholder}
                             renderValue={renderValue}
                             hasIcon={Boolean(icon)}
+                            isDisabled={isDisabled}
                         />
                     </>
                 )}
-            {isOpen && (
+            {isOpen && !isDisabled && (
                 <DropdownPanel
                     options={options}
                     onSearch={onSearch}

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import cn from 'classnames';
 
 import { ChevronDownIcon } from '../icons';
-import { getOptionLabel } from './Dropdown.types';
+import { getOptionIcon, getOptionLabel } from './Dropdown.types';
 import type { DropdownOption } from './Dropdown.types';
 import styles from './Dropdown.module.css';
 
@@ -19,14 +19,16 @@ interface Props {
     // rows. Omit to keep the default plain-text label (backward-compatible).
     renderValue?: (opt: DropdownOption) => ReactNode;
     hasIcon?: boolean;
+    isDisabled?: boolean;
 }
 
 export function DropdownTrigger(
     {
-        triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll', renderValue, hasIcon = false,
+        triggerRef, isOpen, onClick, selectedOptions, multiSelect, placeholder, onOverflow = 'scroll', renderValue, hasIcon = false, isDisabled = false,
     }: Props) {
     const expand = onOverflow === 'expand';
     const rich = Boolean(renderValue) && !multiSelect && selectedOptions.length === 1;
+    const optionIcon = !multiSelect && selectedOptions.length === 1 ? getOptionIcon(selectedOptions[0]) : undefined;
 
     return (
         <button
@@ -41,6 +43,7 @@ export function DropdownTrigger(
                 hasIcon && styles.WithIcon,
             )}
             onClick={onClick}
+            disabled={isDisabled}
             aria-expanded={isOpen}
             aria-haspopup="listbox"
         >
@@ -58,6 +61,7 @@ export function DropdownTrigger(
                 </div>
             ) : (
                 <span className={selectedOptions.length === 0 ? styles.TriggerPlaceholder : styles.TriggerValue}>
+                    {optionIcon && <span className={styles.OptionIcon}>{optionIcon}</span>}
                     {selectedOptions.length === 0 ? placeholder : selectedOptions.map(getOptionLabel).join(', ')}
                 </span>
             )}

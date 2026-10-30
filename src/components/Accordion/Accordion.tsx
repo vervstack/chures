@@ -8,6 +8,8 @@ import {useComponentClassName} from '../../theme/useComponentClassName'
 
 interface Props {
     title: ReactNode
+    // Drawn between the chevron and the title.
+    icon?: ReactNode
     meta?: ReactNode
     isOpen: boolean
     onToggle: (isOpen: boolean) => void
@@ -17,7 +19,7 @@ interface Props {
 
 export type AccordionProps = Props
 
-export default function Accordion({title, meta, isOpen, onToggle, children, className}: Props) {
+export default function Accordion({title, icon, meta, isOpen, onToggle, children, className}: Props) {
     const resolvedClassName = useComponentClassName('Accordion', className)
     const panelId = useId()
 
@@ -35,6 +37,7 @@ export default function Accordion({title, meta, isOpen, onToggle, children, clas
                 onClick={handleToggle}>
                 <span className={styles.Heading}>
                     <ChevronDownIcon className={styles.Chevron}/>
+                    {icon != null && <span className={styles.Icon}>{icon}</span>}
                     <span className={styles.Title}>{title}</span>
                 </span>
                 {meta != null && <span className={styles.Meta}>{meta}</span>}

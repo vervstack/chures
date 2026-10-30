@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import { DropdownCheckmark } from './DropdownCheckmark';
-import { getOptionDisabled, getOptionLabel, getOptionTitle } from './Dropdown.types';
+import { getOptionDisabled, getOptionIcon, getOptionLabel, getOptionTitle } from './Dropdown.types';
 import type { DropdownOption } from './Dropdown.types';
 import styles from './Dropdown.module.css';
 
@@ -15,6 +15,7 @@ interface Props {
 
 export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick, indented = false }: Props) {
     const disabled = getOptionDisabled(opt);
+    const icon = getOptionIcon(opt);
 
     function handleMouseDown(e: React.MouseEvent) {
         e.preventDefault();
@@ -29,6 +30,7 @@ export function DropdownOptionRow({ opt, isSelected, multiSelect, onPick, indent
             title={getOptionTitle(opt)}
         >
             {multiSelect && <DropdownCheckmark isChecked={isSelected} />}
+            {icon && <span className={styles.OptionIcon}>{icon}</span>}
             {getOptionLabel(opt)}
         </div>
     );
