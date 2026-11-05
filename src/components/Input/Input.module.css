@@ -73,9 +73,15 @@
     border-color: rgb(255 255 255 / 35%);
 }
 
-/* The label doubles as the resting hint, so the placeholder only renders in the
-   resting state (label in place, input empty and unfocused). Once the label lifts
-   (focus or a value) the placeholder would sit under the floated label, so hide it. */
+/* The placeholder is the resting hint: it renders only while the input is empty and
+   unfocused. In that state the floating label would sit on top of it, so the label
+   stays hidden (only when a placeholder attribute exists — without one the label is
+   the only hint and must stay visible). Once the field lifts the label (focus or a
+   value), the placeholder would sit under the floated label, so hide it there too. */
+:where(.InputField[placeholder]:placeholder-shown:not(:focus):has(+ .Label)) + .Label {
+    opacity: 0;
+}
+
 :where(.InputField:focus:has(+ .Label))::placeholder,
 :where(.InputField:not(:placeholder-shown):has(+ .Label))::placeholder {
     color: transparent;
