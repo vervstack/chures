@@ -73,8 +73,11 @@
     border-color: rgb(255 255 255 / 35%);
 }
 
-/* The label doubles as the resting hint, so a placeholder only shows once the label has lifted (focus). */
-:where(.InputField:not(:focus):has(+ .Label))::placeholder {
+/* The label doubles as the resting hint, so the placeholder only renders in the
+   resting state (label in place, input empty and unfocused). Once the label lifts
+   (focus or a value) the placeholder would sit under the floated label, so hide it. */
+:where(.InputField:focus:has(+ .Label))::placeholder,
+:where(.InputField:not(:placeholder-shown):has(+ .Label))::placeholder {
     color: transparent;
 }
 
